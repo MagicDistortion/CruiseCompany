@@ -1,0 +1,40 @@
+2022-11-23 15:15:58 ERROR [main]: failed to upgrade telephone number 
+java.lang.RuntimeException: wrong number tel
+	at models.users.User.upgradeTel(User.java:42)
+	at models.users.User.setTel(User.java:34)
+	at models.users.User.main(User.java:53)
+2022-11-23 15:42:46 ERROR [main]: failed to upgrade telephone number 
+Error type: TOO_SHORT_AFTER_IDD. Phone number had an IDD, but after this was not long enough to be a viable phone number.
+	at com.google.i18n.phonenumbers.PhoneNumberUtil.parseHelper(PhoneNumberUtil.java:3287)
+	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3122)
+	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3112)
+	at models.users.User.upgradeTel(User.java:41)
+	at models.users.User.<init>(User.java:26)
+	at dao.UsersDAO.getUser(UsersDAO.java:26)
+	at dao.UsersDAO.findAllUsers(UsersDAO.java:61)
+	at dao.UsersDAO.main(UsersDAO.java:75)
+2022-11-23 15:45:49 ERROR [main]: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'admin' for key 'users.login_UNIQUE'
+2022-11-23 15:47:16 ERROR [main]: failed to get all users
+java.sql.SQLException: Column 'id_users' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:584)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getInt(ResultSetImpl.java:851)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.getInt(HikariProxyResultSet.java)
+	at dao.UsersDAO.getUser(UsersDAO.java:28)
+	at dao.UsersDAO.findAllUsers(UsersDAO.java:61)
+	at dao.UsersDAO.main(UsersDAO.java:75)
+2022-11-23 15:48:02 ERROR [main]: failed to get all users
+java.sql.SQLException: Column 'id_roles' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:584)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getInt(ResultSetImpl.java:851)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.getInt(HikariProxyResultSet.java)
+	at dao.UsersDAO.getUser(UsersDAO.java:29)
+	at dao.UsersDAO.findAllUsers(UsersDAO.java:61)
+	at dao.UsersDAO.main(UsersDAO.java:75)

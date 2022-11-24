@@ -27,11 +27,11 @@ public class TicketsDAO {
     }
 
     /* метод пошуку квитка по id пасажира */
-    public Ticket findTicketByUserId(int id) {
+    public Ticket findTicketByUserId(int userId) {
         Ticket ticket = null;
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, userId);
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
                 if (resultSet.next()) {
@@ -39,7 +39,7 @@ public class TicketsDAO {
                 }
             }
         } catch (SQLException e) {
-            logger.error("failed to find ticket by user`s id ->" + id, e);
+            logger.error("failed to find ticket by user`s id ->" + userId, e);
             throw new RuntimeException(e);
         }
         return ticket;
@@ -52,7 +52,8 @@ public class TicketsDAO {
                 preparedStatement.setInt(1, numberOfPassengers);
                 preparedStatement.setInt(2, ticketId);
                 preparedStatement.executeUpdate();
-                updateTotalPrice(connection, numberOfPassengers, cruiseDAO.getPriceOfCruise(ticketId), ticketId);
+                double price = cruiseDAO.getPriceOfCruise(connection, ticketId);
+                updateTotalPrice(connection, numberOfPassengers, price, ticketId);
             } catch (SQLException e) {
                 logger.error("failed to update number of passengers by ticket`s id ->" + ticketId, e);
                 throw new RuntimeException(e);

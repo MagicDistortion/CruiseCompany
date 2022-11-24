@@ -57,10 +57,9 @@ public class CruisesDAO {
 
 
     /* метод отримання вартості одного квитка за id круїзу*/
-    public double getPriceOfCruise(int ticketId) {
+    public double getPriceOfCruise(Connection connection, int ticketId) {
         double price = 0;
-        try (Connection connection = dbManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Constants.GET_CRUISE_PRICE)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.GET_CRUISE_PRICE)) {
             preparedStatement.setInt(1, ticketId);
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {

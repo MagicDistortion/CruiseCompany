@@ -52,22 +52,6 @@ public class UsersDAO {
         }
     }
 
-    /* метод отримання списку всіх користувачів */
-    public List<User> findAllUsers() {
-        List<User> userList = new ArrayList<>();
-        try (Connection connection = dbManager.getConnection();
-             ResultSet resultSet = connection.prepareStatement(Constants.FROM_USERS).executeQuery()) {
-            while (resultSet.next()) {
-                User user = getUser(resultSet);
-                userList.add(user);
-            }
-        } catch (SQLException e) {
-            logger.error("failed to get users list", e);
-            throw new RuntimeException(e);
-        }
-        return userList;
-    }
-
     /* метод оновлення ролі користувача  */
     public void updateUserRole(Connection connection, int role, int id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_ROLE)) {
@@ -156,6 +140,59 @@ public class UsersDAO {
             logger.error("failed to update user`s date of birth", e);
             throw new RuntimeException(e);
         }
+    }
 
+    /* метод отримання списку всіх користувачів */
+    public List<User> findAllUsers() {
+        List<User> userList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             ResultSet resultSet = connection.prepareStatement(Constants.FROM_USERS).executeQuery()) {
+            while (resultSet.next()) {
+                User user = getUser(resultSet);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            logger.error("failed to get users list", e);
+            throw new RuntimeException(e);
+        }
+        return userList;
+    }
+
+    /* метод пошуку користувача по логіну */
+    public User findUserByLogin(String login) {
+        User user = null;
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_BY_LOGIN)) {
+            preparedStatement.setString(1, login);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                if (resultSet.next()) {
+                    user = getUser(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("failed to find user by login ->" + login, e);
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
+
+    /* метод пошуку користувача по id */
+    public User findUserByID(int id) {
+        User user = null;
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                if (resultSet.next()) {
+                    user = getUser(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("failed to find user by id ->" + id, e);
+            throw new RuntimeException(e);
+        }
+        return user;
     }
 }

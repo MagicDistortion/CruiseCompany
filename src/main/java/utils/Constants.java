@@ -11,4 +11,16 @@ public class Constants {
     public static final String UPDATE_USER_PASSWORD = "UPDATE users SET `password` = ? WHERE (`users_id` = ?)";
     public static final String UPDATE_USER_TEL = "UPDATE users SET `tel` = ? WHERE (`users_id` = ?)";
     public static final String UPDATE_USER_DATE_OF_BIRTH = "UPDATE users SET `date_of_birth`= ?  WHERE `users_id` = ?";
+    public static final String FIND_BY_LOGIN = "SELECT * FROM users WHERE login = ? ";
+    public static final String FIND_BY_ID = "SELECT * FROM users WHERE users_id = ? ";
+    public static final String FIND_ALL_PASSENGERS = "SELECT * FROM users where roles_id=1 ";
+    public static final String FIND_ALL_ADMINS = "SELECT * FROM users where roles_id=2 ";
+    public static final String FIND_TICKET_BY_USER_ID = "SELECT * FROM tickets where user_id=? ";
+    public static final String FIND_CRUISE_BY_ID = "SELECT * FROM cruise WHERE cruise_id=? ";
+    public static final String UPDATE_NUMBER_OF_PASSENGERS = "UPDATE tickets SET number_of_passengers=? WHERE ticket_id=? ";
+    public static final String UPDATE_TOTAL_PRICE = "Update tickets SET total_price=? WHERE ticket_id = ?";
+    public static final String GET_CRUISE_PRICE = "SELECT * FROM cruise left join tickets on cruise.cruise_id=tickets.cruise_id" +
+            " WHERE ticket_id =?";
+
+
 }

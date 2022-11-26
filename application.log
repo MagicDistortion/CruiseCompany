@@ -79,3 +79,15 @@ java.sql.SQLException: Parameter index out of range (1 > number of parameters, w
 	at dao.DBManager.inTransaction(DBManager.java:57)
 	at dao.PassengersDAO.updateNumberOfPassengers(PassengersDAO.java:70)
 	at dao.PassengersDAO.main(PassengersDAO.java:98)
+2022-11-26 17:14:30 ERROR [main]: failed to get cruises list
+java.sql.SQLException: Column 'cruise_name' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:584)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:896)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.getString(HikariProxyResultSet.java)
+	at dao.CruisesDAO.getCruise(CruisesDAO.java:26)
+	at dao.CruisesDAO.findAllCruises(CruisesDAO.java:104)
+	at dao.CruisesDAO.main(CruisesDAO.java:121)

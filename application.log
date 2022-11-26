@@ -91,3 +91,41 @@ java.sql.SQLException: Column 'cruise_name' not found.
 	at dao.CruisesDAO.getCruise(CruisesDAO.java:26)
 	at dao.CruisesDAO.findAllCruises(CruisesDAO.java:104)
 	at dao.CruisesDAO.main(CruisesDAO.java:121)
+2022-11-26 17:44:07 ERROR [main]: failed to check on existing  tel->8731273
+java.sql.SQLException: Before start of result set
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.checkRowPos(ResultSetImpl.java:532)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getObject(ResultSetImpl.java:1322)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getInt(ResultSetImpl.java:830)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.getInt(HikariProxyResultSet.java)
+	at dao.UsersDAO.existTel(UsersDAO.java:206)
+	at dao.UsersDAO.main(UsersDAO.java:216)
+2022-11-26 17:48:48 ERROR [main]: failed to upgrade telephone number 
+java.lang.RuntimeException: wrong number tel
+	at models.users.User.updateTel(User.java:43)
+	at services.Validator.validatePhoneNumber(Validator.java:63)
+	at dao.UsersDAO.main(UsersDAO.java:218)
+2022-11-26 17:51:43 ERROR [main]: failed to upgrade telephone number 
+Error type: NOT_A_NUMBER. The phone number supplied was null.
+	at com.google.i18n.phonenumbers.PhoneNumberUtil.parseHelper(PhoneNumberUtil.java:3230)
+	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3122)
+	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3112)
+	at models.users.User.updateTel(User.java:41)
+	at services.Validator.validatePhoneNumber(Validator.java:63)
+	at dao.UsersDAO.main(UsersDAO.java:218)
+2022-11-26 18:15:31 ERROR [main]: failed to update telephone number ->62252039
+java.lang.RuntimeException: wrong number tel
+	at services.Validator.updateTel(Validator.java:83)
+	at dao.UsersDAO.main(UsersDAO.java:218)
+2022-11-26 18:17:51 ERROR [main]: failed to update telephone number ->3380662252039
+java.lang.RuntimeException: wrong number tel
+	at services.Validator.updateTel(Validator.java:83)
+	at dao.UsersDAO.main(UsersDAO.java:218)
+2022-11-26 18:19:49 ERROR [main]: failed to update telephone number ->3380662252039
+java.lang.RuntimeException: wrong number tel
+	at services.Validator.updateTel(Validator.java:83)
+	at services.Validator.validatePhoneNumber(Validator.java:60)
+	at dao.UsersDAO.main(UsersDAO.java:218)

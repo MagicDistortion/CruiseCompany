@@ -29,6 +29,7 @@ public class Constants {
     public static final String UPDATE_TOTAL_PRICE = "Update tickets SET total_price=? WHERE ticket_id = ?";
     public static final String GET_CRUISE_PRICE = "SELECT * FROM cruise left join tickets on cruise.cruise_id=tickets.cruise_id" +
             " WHERE ticket_id =?";
+    public static final String EXIST_TEL = "SELECT count(*) FROM users WHERE tel = ? ";
 
 
 }

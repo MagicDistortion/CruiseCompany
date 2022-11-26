@@ -2,6 +2,7 @@ package dao;
 
 import models.users.User;
 import org.apache.log4j.Logger;
+import services.Validator;
 import utils.Constants;
 
 import java.sql.Connection;
@@ -120,7 +121,7 @@ public class UsersDAO {
     public void updateUserTel(String tel, int id) {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_TEL)) {
-            preparedStatement.setString(1, User.updateTel(tel));
+            preparedStatement.setString(1, Validator.updateTel(tel));
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -194,5 +195,21 @@ public class UsersDAO {
             throw new RuntimeException(e);
         }
         return user;
+    }
+
+    /* метод пошуку користувача по id */
+    public boolean existTel(String tel) {
+        boolean existing = false;
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.EXIST_TEL)) {
+            preparedStatement.setString(1, tel);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                resultSet.next();
+                return (resultSet.getInt(1) > 0);
+            }
+        } catch (SQLException e) {
+            logger.error("failed to check on existing  tel->" + tel, e);
+            throw new RuntimeException(e);
+        }
     }
 }

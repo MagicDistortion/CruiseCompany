@@ -1,7 +1,5 @@
 package commands;
 
-import services.LogInAndOut;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,6 +15,5 @@ public class LogInCommand implements Command {
     @Override
     public void execute() throws IOException {
         response.getWriter().println("hello "+request.getParameter("name"));
-        LogInAndOut.getInstance().logIn();
     }
 }

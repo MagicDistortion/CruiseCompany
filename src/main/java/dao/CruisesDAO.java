@@ -1,6 +1,7 @@
 package dao;
 
 import models.cruises.Cruise;
+import models.ships.Ship;
 import models.users.Admin;
 import models.users.Passenger;
 import models.users.User;
@@ -35,6 +36,27 @@ public class CruisesDAO {
         return cruise;
     }
 
+    /* метод додавання круїзу  */
+    public void insertCruise(Cruise cruise) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement
+                     = connection.prepareStatement(Constants.INSERT_CRUISE, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, cruise.getShipId());
+            preparedStatement.setString(2, cruise.getName());
+            preparedStatement.setInt(3, cruise.getNumberOfPorts());
+            preparedStatement.setDouble(4, cruise.getPrice());
+            preparedStatement.setObject(5, cruise.getStartTime());
+            preparedStatement.setObject(6, cruise.getEndTime());
+            preparedStatement.executeUpdate();
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                generatedKeys.next();
+                cruise.setId(generatedKeys.getInt(1));
+            }
+        } catch (SQLException e) {
+            logger.error("failed to insert cruise", e);
+            throw new RuntimeException(e);
+        }
+    }
 
     /* метод пошуку круїзу по id */
     public Cruise findCruiseByID(int id) {

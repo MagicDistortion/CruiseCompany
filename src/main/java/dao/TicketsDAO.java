@@ -14,6 +14,26 @@ public class TicketsDAO {
     private final DBManager dbManager = DBManager.getInstance();
     private final CruisesDAO cruiseDAO = new CruisesDAO();
 
+    /* метод додавання квитка  */
+    public void insertTicket(Ticket ticket) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement
+                     = connection.prepareStatement(Constants.INSERT_TICKET, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1,ticket.getCruiseId());
+            preparedStatement.setInt(2,ticket.getUserId());
+            preparedStatement.setInt(3,ticket.getNumberOfPassengers());
+            preparedStatement.setDouble(4,ticket.getTotalPrice());
+            preparedStatement.executeUpdate();
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                generatedKeys.next();
+                ticket.setId(generatedKeys.getInt(1));
+            }
+        } catch (SQLException e) {
+            logger.error("failed to insert ticket", e);
+            throw new RuntimeException(e);
+        }
+    }
+
     /* метод отримання користувача з різалтсету */
     public Ticket getTicket(ResultSet resultSet) throws SQLException {
         Ticket ticket = new Ticket(cruiseDAO.findCruiseByID(resultSet.getInt("cruise_id"))

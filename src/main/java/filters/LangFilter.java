@@ -39,8 +39,8 @@ public class LangFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setAttribute("phrases"
-                , localizations.get(Objects.requireNonNull((HttpServletRequest) servletRequest).getSession().getAttribute("lang").toString()));
+        servletRequest.setAttribute("phrases", localizations.get(Objects.requireNonNull(
+                (HttpServletRequest) servletRequest).getSession().getAttribute("lang").toString()));
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

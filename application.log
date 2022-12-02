@@ -106,7 +106,7 @@ java.sql.SQLException: Before start of result set
 2022-11-26 17:48:48 ERROR [main]: failed to upgrade telephone number 
 java.lang.RuntimeException: wrong number tel
 	at models.users.User.updateTel(User.java:43)
-	at services.Validator.validatePhoneNumber(Validator.java:63)
+	at services.SignUpValidator.validatePhoneNumber(Validator.java:63)
 	at dao.UsersDAO.main(UsersDAO.java:218)
 2022-11-26 17:51:43 ERROR [main]: failed to upgrade telephone number 
 Error type: NOT_A_NUMBER. The phone number supplied was null.
@@ -114,18 +114,26 @@ Error type: NOT_A_NUMBER. The phone number supplied was null.
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3122)
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3112)
 	at models.users.User.updateTel(User.java:41)
-	at services.Validator.validatePhoneNumber(Validator.java:63)
+	at services.SignUpValidator.validatePhoneNumber(Validator.java:63)
 	at dao.UsersDAO.main(UsersDAO.java:218)
 2022-11-26 18:15:31 ERROR [main]: failed to update telephone number ->62252039
 java.lang.RuntimeException: wrong number tel
-	at services.Validator.updateTel(Validator.java:83)
+	at services.SignUpValidator.updateTel(Validator.java:83)
 	at dao.UsersDAO.main(UsersDAO.java:218)
 2022-11-26 18:17:51 ERROR [main]: failed to update telephone number ->3380662252039
 java.lang.RuntimeException: wrong number tel
-	at services.Validator.updateTel(Validator.java:83)
+	at services.SignUpValidator.updateTel(Validator.java:83)
 	at dao.UsersDAO.main(UsersDAO.java:218)
 2022-11-26 18:19:49 ERROR [main]: failed to update telephone number ->3380662252039
 java.lang.RuntimeException: wrong number tel
-	at services.Validator.updateTel(Validator.java:83)
-	at services.Validator.validatePhoneNumber(Validator.java:60)
+	at services.SignUpValidator.updateTel(Validator.java:83)
+	at services.SignUpValidator.validatePhoneNumber(Validator.java:60)
 	at dao.UsersDAO.main(UsersDAO.java:218)
+2022-12-02 14:18:55 ERROR [main]: failed to update telephone number ->80662252039
+java.lang.RuntimeException: phone number is wrong
+	at services.SignUpValidator.updateTel(SignUpValidator.java:97)
+	at Main.main(Main.java:5)
+2022-12-02 14:22:16 ERROR [main]: failed to update telephone number ->80662252039
+java.lang.RuntimeException: phone number is wrong
+	at services.SignUpValidator.updateTel(SignUpValidator.java:95)
+	at Main.main(Main.java:5)

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib xmlns="http://java.sun.com/JSP/TagLibraryDescriptor"
+        version="2.0">
+    <tlib-version> 1.0 </tlib-version>
+    <short-name> mytag </short-name>
+    <uri> /WEB-INF/tld/mytaglib.tld </uri>
+
+    <tag>
+        <name> myTag </name>
+        <tag-class>utils.MyTag</tag-class>
+        <body-content> empty </body-content>
+    </tag>
+</taglib>

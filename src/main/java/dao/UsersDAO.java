@@ -2,7 +2,7 @@ package dao;
 
 import models.users.User;
 import org.apache.log4j.Logger;
-import services.Validator;
+import services.SignUpValidator;
 import utils.Constants;
 
 import java.sql.Connection;
@@ -121,7 +121,7 @@ public class UsersDAO {
     public void updateUserTel(String tel, int id) {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_TEL)) {
-            preparedStatement.setString(1, Validator.updateTel(tel));
+            preparedStatement.setString(1, SignUpValidator.updateTel(tel));
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

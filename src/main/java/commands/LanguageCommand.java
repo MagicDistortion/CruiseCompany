@@ -19,4 +19,9 @@ public class LanguageCommand implements Command {
         request.getSession().setAttribute("lang", request.getParameter("lang"));
         response.sendRedirect(request.getHeader("referer"));
     }
+
+    @Override
+    public boolean canHandle(String uri, String method) {
+        return uri.equalsIgnoreCase("lang")&&method.equalsIgnoreCase("Post");
+    }
 }

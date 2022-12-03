@@ -6,4 +6,6 @@ import java.io.IOException;
 
 public interface Command {
     void execute() throws IOException, ServletException;
+
+    boolean canHandle(String uri, String method);
 }

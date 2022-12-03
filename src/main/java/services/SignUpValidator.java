@@ -81,7 +81,6 @@ public class SignUpValidator {
         try {
             Phonenumber.PhoneNumber ua = PhoneNumberUtil.getInstance().parse(tel, "UA");
             String result = ua.getCountryCode() + "" + ua.getNationalNumber();
-            System.out.println(result);
             if (result.length() == 12) return result;
             throw new RuntimeException("phone number is wrong");
         } catch (NumberParseException | RuntimeException e) {

@@ -2,7 +2,6 @@ package controller;
 
 import commands.*;
 import org.apache.log4j.Logger;
-import services.SignUpValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,30 +19,27 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        action(req, resp, req.getRequestURI().substring(req.getContextPath().length() + 1));
+        action(req, resp, req.getRequestURI().substring(req.getContextPath().length() + 1), "Get");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        action(req, resp, req.getRequestURI().substring(req.getContextPath().length() + 1));
+        action(req, resp, req.getRequestURI().substring(req.getContextPath().length() + 1), "Post");
     }
 
-    public void action(HttpServletRequest req, HttpServletResponse resp, String uri) throws IOException {
+    public void action(HttpServletRequest req, HttpServletResponse resp, String uri, String method) throws IOException {
         commands.put("login", new LogInCommand(req, resp));
         commands.put("logout", new LogOutCommand(req, resp));
         commands.put("lang", new LanguageCommand(req, resp));
         commands.put("register", new RegisterCommand(req, resp));
         commands.put("edit_profile", new EditMyProfileCommand(req, resp));
 
-        if (commands.get(uri) == null)
-            resp.sendRedirect("error404.jsp");
-        else {
-            try {
-                commands.get(uri).execute();
-            } catch (ServletException e) {
-                logger.error("failed to execute", e);
-                throw new RuntimeException(e);
-            }
+        try {
+            commands.values().stream().filter(command -> command.canHandle(uri, method))
+                    .findFirst().orElse(new GoTo404Command(resp)).execute();
+        } catch (ServletException e) {
+            logger.error("failed to execute command with uri ->" + uri + " and method-> " + method, e);
+            throw new RuntimeException(e);
         }
     }
 }

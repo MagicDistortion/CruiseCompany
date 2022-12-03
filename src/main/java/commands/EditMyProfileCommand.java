@@ -32,6 +32,11 @@ public class EditMyProfileCommand implements Command {
         request.setAttribute("errors", errors);
         request.getRequestDispatcher("edit_profile.jsp").forward(request, response);
     }
+
+    @Override
+    public boolean canHandle(String uri, String method) {
+        return uri.equalsIgnoreCase("edit_profile")&&method.equalsIgnoreCase("post");
+    }
 }
 
 

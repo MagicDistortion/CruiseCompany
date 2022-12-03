@@ -19,4 +19,9 @@ public class LogOutCommand implements Command {
         request.getSession().invalidate();
         response.sendRedirect("index.jsp");
     }
+
+    @Override
+    public boolean canHandle(String uri, String method) {
+        return uri.equalsIgnoreCase("logout")&&method.equalsIgnoreCase("Get");
+    }
 }

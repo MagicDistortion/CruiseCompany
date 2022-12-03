@@ -24,6 +24,7 @@ public class LogInCommand implements Command {
 
     @Override
     public void execute() throws IOException, ServletException {
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         User user = usersDAO.findUserByLogin(login);
@@ -34,12 +35,16 @@ public class LogInCommand implements Command {
                 session.setAttribute("user", user);
                 response.sendRedirect("index.jsp");
             } else {
-                request.setAttribute("mes", phrases.get("langWrongPassword"));
+                request.setAttribute("error_message", phrases.get("langWrongPassword"));
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else {
-            request.setAttribute("mes", " Login -> " + login + " " + phrases.get("langNotFound"));
+            request.setAttribute("error_message", " Login -> " + login + " " + phrases.get("langNotFound"));
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    }
+
+    public boolean canHandle(String uri, String method) {
+        return uri.equalsIgnoreCase("login") && method.equalsIgnoreCase("Post");
     }
 }

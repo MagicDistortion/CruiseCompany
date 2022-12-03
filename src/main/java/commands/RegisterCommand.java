@@ -45,5 +45,10 @@ public class RegisterCommand implements Command {
             request.getRequestDispatcher("register_form.jsp").forward(request, response);
         }
     }
+
+    @Override
+    public boolean canHandle(String uri, String method) {
+        return uri.equalsIgnoreCase("register")&&method.equalsIgnoreCase("Post");
+    }
 }
 

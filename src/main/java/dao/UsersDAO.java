@@ -54,8 +54,9 @@ public class UsersDAO {
     }
 
     /* метод оновлення ролі користувача  */
-    public void updateUserRole(Connection connection, int role, int id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_ROLE)) {
+    public void updateUserRole(int role, int id) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_ROLE)) {
             preparedStatement.setInt(1, role);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
@@ -195,6 +196,22 @@ public class UsersDAO {
             throw new RuntimeException(e);
         }
         return user;
+    }
+
+    /* метод отримання списку користувачів без ролі */
+    public List<User> findUsersWithOutRole() {
+        List<User> userList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             ResultSet resultSet = connection.prepareStatement(Constants.FROM_USERS_WITHOUT_ROLE).executeQuery()) {
+            while (resultSet.next()) {
+                User user = getUser(resultSet);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            logger.error("failed to find users without role", e);
+            throw new RuntimeException(e);
+        }
+        return userList;
     }
 
     /* метод пошуку користувача по id */

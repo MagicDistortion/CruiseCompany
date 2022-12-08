@@ -8,6 +8,7 @@ public class Constants {
     public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,current_point) VALUES (?,?,?)";
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration) VALUES (?,?,?,?,?,?,?,?)";
+    public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
     public static final String FROM_USERS = "SELECT * FROM users ";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_CRUISES = "SELECT * FROM cruise ";
@@ -30,8 +31,8 @@ public class Constants {
     public static final String GET_CRUISE_PRICE = "SELECT * FROM cruise left join tickets on cruise.cruise_id=tickets.cruise_id" +
             " WHERE ticket_id =?";
     public static final String EXIST_TEL = "SELECT count(*) FROM users WHERE tel = ? ";
-    public static final String FROM_SHIPS_COUNT ="SELECT count(*) FROM ships";
-    public static final String FROM_CRUISES_COUNT ="SELECT count(*) FROM cruise";
+    public static final String FROM_SHIPS_COUNT = "SELECT count(*) FROM ships";
+    public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise";
 
 
 }

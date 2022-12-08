@@ -27,7 +27,7 @@ public class Cruise {
         this.status = "not started";
         this.startTime = startTime;
         this.endTime = endTime;
-        duration = endTime.getDayOfYear() - startTime.getDayOfYear();
+        this.duration = endTime.getDayOfYear() - startTime.getDayOfYear();
     }
 
     public String getStartTimeString() {

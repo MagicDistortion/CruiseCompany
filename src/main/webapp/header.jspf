@@ -13,10 +13,11 @@
           <td><a style="color:#0000ff" class="nav-link" href="about_us.jsp"><h5> ${phrases['langAboutUs']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="ships_list.jsp"><h5> ${phrases['langShips']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="cruises_list.jsp"><h5> ${phrases['langCruises']}</h5></a></td>
-         <c:if  test="${user.getRolesId()==1}" >
+         <c:if  test="${user.getRolesId()==1||user.getRolesId()==4}" >
          </c:if>
 
          <c:if  test="${user.getRolesId()==2}" >
+          <td><a style="color:#0000ff" class="nav-link" href="admin/giving_a_role.jsp"><h5>${phrases['langGivingARole']}</h5></a></td>
          </c:if>
 
          <c:if  test="${user.getRolesId()==3}" >

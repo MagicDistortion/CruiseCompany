@@ -59,7 +59,7 @@
                           </c:choose>
                       </c:forEach>
                       <c:if test="${page<pages}">
-                      <a class="btn btn-outline-primary"  href="ships_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
+                      <a class="btn btn-outline-primary" href="ships_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
                       </c:if>
            </div>
         </h2>

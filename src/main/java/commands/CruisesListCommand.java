@@ -1,5 +1,6 @@
 package commands;
 
+import models.cruises.Cruise;
 import models.ships.Ship;
 import services.Paginator;
 
@@ -9,27 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class ShipsListCommand implements Command {
+public class CruisesListCommand implements Command {
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
     private final Paginator paginator = new Paginator();
 
-    public ShipsListCommand(HttpServletRequest request, HttpServletResponse response) {
+    public CruisesListCommand(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
     }
 
     @Override
     public void execute() throws IOException, ServletException {
-        List<Ship> shipList = paginator.paginationShipsList(request);
-        request.setAttribute("shipsList", shipList);
-        request.getRequestDispatcher("ships_list.jsp").forward(request, response);
+        List<Cruise> cruiseList = paginator.paginationCruisesList(request);
+        request.setAttribute("cruisesList", cruiseList);
+        request.getRequestDispatcher("cruises_list.jsp").forward(request, response);
     }
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("ships_list") && method.equalsIgnoreCase("Get");
+        return uri.equalsIgnoreCase("cruises_list") && method.equalsIgnoreCase("Get");
     }
 }
 

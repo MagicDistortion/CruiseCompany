@@ -11,7 +11,8 @@
           <td><a style="color:#0000ff" class="nav-link" href="index.jsp"><h5> ${phrases['langMain']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="contacts.jsp"><h5> ${phrases['langContacts']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="about_us.jsp"><h5> ${phrases['langAboutUs']}</h5></a></td>
-          <td><a style="color:#0000ff" class="nav-link" href="ships.jsp"><h5> ${phrases['langShips']}</h5></a></td>
+          <td><a style="color:#0000ff" class="nav-link" href="ships_list.jsp"><h5> ${phrases['langShips']}</h5></a></td>
+          <td><a style="color:#0000ff" class="nav-link" href="cruises_list.jsp"><h5> ${phrases['langCruises']}</h5></a></td>
          <c:if  test="${user.getRolesId()==1}" >
          </c:if>
 

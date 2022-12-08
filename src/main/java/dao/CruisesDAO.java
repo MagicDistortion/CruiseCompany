@@ -1,6 +1,7 @@
 package dao;
 
 import models.cruises.Cruise;
+import models.ships.Ship;
 import org.apache.log4j.Logger;
 import utils.Constants;
 
@@ -19,7 +20,7 @@ public class CruisesDAO {
     /* метод отримання круїзу з різалтсету */
     public Cruise getCruise(ResultSet resultSet) throws SQLException {
         Cruise cruise = new Cruise(resultSet.getInt("ship_id")
-                ,resultSet.getString("ship_name")
+                , resultSet.getString("ship_name")
                 , resultSet.getString("cruise_name")
                 , resultSet.getInt("number_of_ports")
                 , resultSet.getDouble("price")
@@ -28,6 +29,7 @@ public class CruisesDAO {
                 , LocalDateTime.of(resultSet.getDate("end_time").toLocalDate()
                 , resultSet.getTime("end_time").toLocalTime())
         );
+        cruise.setDuration(resultSet.getInt("duration"));
         cruise.setId(resultSet.getInt("cruise_id"));
         cruise.setStatus(resultSet.getString("status"));
         return cruise;
@@ -45,6 +47,7 @@ public class CruisesDAO {
             preparedStatement.setDouble(5, cruise.getPrice());
             preparedStatement.setObject(6, cruise.getStartTime());
             preparedStatement.setObject(7, cruise.getEndTime());
+            preparedStatement.setInt(8, cruise.getDuration());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
@@ -107,5 +110,38 @@ public class CruisesDAO {
             throw new RuntimeException(e);
         }
         return cruiseList;
+    }
+
+    /* метод отримання списку круїзів за сортуванням та пагінацією */
+    public List<Cruise> findCruisesWithLimit(String sorted, int start, int total) {
+        start = (start - 1) * total;
+        String limit = " limit " + start + "," + total;
+        List<Cruise> cruiseList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             ResultSet resultSet = connection.prepareStatement(Constants.FROM_CRUISES + sorted + limit).executeQuery()) {
+            while (resultSet.next()) {
+                Cruise cruise = getCruise(resultSet);
+                cruiseList.add(cruise);
+            }
+        } catch (SQLException e) {
+            logger.error("failed to get cruises list with limit", e);
+            throw new RuntimeException(e);
+        }
+        return cruiseList;
+    }
+
+    /* метод отримання кількості круїзів в базі*/
+    public int CruisesCount() {
+        int count = 0;
+        try (Connection connection = dbManager.getConnection();
+             ResultSet resultSet = connection.prepareStatement(Constants.FROM_CRUISES_COUNT).executeQuery()) {
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            logger.error("failed to get a cruises count ", e);
+            throw new RuntimeException(e);
+        }
+        return count;
     }
 }

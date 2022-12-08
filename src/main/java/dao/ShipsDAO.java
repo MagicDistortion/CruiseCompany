@@ -2,7 +2,6 @@ package dao;
 
 import models.ships.Ship;
 import org.apache.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 import utils.Constants;
 
 import java.sql.Connection;
@@ -31,7 +30,7 @@ public class ShipsDAO {
                      = connection.prepareStatement(Constants.INSERT_SHIP, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, ship.getName());
             preparedStatement.setInt(2, ship.getCapacity());
-            preparedStatement.setString(2, ship.getCurrent_point());
+            preparedStatement.setString(3, ship.getCurrent_point());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
@@ -90,11 +89,11 @@ public class ShipsDAO {
         try (Connection connection = dbManager.getConnection();
              ResultSet resultSet = connection.prepareStatement(Constants.FROM_SHIPS + sorted + limit).executeQuery()) {
             while (resultSet.next()) {
-                Ship ship =getShip(resultSet);
+                Ship ship = getShip(resultSet);
                 shipList.add(ship);
             }
         } catch (SQLException e) {
-            logger.error("failed to get ships list with limit",e);
+            logger.error("failed to get ships list with limit", e);
             throw new RuntimeException(e);
         }
         return shipList;
@@ -102,16 +101,28 @@ public class ShipsDAO {
 
     /* метод отримання кількості лайнерів в базі*/
     public int shipsCount() {
-        int count = 0;
         try (Connection connection = dbManager.getConnection();
              ResultSet resultSet = connection.prepareStatement(Constants.FROM_SHIPS_COUNT).executeQuery()) {
-            while (resultSet.next()) {
-                count = resultSet.getInt(1);
-            }
+            resultSet.next();
+            return resultSet.getInt(1);
         } catch (SQLException e) {
             logger.error("failed to get a ships count ", e);
             throw new RuntimeException(e);
         }
-        return count;
+    }
+
+    /* метод отримання кількості лайнерів в базі*/
+    public boolean shipsNameExist(String name) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.SHIPS_NAME_EXIST)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            resultSet.next();
+            return resultSet.getBoolean(1);
+        } catch (SQLException e) {
+            logger.error("failed to check ships name -> " + name, e);
+            throw new RuntimeException(e);
+        }
     }
 }

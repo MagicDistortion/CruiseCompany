@@ -216,7 +216,6 @@ public class UsersDAO {
 
     /* метод пошуку користувача по id */
     public boolean existTel(String tel) {
-        boolean existing = false;
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.EXIST_TEL)) {
             preparedStatement.setString(1, tel);

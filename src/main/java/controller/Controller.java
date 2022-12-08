@@ -37,6 +37,7 @@ public class Controller extends HttpServlet {
         commands.put("cruises_list", new CruisesListCommand(req, resp));
         commands.put("admin/users_list", new UsersListCommand(req, resp));
         commands.put("admin/give_a_role", new GiveARoleCommand(req, resp));
+        commands.put("admin/add_ship", new AddShipCommand(req, resp));
 
         try {
             commands.values().stream().filter(command -> command.canHandle(uri, method))

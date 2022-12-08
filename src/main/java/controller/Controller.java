@@ -33,6 +33,7 @@ public class Controller extends HttpServlet {
         commands.put("lang", new LanguageCommand(req, resp));
         commands.put("register", new RegisterCommand(req, resp));
         commands.put("edit_profile", new EditMyProfileCommand(req, resp));
+        commands.put("ships_list", new ShipsListCommand(req, resp));
 
         try {
             commands.values().stream().filter(command -> command.canHandle(uri, method))

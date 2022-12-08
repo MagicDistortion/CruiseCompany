@@ -5,9 +5,9 @@ public class Constants {
             = "INSERT INTO users (surname,name,login,password,tel,date_of_birth) VALUES (?,?,?,?,?,?)";
     public static final String INSERT_TICKET
             = "INSERT INTO tickets (cruise_id,user_id,number_of_passengers,total_price) VALUES (?,?,?,?)";
-    public static final String INSERT_SHIP = "INSERT INTO ships (capacity,current_point) VALUES (?,?)";
-    public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,cruise_name,number_of_ports,price," +
-            "start_time,end_time) VALUES (?,?,?,?,?,?)";
+    public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,current_point) VALUES (?,?,?)";
+    public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,cruise_name,number_of_ports,price," +
+            "start_time,end_time) VALUES (?,?,?,?,?,?,?)";
     public static final String FROM_USERS = "SELECT * FROM users ";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_CRUISES = "SELECT * FROM cruise ";
@@ -30,6 +30,7 @@ public class Constants {
     public static final String GET_CRUISE_PRICE = "SELECT * FROM cruise left join tickets on cruise.cruise_id=tickets.cruise_id" +
             " WHERE ticket_id =?";
     public static final String EXIST_TEL = "SELECT count(*) FROM users WHERE tel = ? ";
+    public static final String FROM_SHIPS_COUNT ="SELECT count(*) FROM ships";
 
 
 }

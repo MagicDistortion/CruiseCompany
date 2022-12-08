@@ -19,6 +19,7 @@ public class CruisesDAO {
     /* метод отримання круїзу з різалтсету */
     public Cruise getCruise(ResultSet resultSet) throws SQLException {
         Cruise cruise = new Cruise(resultSet.getInt("ship_id")
+                ,resultSet.getString("ship_name")
                 , resultSet.getString("cruise_name")
                 , resultSet.getInt("number_of_ports")
                 , resultSet.getDouble("price")
@@ -38,11 +39,12 @@ public class CruisesDAO {
              PreparedStatement preparedStatement
                      = connection.prepareStatement(Constants.INSERT_CRUISE, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, cruise.getShipId());
-            preparedStatement.setString(2, cruise.getName());
-            preparedStatement.setInt(3, cruise.getNumberOfPorts());
-            preparedStatement.setDouble(4, cruise.getPrice());
-            preparedStatement.setObject(5, cruise.getStartTime());
-            preparedStatement.setObject(6, cruise.getEndTime());
+            preparedStatement.setString(2, cruise.getShipName());
+            preparedStatement.setString(3, cruise.getCruiseName());
+            preparedStatement.setInt(4, cruise.getNumberOfPorts());
+            preparedStatement.setDouble(5, cruise.getPrice());
+            preparedStatement.setObject(6, cruise.getStartTime());
+            preparedStatement.setObject(7, cruise.getEndTime());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
@@ -99,7 +101,6 @@ public class CruisesDAO {
             while (resultSet.next()) {
                 Cruise cruise = getCruise(resultSet);
                 cruiseList.add(cruise);
-
             }
         } catch (SQLException e) {
             logger.error("failed to get cruises list", e);

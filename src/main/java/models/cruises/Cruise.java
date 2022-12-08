@@ -8,16 +8,19 @@ import java.time.LocalDateTime;
 public class Cruise {
     private int id;
     private int shipId;
-    private String name;
+    private String shipName;
+    private String cruiseName;
     private int numberOfPorts;
     private double price;
     private String status;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Cruise(int shipId, String name, int numberOfPorts, double price, LocalDateTime startTime, LocalDateTime endTime) {
+    public Cruise(int shipId, String shipName, String cruiseName, int numberOfPorts
+            , double price, LocalDateTime startTime, LocalDateTime endTime) {
         this.shipId = shipId;
-        this.name = name;
+        this.shipName = shipName;
+        this.cruiseName = cruiseName;
         this.numberOfPorts = numberOfPorts;
         this.price = price;
         this.status = "not started";

@@ -72,8 +72,7 @@ public class Paginator {
         int pagination;
         if (req.getParameter("pagination") == null || Integer.parseInt(req.getParameter("pagination")) <= 0) {
             pagination = 5;
-        } else
-            pagination = Integer.parseInt(req.getParameter("pagination"));
+        } else pagination = Integer.parseInt(req.getParameter("pagination"));
         req.setAttribute("pagination", pagination);
         return pagination;
     }

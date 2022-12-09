@@ -5,6 +5,7 @@ import dao.ShipsDAO;
 import models.cruises.Cruise;
 import models.ships.Ship;
 import org.w3c.dom.ls.LSOutput;
+import services.CruiseValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Map;
 
 public class AddCruiseCommand implements Command {
@@ -28,34 +30,24 @@ public class AddCruiseCommand implements Command {
 
     @Override
     public void execute() throws IOException, ServletException {
-        if (request.getParameter("shipId") != null
-                && request.getParameter("cruiseName") != null
-                && request.getParameter("numberOfPorts") != null
-                && request.getParameter("price") != null
-                && request.getParameter("startTime") != null
-                && request.getParameter("endTime") != null) {
-
-            int shipId = Integer.parseInt(request.getParameter("shipId"));
-            Ship ship = shipsDAO.findShipByID(shipId);
-            String shipName = ship.getName();
-            String cruiseName = request.getParameter("cruiseName");
-            int numbersOfPort = Integer.parseInt(request.getParameter("numberOfPorts"));
-            double price = Double.parseDouble(request.getParameter("price"));
-            LocalDateTime startTime = LocalDateTime.parse(request.getParameter("startTime"));
-            LocalDateTime endTime = LocalDateTime.parse(request.getParameter("endTime"));
-
-            if (!cruisesDAO.cruiseNameExist(cruiseName)) {
-                Cruise cruise = new Cruise(shipId, shipName, cruiseName, numbersOfPort, price, startTime, endTime);
-                cruisesDAO.insertCruise(cruise);
-                setError(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
-            } else setError(((Map<?, ?>) request.getAttribute("phrases")).get("langAlreadyExist").toString());
-        } else
-            setError(((Map<?, ?>) request.getAttribute("phrases")).get("langInvalidData").toString());
+        CruiseValidator cruiseValidator = new CruiseValidator();
+        int shipId = Integer.parseInt(request.getParameter("shipId"));
+        Ship ship = shipsDAO.findShipByID(shipId);
+        String shipName = ship.getName();
+        List<String> errors = cruiseValidator.validate(request, shipName);
+        if (errors.isEmpty()) {
+            Cruise cruise = new Cruise(shipId
+                    , shipName
+                    , request.getParameter("cruiseName")
+                    , Integer.parseInt(request.getParameter("numberOfPorts"))
+                    , Double.parseDouble(request.getParameter("price"))
+                    , LocalDateTime.parse(request.getParameter("startTime"))
+                    , LocalDateTime.parse(request.getParameter("endTime")));
+            cruisesDAO.insertCruise(cruise);
+            errors.add(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
+        }
+        request.setAttribute("errors", errors);
         request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
-    }
-
-    private void setError(String string) {
-        request.setAttribute("error_message", string);
     }
 
     @Override

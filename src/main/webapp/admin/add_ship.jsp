@@ -17,7 +17,7 @@
              <form action ="../admin/add_ship" method ="post">
              <div align="center" >
                     <input name="name" class="btn btn-light" placeholder="${phrases['langEnterNameOfShip']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\-]{2,32}" required/>
-                    <input name="capacity" class="btn btn-light" placeholder="${phrases['langEnterCapacity']} " pattern="[1-9]\d*" required/>
+                    <input name="capacity" type="number" class="btn btn-light" placeholder="${phrases['langEnterCapacity']} "required/>
                     <input name="current_point" class="btn btn-light" placeholder="${phrases['langEnterCurrentPoint']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}" required/>
 
                     <input type="submit" class="btn btn-warning"  value="${phrases['langAddShip']}"/><br>

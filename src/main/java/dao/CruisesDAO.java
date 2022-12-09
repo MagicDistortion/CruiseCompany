@@ -1,7 +1,6 @@
 package dao;
 
 import models.cruises.Cruise;
-import models.ships.Ship;
 import org.apache.log4j.Logger;
 import utils.Constants;
 
@@ -144,4 +143,19 @@ public class CruisesDAO {
         }
         return count;
     }
+    /* метод перевірки наявності назви лайнера*/
+    public boolean cruiseNameExist(String name) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.CRUISE_NAME_EXIST)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            resultSet.next();
+            return resultSet.getBoolean(1);
+        } catch (SQLException e) {
+            logger.error("failed to check cruise name -> " + name, e);
+            throw new RuntimeException(e);
+        }
+    }
+
 }

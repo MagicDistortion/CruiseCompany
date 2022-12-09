@@ -111,7 +111,7 @@ public class ShipsDAO {
         }
     }
 
-    /* метод отримання кількості лайнерів в базі*/
+    /* метод перевірки наявності назви лайнера*/
     public boolean shipsNameExist(String name) {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.SHIPS_NAME_EXIST)) {

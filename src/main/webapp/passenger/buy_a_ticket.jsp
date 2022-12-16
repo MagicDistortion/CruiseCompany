@@ -16,13 +16,13 @@
        <table align="center">
        <tr>
 
-        <td> <form action ="../passenger/getCruises" method ="post" align="center">
-              <input class="form-control-sm" type="date" value="${date}" name="date" required/>
-              <input type="submit" class="btn btn-warning" value="${phrases['langByDate']}"/>&nbsp &nbsp &nbsp &nbsp
+        <td> <form action ="../passenger/getCruises" method ="post">
+              <input class="btn btn-light" type="date" value="${date}" name="date" required/>
+              <input type="submit" class="btn btn-warning" value="${phrases['langByDate']}"/> &nbsp &nbsp &nbsp &nbsp
             </form></td>
 
         <td> <form action ="../passenger/getCruises" method ="post" align="center">
-             <input name="duration" type="number" value="${duration}" class="btn btn-light" placeholder="${phrases['langEnterDuration']} " required/>
+             <input name="duration" type="number" <c:if test="${duration!=null}"> value="${duration}" </c:if> value="1" class="btn btn-light" style="width: 80px;" required/>
              <input type="submit" class="btn btn-warning" value="${phrases['langByDuration']}"/>
              </form></td>
         </table>
@@ -35,20 +35,23 @@
                <th style="color:#0000ff"><h4/> ${phrases['langNumberOfPorts']} &nbsp</th>
                <th style="color:#0000ff"><h4/> ${phrases['langDuration']} &nbsp</th>
                <th style="color:#0000ff"><h4/> ${phrases['langPrice']} &nbsp</th>
+               <th style="color:#0000ff"><h4/> ${phrases['langAmount']} &nbsp</th>
                <th style="color:#0000ff"><h4/> ${phrases['langBuy']} &nbsp</th>
 
                      <c:forEach items="${cruisesList}" var="i">
-                         <tr>
+                         <tr><form action ="../passenger/buy_a_ticket" method ="post">
                             <td style="color:#fff"><h3/>${i.getCruiseName()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getStartTimeString()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getEndTimeString()} &nbsp</td>
                             <td style="color:#fff"  align="center"><h3/>${i.getNumberOfPorts()} &nbsp</td>
                             <td style="color:#fff"  align="center"><h3/>${i.getDuration()}${phrases['langDays']}  &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getPrice()}$ &nbsp</td>
-                            <td><form action ="../passenger/buy_a_ticket" method ="post">
-                              <input type="hidden" name="id" value="${i.getId()}"/>
-                              <input type="submit" class="btn btn-warning" value="${phrases['langBuy']}"/></td>
+                            <td><input class="form-control" type="number" value="1" name="amount" style="width: 80px;" required/></td>
+                            <input type="hidden" name="cruiseId" value="${i.getId()}"/>
+                            <td><input type="submit" class="btn btn-warning" value="${phrases['langBuy']}"/></td>
+                            </form>
                          </tr>
+
                      </c:forEach>
            </table>
        </c:if>

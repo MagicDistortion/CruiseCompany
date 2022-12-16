@@ -26,26 +26,28 @@ public class GetCruisesCommand implements Command {
 
     @Override
     public void execute() throws IOException, ServletException {
-        List<Cruise> cruiseList = new ArrayList<>();
-        if (request.getParameter("date") != null) {
-            LocalDate date = LocalDate.parse(request.getParameter("date"));
-            request.setAttribute("date", date);
-            cruiseList = cruisesDAO.findCruisesListByDate(date);
-        } else if (request.getParameter("duration") != null) {
-            int duration = Integer.parseInt(request.getParameter("duration"));
-            request.setAttribute("duration", duration);
-            cruiseList = cruisesDAO.findCruisesListByDuration(duration);
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            List<Cruise> cruiseList = new ArrayList<>();
+            if (request.getParameter("date") != null) {
+                LocalDate date = LocalDate.parse(request.getParameter("date"));
+                request.setAttribute("date", date);
+                cruiseList = cruisesDAO.findCruisesListByDate(date);
+            } else if (request.getParameter("duration") != null) {
+                int duration = Integer.parseInt(request.getParameter("duration"));
+                request.setAttribute("duration", duration);
+                cruiseList = cruisesDAO.findCruisesListByDuration(duration);
+            }
+            request.setAttribute("cruisesList", cruiseList);
+            if (cruiseList.isEmpty())
+                request.setAttribute("error_message", ((Map<?, ?>) request.getAttribute("phrases")).get("langEmpty"));
         }
-        request.setAttribute("cruisesList", cruiseList);
-        if (cruiseList.isEmpty())
-            request.setAttribute("error_message", ((Map<?, ?>) request.getAttribute("phrases")).get("langEmpty"));
-
         request.getRequestDispatcher("buy_a_ticket.jsp").forward(request, response);
+
     }
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("passenger/getCruises") && method.equalsIgnoreCase("Post");
+        return uri.equalsIgnoreCase("passenger/getCruises");
     }
 }
 

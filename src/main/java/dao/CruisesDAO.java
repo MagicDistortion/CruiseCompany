@@ -1,6 +1,7 @@
 package dao;
 
 import models.cruises.Cruise;
+import models.ships.Ship;
 import org.apache.log4j.Logger;
 import utils.Constants;
 
@@ -16,7 +17,6 @@ import java.util.List;
 public class CruisesDAO {
     private final static Logger logger = Logger.getLogger(CruisesDAO.class);
     private final DBManager dbManager = DBManager.getInstance();
-
     /* метод отримання круїзу з різалтсету */
     public Cruise getCruise(ResultSet resultSet) throws SQLException {
         Cruise cruise = new Cruise(resultSet.getInt("ship_id")
@@ -111,6 +111,8 @@ public class CruisesDAO {
         }
         return cruiseList;
     }
+
+
 
     /* метод отримання списку всіх круїзів за датою */
     public List<Cruise> findCruisesListByDate(LocalDate date) {

@@ -2,10 +2,11 @@ package models.cruises;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class Cruise {
+public class Cruise implements Serializable {
     private int id;
     private int shipId;
     private String shipName;

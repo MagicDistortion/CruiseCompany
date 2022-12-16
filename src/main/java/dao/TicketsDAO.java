@@ -1,5 +1,7 @@
 package dao;
 
+import models.cruises.Cruise;
+import models.ships.Ship;
 import models.tickets.Ticket;
 import org.apache.log4j.Logger;
 import utils.Constants;
@@ -8,21 +10,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TicketsDAO {
     private final static Logger logger = Logger.getLogger(TicketsDAO.class);
     private final DBManager dbManager = DBManager.getInstance();
     private final CruisesDAO cruiseDAO = new CruisesDAO();
+    private final ShipsDAO shipsDAO = new ShipsDAO();
+
 
     /* метод додавання квитка  */
     public void insertTicket(Ticket ticket) {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement
                      = connection.prepareStatement(Constants.INSERT_TICKET, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1,ticket.getCruiseId());
-            preparedStatement.setInt(2,ticket.getUserId());
-            preparedStatement.setInt(3,ticket.getNumberOfPassengers());
-            preparedStatement.setDouble(4,ticket.getTotalPrice());
+            preparedStatement.setInt(1, ticket.getCruiseId());
+            preparedStatement.setInt(2, ticket.getUserId());
+            preparedStatement.setInt(3, ticket.getNumberOfPassengers());
+            preparedStatement.setDouble(4, ticket.getTotalPrice());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
@@ -89,6 +95,24 @@ public class TicketsDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("failed to update number of passengers by ticket`s id ->" + ticketId, e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /* метод перевірки наявності квитків */
+    public Boolean checkingForAvailability(Ship ship, int cruiseId, int amount) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FROM_TICKETS)) {
+            preparedStatement.setInt(1, cruiseId);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) {
+                    amount += resultSet.getInt("number_of_passengers");
+                }
+                return amount <= ship.getCapacity();
+            }
+        } catch (SQLException e) {
+            logger.error("failed to checking for availability ", e);
             throw new RuntimeException(e);
         }
     }

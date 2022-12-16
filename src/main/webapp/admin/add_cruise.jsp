@@ -38,9 +38,9 @@
                       </c:forEach></select></td>
              <td><input name="cruiseName" class="btn btn-light" placeholder="${phrases['langEnterNameOfCruise']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\-]{2,32}" required/></td>
              <td><input name="numberOfPorts" class="btn btn-light" placeholder="${phrases['langEnterNumberOfPorts']} " pattern="[0-9]\d*"  size="35" required/></td>
-             <td><input name="price" type="number" class="btn btn-light" placeholder="${phrases['langEnterPrice']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
-             <td><input class="form-control" type="datetime-local" name="startTime" required/></td>
-             <td><input class="form-control" type="datetime-local" name="endTime" required/></td>
+             <td><input name="price" type="number" class="btn btn-light" style="width: 100px;" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
+             <td><input class="form-control" type="datetime-local" name="startTime" style="width: 165px;" required/></td>
+             <td><input class="form-control" type="datetime-local" name="endTime" style="width: 165px;" required/></td>
              <td><input type="submit" class="btn btn-warning"  value="${phrases['langAddCruise']}"/></td>
              </div>
              </form>

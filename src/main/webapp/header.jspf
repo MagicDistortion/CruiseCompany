@@ -20,7 +20,9 @@
          <c:if  test="${user.getRolesId()==2}" >
           <td><a style="color:#0000ff" class="nav-link" href="admin/giving_a_role.jsp"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="admin/add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
-          <td><a style="color:#0000ff" class="nav-link" href="admin/add_cruise.jsp"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#0000ff" class="nav-link" href="admin/ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
+
+
          </c:if>
 
          <c:if  test="${user.getRolesId()==3}" >

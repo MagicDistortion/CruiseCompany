@@ -15,7 +15,7 @@
 <br><br><br><br>
 
           <c:if test="${shipsList==null}">
-             <form action ="../admin/ships_for_add_cruise" method ="post" align="center">
+             <form action ="../admin/ships_for_add_cruise" method ="get" align="center">
              <input type="submit" class="btn btn-dark" value="${phrases['langAddCruise']}"/>
              </form>
           </c:if>

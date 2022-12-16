@@ -30,7 +30,7 @@ public class ShipsForAddCruiseCommand implements Command {
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("admin/ships_for_add_cruise") && method.equalsIgnoreCase("Post");
+        return uri.equalsIgnoreCase("admin/ships_for_add_cruise") && method.equalsIgnoreCase("get");
     }
 }
 

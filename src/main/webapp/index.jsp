@@ -9,6 +9,9 @@
      </head>
     <body>
     <%@ include file="header.jspf" %>
+
+
+
         <c:if test="${empty user}">
            <br><br><br><br><br><br><br>
                <form action ="login" method ="post">

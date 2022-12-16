@@ -12,7 +12,7 @@
                 </style>
     <body>
     <%@ include file="../header_admins.jspf" %>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
              <form action ="../admin/add_ship" method ="post">
              <div align="center" >

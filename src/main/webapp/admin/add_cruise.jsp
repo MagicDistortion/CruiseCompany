@@ -12,7 +12,8 @@
                 </style>
     <body>
     <%@ include file="../header_admins.jspf" %>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br>
+
           <c:if test="${shipsList==null}">
              <form action ="../admin/ships_for_add_cruise" method ="post" align="center">
              <input type="submit" class="btn btn-dark" value="${phrases['langAddCruise']}"/>
@@ -37,7 +38,7 @@
                       </c:forEach></select></td>
              <td><input name="cruiseName" class="btn btn-light" placeholder="${phrases['langEnterNameOfCruise']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\-]{2,32}" required/></td>
              <td><input name="numberOfPorts" class="btn btn-light" placeholder="${phrases['langEnterNumberOfPorts']} " pattern="[0-9]\d*"  size="35" required/></td>
-             <td><input name="price" type="number" class="btn btn-light" placeholder="${phrases['langEnterPrice']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  size="10" required/></td>
+             <td><input name="price" type="number" class="btn btn-light" placeholder="${phrases['langEnterPrice']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
              <td><input class="form-control" type="datetime-local" name="startTime" required/></td>
              <td><input class="form-control" type="datetime-local" name="endTime" required/></td>
              <td><input type="submit" class="btn btn-warning"  value="${phrases['langAddCruise']}"/></td>

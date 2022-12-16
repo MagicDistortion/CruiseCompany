@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,8 +40,9 @@ public class LangFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setAttribute("phrases", localizations.get(Objects.requireNonNull(
-                (HttpServletRequest) servletRequest).getSession().getAttribute("lang").toString()));
+        HttpSession session = ((HttpServletRequest) servletRequest).getSession();
+        if (session.getAttribute("lang") == null) session.setAttribute("lang", "UA");
+        servletRequest.setAttribute("phrases", localizations.get(session.getAttribute("lang").toString()));
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,43 @@ public class CruisesDAO {
         return cruiseList;
     }
 
+    /* метод отримання списку всіх круїзів за датою */
+    public List<Cruise> findCruisesListByDate(LocalDate date) {
+        List<Cruise> cruiseList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             ResultSet resultSet = connection.prepareStatement(Constants.FROM_CRUISES).executeQuery()) {
+            while (resultSet.next()) {
+                Cruise cruise = getCruise(resultSet);
+                if (cruise.getStartTime().toLocalDate().equals(date))
+                    cruiseList.add(cruise);
+            }
+        } catch (SQLException e) {
+            logger.error("failed to get cruises list by date ", e);
+            throw new RuntimeException(e);
+        }
+        return cruiseList;
+    }
+
+    /* метод отримання списку всіх круїзів за тривалістю */
+    public List<Cruise> findCruisesListByDuration(int duration) {
+        List<Cruise> cruiseList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FROM_CRUISES_BY_DURATION)) {
+            preparedStatement.setInt(1, duration);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) {
+                    cruiseList.add(getCruise(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("failed to get cruises list by duration ", e);
+            throw new RuntimeException(e);
+        }
+        return cruiseList;
+    }
+
+
     /* метод отримання списку круїзів за сортуванням та пагінацією */
     public List<Cruise> findCruisesWithLimit(String sorted, int start, int total) {
         start = (start - 1) * total;
@@ -143,6 +181,7 @@ public class CruisesDAO {
         }
         return count;
     }
+
     /* метод перевірки наявності назви лайнера*/
     public boolean cruiseNameExist(String name) {
         try (Connection connection = dbManager.getConnection();
@@ -157,5 +196,4 @@ public class CruisesDAO {
             throw new RuntimeException(e);
         }
     }
-
 }

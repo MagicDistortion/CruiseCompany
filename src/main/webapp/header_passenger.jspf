@@ -14,9 +14,7 @@
           <td><a style="color:#0000ff" class="nav-link" href="../ships_list.jsp"><h5> ${phrases['langShips']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="../cruises_list.jsp"><h5> ${phrases['langCruises']}</h5></a></td>
 
-          <td><a style="color:#0000ff" class="nav-link" href="giving_a_role.jsp"><h5>${phrases['langGivingARole']}</h5></a></td>
-          <td><a style="color:#0000ff" class="nav-link" href="add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
-          <td><a style="color:#0000ff" class="nav-link" href="add_cruise.jsp"><h5>${phrases['langAddCruise']}</h5></a></td>
+         <td><a style="color:#0000ff" class="nav-link" href="buy_a_ticket.jsp"><h5>${phrases['langBuyATicket']}</h5></a></td>
            </tr>
           </ul>
     </div>

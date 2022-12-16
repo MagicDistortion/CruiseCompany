@@ -1,5 +1,6 @@
 package commands;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,8 +15,7 @@ public class LanguageCommand implements Command {
     }
 
     @Override
-    public void execute() throws IOException {
-
+    public void execute() throws IOException, ServletException {
         request.getSession().setAttribute("lang", request.getParameter("lang"));
         response.sendRedirect(request.getHeader("referer"));
     }

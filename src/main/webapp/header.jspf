@@ -14,6 +14,7 @@
           <td><a style="color:#0000ff" class="nav-link" href="ships_list.jsp"><h5> ${phrases['langShips']}</h5></a></td>
           <td><a style="color:#0000ff" class="nav-link" href="cruises_list.jsp"><h5> ${phrases['langCruises']}</h5></a></td>
          <c:if  test="${user.getRolesId()==1||user.getRolesId()==4}" >
+         <td><a style="color:#0000ff" class="nav-link" href="passenger/buy_a_ticket.jsp"><h5>${phrases['langBuyATicket']}</h5></a></td>
          </c:if>
 
          <c:if  test="${user.getRolesId()==2}" >
@@ -44,11 +45,10 @@
         </table>
 </nav>
                       <form align="right" action="lang" method="post">
-                         <select type="button" class="btn btn-primary dropdown-toggle" name="lang">
-                         <option value="UA">${phrases['langUkrainian']}</option>
-                         <option value="EN">${phrases['langEnglish']}</option>
-                         </select>
-                         <input type="submit" class="btn btn-primary" value="${phrases['langSetLanguage']}"/>
+                         <input type="hidden" name="lang"
+                             <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
+                             <c:if test="${lang.equals('UA')}"> value="EN" </c:if>/>
+                         <input type="submit" class="btn btn-primary" value="${phrases['langChangeLanguage']}"/>
                       </form>
                     <c:choose>
                         <c:when test="${empty user}">

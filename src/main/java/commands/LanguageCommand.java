@@ -15,6 +15,6 @@ public class LanguageCommand implements Command {
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("lang") && method.equalsIgnoreCase("Post");
+        return uri.equalsIgnoreCase("lang") && method.equalsIgnoreCase("Get");
     }
 }

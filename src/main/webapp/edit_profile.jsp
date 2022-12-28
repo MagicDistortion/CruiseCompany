@@ -36,8 +36,7 @@
                        </tr>
                        <tr>
                          <td style="color:#ffff00"/><h3>${phrases['langTel']}:</h3></td>
-                         <td> <input class="form-control" name="tel" value="${user.getTel()}" pattern="^[0-9]{9||12}"/></td>
-                         <td style="color:#0000ff"/><h5/>Format: xxx xxx xx xx</td>
+                         <td> <input class="form-control" name="tel" value="${user.getTel()}" pattern="^[0-9]{9,12}"/></td>
                        </tr>
                        <tr>
                          <td style="color:#0000ff"/><h3>${phrases['langDateOfBirth']}</h3></td>

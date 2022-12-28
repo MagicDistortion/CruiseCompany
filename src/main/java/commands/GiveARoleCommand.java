@@ -12,16 +12,18 @@ public class GiveARoleCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int role = Integer.parseInt(request.getParameter("role"));
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        if (role >= 1 && role <= 3 && userId != 0)
-            usersDAO.updateUserRole(role, userId);
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            int role = Integer.parseInt(request.getParameter("role"));
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            if (role >= 1 && role <= 3 && userId != 0)
+                usersDAO.updateUserRole(role, userId);
+        }
         response.sendRedirect("users_list");
     }
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("admin/give_a_role") && method.equalsIgnoreCase("Post");
+        return uri.equalsIgnoreCase("admin/give_a_role");
     }
 }
 

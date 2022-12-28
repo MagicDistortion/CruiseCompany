@@ -83,11 +83,17 @@ public class EditProfileValidator {
 
     /* перевірка та оновлення телефону */
     private String validatePhoneNumber(String number) {
+        String finalTel = "";
         if (number == null) return "phone number is wrong";
-        String finalTel = SignUpValidator.updateTel(number);
-        if (finalTel.length() < 12) return "phone number is wrong";
-        if (usersDAO.findAllUsers().stream().anyMatch(x -> x.getTel().equals(finalTel)))
-            return "phone number is already in use";
+        if (number.length() == 11 && number.startsWith("80")) {
+            number = number.substring(1);
+            finalTel = SignUpValidator.updateTel(number);
+        } else if (number.length() == 9
+                || number.length() == 10 && number.charAt(0) == '0'
+                || number.length() == 12 && number.startsWith("380"))
+            finalTel = SignUpValidator.updateTel(number);
+        else return "phone number is wrong";
+        if (usersDAO.existTel(finalTel)) return "phone number is already in use";
         usersDAO.updateUserTel(finalTel, user.getId());
         return "phone number is changed";
     }

@@ -46,10 +46,11 @@
               </tr>
         </table>
 </nav>
-                      <form align="right" action="lang" method="post">
+                      <form align="right" action="lang" method="get">
                          <input type="hidden" name="lang"
                              <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
-                             <c:if test="${lang.equals('UA')}"> value="EN" </c:if>/>
+                             <c:if test="${lang.equals('UA')}"> value="EN" </c:if>
+                         />
                          <input type="submit" class="btn btn-primary" value="${phrases['langChangeLanguage']}"/>
                       </form>
                     <c:choose>

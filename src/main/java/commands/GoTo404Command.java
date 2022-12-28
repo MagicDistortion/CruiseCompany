@@ -10,7 +10,6 @@ public class GoTo404Command implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("error404.jsp");
     }
-
     @Override
     public boolean canHandle(String uri, String method) {
         return true;

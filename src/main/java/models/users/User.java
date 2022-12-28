@@ -20,7 +20,7 @@ public class User implements Serializable {
     private LocalDate dateOfBirth;
 
     public User(String surname, String name, String login, String password, String tel, LocalDate dateOfBirth) {
-        this.tel = SignUpValidator.updateTel(tel);
+        this.tel = tel;
         this.surname = surname;
         this.name = name;
         this.login = login;

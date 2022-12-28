@@ -38,9 +38,7 @@
         </tr>
         <tr>
             <td style="color:#ffff00"/><h3/>${phrases['langTel']}:</td>
-            <td> <input class="form-control" name="tel" value="${tel}" placeholder="${phrases['langEnterTel']}" pattern="^[0-9]{9}" required></td>
-            <td style="color:#0000ff"/><h5/>Format: xxx xxx xx xx</td>
-
+            <td> <input class="form-control" name="tel" value="${tel}" placeholder="${phrases['langEnterTel']}" pattern="^[0-9]{9,12}" required></td>
         </tr>
         <tr>
             <td style="color:#0000ff"/><h3/> ${phrases['langDateOfBirth']}:</td>

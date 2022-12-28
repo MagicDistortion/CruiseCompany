@@ -22,22 +22,24 @@ public class BuyATicketCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        User user = (User) request.getSession().getAttribute("user");
-        Cruise cruise = cruisesDAO.findCruiseByID(Integer.parseInt(request.getParameter("cruiseId")));
-        int amount = Integer.parseInt(request.getParameter("amount"));
-        Ticket ticket = new Ticket(cruise, user.getId(), amount);
-        Ship ship = shipsDAO.findShipByID(cruise.getShipId());
-        Map<?, ?> phrases = (Map<?, ?>) request.getAttribute("phrases");
-        if (ticketsDAO.checkingForAvailability(ship, cruise.getId(), amount)) {
-            ticketsDAO.insertTicket(ticket);
-            request.setAttribute("error_message", phrases.get("langSuccessfulAdd"));
-        } else request.setAttribute("error_message", phrases.get("langNotEnoughTickets"));
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            User user = (User) request.getSession().getAttribute("user");
+            Cruise cruise = cruisesDAO.findCruiseByID(Integer.parseInt(request.getParameter("cruiseId")));
+            int amount = Integer.parseInt(request.getParameter("amount"));
+            Ticket ticket = new Ticket(cruise, user.getId(), amount);
+            Ship ship = shipsDAO.findShipByID(cruise.getShipId());
+            Map<?, ?> phrases = (Map<?, ?>) request.getAttribute("phrases");
+            if (ticketsDAO.checkingForAvailability(ship, cruise.getId(), amount)) {
+                ticketsDAO.insertTicket(ticket);
+                request.setAttribute("error_message", phrases.get("langSuccessfulAdd"));
+            } else request.setAttribute("error_message", phrases.get("langNotEnoughTickets"));
+        }
         request.getRequestDispatcher("buy_a_ticket.jsp").forward(request, response);
     }
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("passenger/buy_a_ticket") && method.equalsIgnoreCase("Post");
+        return uri.equalsIgnoreCase("passenger/buy_a_ticket");
     }
 }
 

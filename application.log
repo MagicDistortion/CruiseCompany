@@ -213,3 +213,7 @@ java.sql.SQLException: Before start of result set
 	at com.zaxxer.hikari.pool.HikariProxyResultSet.getInt(HikariProxyResultSet.java)
 	at dao.ShipsDAO.shipsNameExist(ShipsDAO.java:122)
 	at dao.ShipsDAO.main(ShipsDAO.java:137)
+2022-12-28 14:24:44 ERROR [main]: failed to update telephone number ->80664570941
+java.lang.RuntimeException: phone number is wrong
+	at services.SignUpValidator.updateTel(SignUpValidator.java:85)
+	at services.SignUpValidator.main(SignUpValidator.java:94)

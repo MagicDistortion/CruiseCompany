@@ -58,9 +58,13 @@ public class SignUpValidator {
     }
 
     /* перевірка телефону */
-    public String validatePhoneNumber(String number) {
-        if (number.length() != 9) return phrases.get("langPhoneNumberIsWrong");
-        return usersDAO.existTel(updateTel(number)) ? phrases.get("langPhoneNumberIsAlreadyInUse") : null;
+    private String validatePhoneNumber(String number) {
+        if (number.length() == 11 && number.startsWith("80")) number = number.substring(1);
+        if (number.length() == 9
+                || number.length() == 10 && number.charAt(0) == '0'
+                || number.length() == 12 && number.startsWith("380"))
+            return usersDAO.existTel(updateTel(number)) ? phrases.get("langPhoneNumberIsAlreadyInUse") : null;
+        else return phrases.get("langPhoneNumberIsWrong");
     }
 
     /* перевірка дати народження */

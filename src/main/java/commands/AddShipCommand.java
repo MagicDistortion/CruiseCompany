@@ -10,25 +10,18 @@ import java.io.IOException;
 import java.util.Map;
 
 public class AddShipCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
+    private HttpServletRequest request;
     private final ShipsDAO shipsDAO = new ShipsDAO();
 
-
-    public AddShipCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-    }
-
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("name") != null
                 && request.getParameter("capacity") != null
                 && request.getParameter("current_point") != null) {
             String name = request.getParameter("name");
             int capacity = Integer.parseInt(request.getParameter("capacity"));
             String currentPoint = request.getParameter("current_point");
-
+            this.request = request;
             if (!shipsDAO.shipsNameExist(name)) {
                 shipsDAO.insertShip(new Ship(name, capacity, currentPoint));
                 setError(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
@@ -36,7 +29,6 @@ public class AddShipCommand implements Command {
         } else
             setError(((Map<?, ?>) request.getAttribute("phrases")).get("langInvalidData").toString());
         request.getRequestDispatcher("/admin/add_ship.jsp").forward(request, response);
-
     }
 
     private void setError(String string) {

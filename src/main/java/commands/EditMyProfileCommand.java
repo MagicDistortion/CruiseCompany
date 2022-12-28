@@ -12,19 +12,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class EditMyProfileCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
     private final UsersDAO usersDAO = new UsersDAO();
-    private final HttpSession session;
-
-    public EditMyProfileCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-        this.session = request.getSession();
-    }
 
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
         EditProfileValidator validatorEditForm = new EditProfileValidator();
         List<String> errors = validatorEditForm.editValidate(request);
         User user = usersDAO.findUserByID(((User) session.getAttribute("user")).getId());
@@ -35,7 +27,7 @@ public class EditMyProfileCommand implements Command {
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("edit_profile")&&method.equalsIgnoreCase("post");
+        return uri.equalsIgnoreCase("edit_profile") && method.equalsIgnoreCase("post");
     }
 }
 

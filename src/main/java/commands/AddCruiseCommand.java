@@ -4,32 +4,22 @@ import dao.CruisesDAO;
 import dao.ShipsDAO;
 import models.cruises.Cruise;
 import models.ships.Ship;
-import org.w3c.dom.ls.LSOutput;
 import services.CruiseValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
 public class AddCruiseCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
     private final ShipsDAO shipsDAO = new ShipsDAO();
     private final CruisesDAO cruisesDAO = new CruisesDAO();
 
-    public AddCruiseCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-    }
-
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         CruiseValidator cruiseValidator = new CruiseValidator();
         int shipId = Integer.parseInt(request.getParameter("shipId"));
         Ship ship = shipsDAO.findShipByID(shipId);

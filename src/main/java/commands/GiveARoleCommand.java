@@ -8,17 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class GiveARoleCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
     private final UsersDAO usersDAO = new UsersDAO();
 
-    public GiveARoleCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-    }
-
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int role = Integer.parseInt(request.getParameter("role"));
         int userId = Integer.parseInt(request.getParameter("userId"));
         if (role >= 1 && role <= 3 && userId != 0)

@@ -11,18 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class UsersListCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
     private final UsersDAO usersDAO = new UsersDAO();
 
-
-    public UsersListCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-    }
-
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<User> allUsers = usersDAO.findUsersWithOutRole();
         request.setAttribute("userList", allUsers);
         if (allUsers.size() == 0)

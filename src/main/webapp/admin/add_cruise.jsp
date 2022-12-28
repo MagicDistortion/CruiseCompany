@@ -14,13 +14,6 @@
     <%@ include file="../header_admins.jspf" %>
 <br><br><br><br>
 
-          <c:if test="${shipsList==null}">
-             <form action ="../admin/ships_for_add_cruise" method ="get" align="center">
-             <input type="submit" class="btn btn-dark" value="${phrases['langAddCruise']}"/>
-             </form>
-          </c:if>
-
-         <c:if  test="${shipsList!=null}" >
              <form action ="../admin/add_cruise" method ="post">
              <div align="center" >
            <table>
@@ -46,7 +39,6 @@
              </form>
              </tr>
            </table>
-         </c:if>
            </table>
            <br><br><br>
            <h4 style="color:#B22222" align="center">

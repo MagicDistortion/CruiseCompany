@@ -1,17 +1,13 @@
 package commands;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class GoTo404Command implements Command {
-    private final HttpServletResponse response;
-
-    public GoTo404Command(HttpServletResponse response) {
-        this.response = response;
-    }
 
     @Override
-    public void execute() throws IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("error404.jsp");
     }
 

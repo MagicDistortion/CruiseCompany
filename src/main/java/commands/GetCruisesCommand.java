@@ -2,7 +2,6 @@ package commands;
 
 import dao.CruisesDAO;
 import models.cruises.Cruise;
-import services.Paginator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,19 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 public class GetCruisesCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
-
     private final CruisesDAO cruisesDAO = new CruisesDAO();
 
-    public GetCruisesCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-    }
-
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getMethod().equalsIgnoreCase("post")) {
+            request.setAttribute("sortBy", request.getParameter("sortBy"));
             List<Cruise> cruiseList = new ArrayList<>();
             if (request.getParameter("date") != null) {
                 LocalDate date = LocalDate.parse(request.getParameter("date"));
@@ -42,7 +34,6 @@ public class GetCruisesCommand implements Command {
                 request.setAttribute("error_message", ((Map<?, ?>) request.getAttribute("phrases")).get("langEmpty"));
         }
         request.getRequestDispatcher("buy_a_ticket.jsp").forward(request, response);
-
     }
 
     @Override

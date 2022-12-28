@@ -10,18 +10,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class ShipsListCommand implements Command {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
-
     private final Paginator paginator = new Paginator();
 
-    public ShipsListCommand(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-    }
-
     @Override
-    public void execute() throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Ship> shipList = paginator.paginationShipsList(request);
         request.setAttribute("shipsList", shipList);
         request.getRequestDispatcher("ships_list.jsp").forward(request, response);

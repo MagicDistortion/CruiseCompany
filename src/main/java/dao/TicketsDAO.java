@@ -53,22 +53,22 @@ public class TicketsDAO {
     }
 
     /* метод пошуку квитка по id пасажира */
-    public Ticket findTicketByUserId(int userId) {
-        Ticket ticket = null;
+    public List<Ticket> findTicketByUserId(int userId) {
+        List<Ticket> ticketList = new ArrayList<>();
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID)) {
             preparedStatement.setInt(1, userId);
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
-                if (resultSet.next()) {
-                    ticket = getTicket(resultSet);
+                while (resultSet.next()) {
+                    ticketList.add(getTicket(resultSet));
                 }
             }
         } catch (SQLException e) {
-            logger.error("failed to find ticket by user`s id ->" + userId, e);
+            logger.error("failed to find tickets by user`s id ->" + userId, e);
             throw new RuntimeException(e);
         }
-        return ticket;
+        return ticketList;
     }
 
     /* метод оновлення кількості пасажирів по квитку*/

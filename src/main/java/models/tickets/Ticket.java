@@ -7,6 +7,8 @@ import models.cruises.Cruise;
 public class Ticket {
     private int id;
     private int cruiseId;
+    private String cruiseName;
+    private int duration;
     private int userId;
     private int numberOfPassengers;
     private double totalPrice;
@@ -15,6 +17,8 @@ public class Ticket {
 
     public Ticket(Cruise cruise, int userId, int numberOfPassengers) {
         this.cruiseId = cruise.getId();
+        this.cruiseName=cruise.getCruiseName();
+        this.duration=cruise.getDuration();
         this.userId = userId;
         this.price = cruise.getPrice();
         this.numberOfPassengers = numberOfPassengers;

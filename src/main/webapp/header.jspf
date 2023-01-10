@@ -15,6 +15,7 @@
           <td><a style="color:#fff" class="nav-link" href="cruises_list.jsp"><h5> ${phrases['langCruises']}</h5></a></td>
          <c:if  test="${user.getRolesId()==1||user.getRolesId()==4}" >
          <td><a style="color:#fff" class="nav-link" href="passenger/buy_a_ticket.jsp"><h5>${phrases['langBuyATicket']}</h5></a></td>
+         <td><a style="color:#fff" class="nav-link" href="passenger/my_profile"><h5>${phrases['langMyProfile']}</h5></a></td>
          </c:if>
 
          <c:if  test="${user.getRolesId()==2}" >

@@ -14,30 +14,22 @@
     <%@ include file="../header_admins.jspf" %>
        <h2 style="color:#fff" align="center">${phrases['langPaidTickets']}</h2>
            <table class="table table-dark table-striped">
+                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langId']} &nbsp</th>
                 <th style="color:#0000ff"><h4 align="center"/> ${phrases['langCruiseName']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langDuration']} &nbsp</th>
                 <th style="color:#0000ff"><h4 align="center"/> ${phrases['langTotalPrice']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langStatus']} &nbsp</th>
+                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
                 <th/>
-                     <c:forEach items="${paid_tickets_list}" var="i">
+                     <c:forEach items="${all_paid_tickets}" var="i">
                          <tr align="center">
-                            <td style="color:#fff" ><h3/>${i.getCruiseName()} &nbsp</td>
-                            <td style="color:#fff"><h3/>${i.getNumberOfPassengers()} &nbsp</td>
-                            <td style="color:#fff"><h3/>${i.getDuration()} &nbsp</td>
+                            <td style="color:#fff" ><h3/>${i.getId()} &nbsp</td>
+                            <td style="color:#fff"><h3/>${i.getCruiseName()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getTotalPrice()} &nbsp</td>
-                            <td style="color:#fff"><h3/>${i.getStatus()} &nbsp</td>
-                            <c:if test="${i.getStatus().equals('not paid')}">
-                                <form action ="../passenger/pay_for_ticket" method ="post">
+                            <td style="color:#fff"><h3/>${i.getNumberOfPassengers()} &nbsp</td>
+                                <form action ="../admin/confirm_ticket" method ="post">
                                 <input type="hidden" name="ticket_id" value="${i.getId()}"/>
                                 <td> <input
-                                  <c:if test="${user.getMoney()<i.getTotalPrice()}">disabled type="submit" class="btn btn-secondary"</c:if>
-                                 type="submit" class="btn btn-warning" value="${phrases['langPay']}"/></td>
+                                 type="submit" class="btn btn-warning" value="${phrases['langConfirm']}"/></td>
                                 </form>
-                            </c:if>
-                            <c:if test="${!i.getStatus().equals('not paid')}">
-                            <td/>
-                            </c:if>
                          </tr>
                      </c:forEach>
            </table>

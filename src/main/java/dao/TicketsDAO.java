@@ -70,6 +70,22 @@ public class TicketsDAO {
         return ticketList;
     }
 
+    /* метод отримання всіх сплачених квитків */
+    public List<Ticket> findAllPaidTickets() {
+        List<Ticket> ticketList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_PAID_TICKETS)) {
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) ticketList.add(getTicket(resultSet));
+            }
+        } catch (SQLException e) {
+            logger.error("failed to find paid tickets list", e);
+            throw new RuntimeException(e);
+        }
+        return ticketList;
+    }
+
     /* метод отримання квитка по id квитка */
     public Ticket findTicketById(int ticketId) {
         Ticket ticket = null;
@@ -118,7 +134,7 @@ public class TicketsDAO {
     }
 
     /* метод оновлення статусу квитка*/
-    public void updateStatus(Connection connection,String status, int ticketId) {
+    public void updateStatus(Connection connection, String status, int ticketId) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_TICKET_STATUS)) {
             preparedStatement.setString(1, status);
             preparedStatement.setInt(2, ticketId);
@@ -133,15 +149,11 @@ public class TicketsDAO {
     /* метод перевірки наявності квитків */
     public Boolean checkingForAvailability(Ship ship, int cruiseId, int amount) {
         try (Connection connection = dbManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FROM_TICKETS)) {
-            preparedStatement.setInt(1, cruiseId);
-            preparedStatement.execute();
-            try (ResultSet resultSet = preparedStatement.getResultSet()) {
-                while (resultSet.next()) {
-                    amount += resultSet.getInt("number_of_passengers");
-                }
-                return amount <= ship.getCapacity();
+             ResultSet resultSet = connection.prepareStatement(Constants.FIND_PAID_TICKETS).executeQuery()) {
+            while (resultSet.next()) {
+                amount += resultSet.getInt("number_of_passengers");
             }
+            return amount <= ship.getCapacity();
         } catch (SQLException e) {
             logger.error("failed to checking for availability ", e);
             throw new RuntimeException(e);

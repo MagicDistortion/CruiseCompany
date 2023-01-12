@@ -27,6 +27,7 @@ public class Constants {
     public static final String FIND_ALL_PASSENGERS = "SELECT * FROM users where roles_id=1 ";
     public static final String FIND_ALL_ADMINS = "SELECT * FROM users where roles_id=2 ";
     public static final String FIND_TICKET_BY_USER_ID = "SELECT * FROM tickets where user_id=? ";
+    public static final String FIND_PAID_TICKETS = "SELECT * FROM tickets where status='paid'";
     public static final String FIND_TICKET_BY_ID = "SELECT * FROM tickets where ticket_id=? ";
     public static final String FIND_CRUISE_BY_ID = "SELECT * FROM cruise WHERE cruise_id=? ";
     public static final String FIND_SHIP_BY_ID = "SELECT * FROM ships WHERE ship_id=? ";

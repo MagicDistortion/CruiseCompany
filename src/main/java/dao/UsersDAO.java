@@ -28,6 +28,7 @@ public class UsersDAO {
         );
         user.setId(resultSet.getInt("users_id"));
         user.setRolesId(resultSet.getInt("roles_id"));
+        user.setMoney(resultSet.getDouble("money"));
         return user;
     }
 
@@ -127,6 +128,18 @@ public class UsersDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("failed to update user`s tel", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /* метод оновлення рахунку користувача */
+    public void updateUserMoney(Connection connection, double deposit, int id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_MONEY)) {
+            preparedStatement.setDouble(1, deposit);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("failed to update user`s money", e);
             throw new RuntimeException(e);
         }
     }

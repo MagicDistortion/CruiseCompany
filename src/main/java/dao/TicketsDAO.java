@@ -1,6 +1,5 @@
 package dao;
 
-import models.cruises.Cruise;
 import models.ships.Ship;
 import models.tickets.Ticket;
 import org.apache.log4j.Logger;
@@ -53,7 +52,7 @@ public class TicketsDAO {
     }
 
     /* метод пошуку квитка по id пасажира */
-    public List<Ticket> findTicketByUserId(int userId) {
+    public List<Ticket> findTicketsByUserId(int userId) {
         List<Ticket> ticketList = new ArrayList<>();
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID)) {
@@ -69,6 +68,25 @@ public class TicketsDAO {
             throw new RuntimeException(e);
         }
         return ticketList;
+    }
+
+    /* метод отримання квитка по id квитка */
+    public Ticket findTicketById(int ticketId) {
+        Ticket ticket = null;
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_ID)) {
+            preparedStatement.setInt(1, ticketId);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                if (resultSet.next()) {
+                    ticket = getTicket(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("failed to find ticket by id ->" + ticketId, e);
+            throw new RuntimeException(e);
+        }
+        return ticket;
     }
 
     /* метод оновлення кількості пасажирів по квитку*/
@@ -98,6 +116,19 @@ public class TicketsDAO {
             throw new RuntimeException(e);
         }
     }
+
+    /* метод оновлення статусу квитка*/
+    public void updateStatus(Connection connection,String status, int ticketId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_TICKET_STATUS)) {
+            preparedStatement.setString(1, status);
+            preparedStatement.setInt(2, ticketId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("failed to update status for ticket by id ->" + ticketId, e);
+            throw new RuntimeException(e);
+        }
+    }
+
 
     /* метод перевірки наявності квитків */
     public Boolean checkingForAvailability(Ship ship, int cruiseId, int amount) {

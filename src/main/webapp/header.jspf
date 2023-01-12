@@ -22,6 +22,7 @@
           <td><a style="color:#fff" class="nav-link" href="admin/giving_a_role.jsp"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#fff" class="nav-link" href="admin/add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
           <td><a style="color:#fff" class="nav-link" href="admin/ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#fff" class="nav-link" href="admin/confirm_tickets.jsp"><h5>${phrases['langConfirmTickets']}</h5></a></td>
 
 
          </c:if>
@@ -47,31 +48,31 @@
               </tr>
         </table>
 </nav>
-                      <form align="right" action="lang" method="get">
-                         <input type="hidden" name="lang"
-                             <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
-                             <c:if test="${lang.equals('UA')}"> value="EN" </c:if>
-                         />
-                         <input type="submit" class="btn btn-primary" value="${phrases['langChangeLanguage']}"/>
-                      </form>
-                    <c:choose>
-                        <c:when test="${empty user}">
-                            <div align="right" >
-                                 <form action="register_form.jsp" method="post">
-                                      <input type="submit" class="btn btn-warning" value="${phrases['langRegister']}"/>
-                                 </form>
-                                 <input type="submit" class="btn btn-dark" value="${phrases['langLogIn']}"
-                                  onclick="window.location='index.jsp';"/>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                           <div align="right" >
-                                   <form action="edit_profile.jsp" method="post">
-                                       <input type="submit" class="btn btn-warning" value="${phrases['langEMP']}"/>
-                                   </form>
-                                   <form action="logout" method="get">
-                                       <input type="submit" class="btn btn-dark" value="${phrases['langLogOut']}"/>
-                                   </form>
-                           </div>
-                        </c:otherwise>
-                    </c:choose>
+          <form align="right" action="lang" method="get">
+             <input type="hidden" name="lang"
+                 <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
+                 <c:if test="${lang.equals('UA')}"> value="EN" </c:if>
+             />
+             <input type="submit" class="btn btn-primary" value="${phrases['langChangeLanguage']}"/>
+          </form>
+        <c:choose>
+            <c:when test="${empty user}">
+                <div align="right" >
+                     <form action="register_form.jsp" method="post">
+                          <input type="submit" class="btn btn-warning" value="${phrases['langRegister']}"/>
+                     </form>
+                     <input type="submit" class="btn btn-dark" value="${phrases['langLogIn']}"
+                      onclick="window.location='index.jsp';"/>
+                </div>
+            </c:when>
+            <c:otherwise>
+               <div align="right" >
+                       <form action="edit_profile.jsp" method="post">
+                           <input type="submit" class="btn btn-warning" value="${phrases['langEMP']}"/>
+                       </form>
+                       <form action="logout" method="get">
+                           <input type="submit" class="btn btn-dark" value="${phrases['langLogOut']}"/>
+                       </form>
+               </div>
+            </c:otherwise>
+        </c:choose>

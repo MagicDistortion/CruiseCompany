@@ -16,7 +16,7 @@ public class MyTicketsListCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int userId = ((User) request.getSession().getAttribute("user")).getId();
-        List<Ticket> ticketList = ticketsDAO.findTicketByUserId(userId);
+        List<Ticket> ticketList = ticketsDAO.findTicketsByUserId(userId);
         request.setAttribute("my_tickets_list", ticketList);
         request.getRequestDispatcher("my_profile.jsp").forward(request, response);
     }

@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String tel;
     private int rolesId;
     private LocalDate dateOfBirth;
+    private double money;
 
     public User(String surname, String name, String login, String password, String tel, LocalDate dateOfBirth) {
         this.tel = tel;

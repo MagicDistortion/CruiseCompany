@@ -19,7 +19,6 @@
                     <input name="name" class="btn btn-light" placeholder="${phrases['langEnterNameOfShip']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\-]{2,32}" required/>
                     <input name="capacity" type="number" class="btn btn-light" placeholder="${phrases['langEnterCapacity']} " style="width: 170px;" required/>
                     <input name="current_point" class="btn btn-light" placeholder="${phrases['langEnterCurrentPoint']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}" required/>
-
                     <input type="submit" class="btn btn-warning"  value="${phrases['langAddShip']}"/><br>
                     <h2 style="color:#B22222">
                         <c:if  test="${not empty error_message}" >${error_message}</c:if>

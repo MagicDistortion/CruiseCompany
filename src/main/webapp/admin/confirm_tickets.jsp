@@ -11,8 +11,8 @@
                     body {background:#000000}
                 </style>
     <body>
-    <%@ include file="../header_passenger.jspf" %>
-       <h2 style="color:#fff" align="center">${phrases['langMyTickets']}</h2>
+    <%@ include file="../header_admins.jspf" %>
+       <h2 style="color:#fff" align="center">${phrases['langPaidTickets']}</h2>
            <table class="table table-dark table-striped">
                 <th style="color:#0000ff"><h4 align="center"/> ${phrases['langCruiseName']} &nbsp</th>
                 <th style="color:#0000ff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
@@ -20,7 +20,7 @@
                 <th style="color:#0000ff"><h4 align="center"/> ${phrases['langTotalPrice']} &nbsp</th>
                 <th style="color:#0000ff"><h4 align="center"/> ${phrases['langStatus']} &nbsp</th>
                 <th/>
-                     <c:forEach items="${my_tickets_list}" var="i">
+                     <c:forEach items="${paid_tickets_list}" var="i">
                          <tr align="center">
                             <td style="color:#fff" ><h3/>${i.getCruiseName()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getNumberOfPassengers()} &nbsp</td>
@@ -41,12 +41,6 @@
                          </tr>
                      </c:forEach>
            </table>
-           <br>
-           <br>
-       <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
-       <form action ="../passenger/put_on_the_account" method ="post">
-       <input name="deposit" type="number" class="btn btn-light" placeholder="${phrases['langPutOnTheAccount']} " style="width: 200px;" required/>
-       <input type="submit" class="btn btn-warning" value="${phrases['langDeposit']}"/>
        </form>
     </body>
 </html>

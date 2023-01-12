@@ -25,7 +25,16 @@
        </td>
 
    <td > <form action ="../passenger/getCruises" id="sortByDate"  method ="post">
-              <input class="btn btn-light" type="date" value="${date}" name="date" style="width: 150px;" required/>
+              <input class="btn btn-light" type="date"
+              <c:choose>
+                <c:when test="${empty date}">
+                    value=<mt:myTag/>
+                </c:when>
+                <c:otherwise>
+                     value="${date}"
+                </c:otherwise>
+              </c:choose>
+                name="date" style="width: 150px;" required/>
               <input hidden name="sortBy" value="date"/>
               <input type="submit" class="btn btn-warning" value="${phrases['langPick']}"/>
             </form></td>

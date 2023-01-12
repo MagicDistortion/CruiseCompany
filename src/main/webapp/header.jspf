@@ -11,15 +11,15 @@
           <td><a style="color:#fff" class="nav-link" href="index.jsp"><h5> ${phrases['langMain']}</h5></a></td>
           <td><a style="color:#fff" class="nav-link" href="contacts.jsp"><h5> ${phrases['langContacts']}</h5></a></td>
           <td><a style="color:#fff"" class="nav-link" href="about_us.jsp"><h5> ${phrases['langAboutUs']}</h5></a></td>
-          <td><a style="color:#fff"" class="nav-link" href="ships_list.jsp"><h5> ${phrases['langShips']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="cruises_list.jsp"><h5> ${phrases['langCruises']}</h5></a></td>
+          <td><a style="color:#fff"" class="nav-link" href="ships_list"><h5> ${phrases['langShips']}</h5></a></td>
+          <td><a style="color:#fff" class="nav-link" href="cruises_list"><h5> ${phrases['langCruises']}</h5></a></td>
          <c:if  test="${user.getRolesId()==1||user.getRolesId()==4}" >
-         <td><a style="color:#fff" class="nav-link" href="passenger/buy_a_ticket.jsp"><h5>${phrases['langBuyATicket']}</h5></a></td>
+         <td><a style="color:#fff" class="nav-link" href="passenger/getCruises"><h5>${phrases['langBuyATicket']}</h5></a></td>
          <td><a style="color:#fff" class="nav-link" href="passenger/my_profile"><h5>${phrases['langMyProfile']}</h5></a></td>
          </c:if>
 
          <c:if  test="${user.getRolesId()==2}" >
-          <td><a style="color:#fff" class="nav-link" href="admin/giving_a_role.jsp"><h5>${phrases['langGivingARole']}</h5></a></td>
+          <td><a style="color:#fff" class="nav-link" href="admin/users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#fff" class="nav-link" href="admin/add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
           <td><a style="color:#fff" class="nav-link" href="admin/ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
           <td><a style="color:#fff" class="nav-link" href="admin/paid_tickets"><h5>${phrases['langConfirmTickets']}</h5></a></td>
@@ -38,7 +38,14 @@
         <table align="right">
               <tr>
                  <td> <c:if  test="${user!=null}" >
+                    <c:choose>
+                        <c:when test="${user.getRolesId()==2}">
                          <h5 align="right" style="color:#0000ff"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5>
+                        </c:when>
+                        <c:otherwise>
+                        <a align="right" style="color:#0000ff" href="passenger/my_profile" ><h5><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h5></a>
+                        </c:otherwise>
+                    </c:choose>
                       </c:if>
                 <c:if  test="${user.getRolesId()==null}" ><h5/><br></c:if>
                       </td>

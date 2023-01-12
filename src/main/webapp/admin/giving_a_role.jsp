@@ -15,9 +15,6 @@
 <br><br>
     <div align="center" >
         <h2 style="color:#fff">${phrases['langGivingARole']}</h2>
-            <form action ="../admin/users_list" method ="get">
-                <input type="submit" class="btn btn-dark" value="${phrases['langGetUsers']}"/><br>
-            </form>
         <h2 style="color:#B22222">
          <table class="table table-dark table-striped table-bordered">
             <th style="color:#0000ff"><h4/> ${phrases['langSurname']} &nbsp</th>

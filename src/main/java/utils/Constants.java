@@ -11,7 +11,7 @@ public class Constants {
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
     public static final String FROM_USERS = "SELECT * FROM users ";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
-    public static final String FROM_CRUISES = "SELECT * FROM cruise ";
+    public static final String FROM_CRUISES = "SELECT * FROM cruise where status!='finished' AND status!='canceled'";
     public static final String FROM_TICKETS = "SELECT * FROM tickets where cruise_id=? ";
     public static final String FROM_CRUISES_BY_DURATION = "SELECT * FROM cruise  where duration = ?";
     public static final String UPDATE_USER_ROLE = "UPDATE users SET `roles_id` = ? WHERE (`users_id` = ?)";
@@ -40,7 +40,7 @@ public class Constants {
     public static final String FROM_SHIPS_COUNT = "SELECT count(*) FROM ships";
     public static final String SHIPS_NAME_EXIST = "SELECT count(*) FROM ships where name = ?";
     public static final String CRUISE_NAME_EXIST = "SELECT count(*) FROM cruise where cruise_name = ?";
-    public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise";
+    public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise where status!='finished' AND status!='canceled'";
 
 
 }

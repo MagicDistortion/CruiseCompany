@@ -40,7 +40,7 @@
                <th style="color:#0000ff"><h4/> ${phrases['langCapacity']} &nbsp</th>
                      <c:forEach items="${shipsList}" var="i">
                          <tr>
-                            <td style="color:#fff"><h3/>${i.getName()} &nbsp</td>
+                            <td style="color:#fff" ><h3/>${i.getName()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getCapacity()} &nbsp</td>
                          </tr>
                      </c:forEach>

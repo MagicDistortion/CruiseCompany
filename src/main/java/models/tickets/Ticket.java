@@ -19,10 +19,10 @@ public class Ticket {
         this.cruiseId = cruise.getId();
         this.cruiseName=cruise.getCruiseName();
         this.duration=cruise.getDuration();
-        this.userId = userId;
         this.price = cruise.getPrice();
-        this.numberOfPassengers = numberOfPassengers;
         this.totalPrice = cruise.getPrice() * numberOfPassengers;
+        this.userId = userId;
+        this.numberOfPassengers = numberOfPassengers;
         this.status = "not paid";
     }
 

@@ -34,12 +34,14 @@ public class AddCruiseCommand implements Command {
                         , Double.parseDouble(request.getParameter("price"))
                         , LocalDateTime.parse(request.getParameter("startTime"))
                         , LocalDateTime.parse(request.getParameter("endTime")));
+                cruise.setDescription(request.getParameter("description"));
+                System.out.println(request.getParameter("description"));
                 cruisesDAO.insertCruise(cruise);
                 errors.add(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
             }
             request.setAttribute("errors", errors);
         }
-        request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
+        request.getRequestDispatcher("ships_for_add_cruise").forward(request, response);
     }
 
     @Override

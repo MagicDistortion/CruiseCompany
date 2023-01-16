@@ -17,11 +17,11 @@
              <form action ="../admin/add_ship" method ="post">
              <div align="center" >
                 <table>
-                        <th><h6 style="color:#fff" align="center"/> ${phrases['langEnterNameOfShip']} &nbsp</th>
-                        <th><h6 style="color:#fff" align="center"/> ${phrases['langEnterCapacity']} &nbsp</th>
-                        <th><h6 style="color:#fff" align="center"/> ${phrases['langEnterCurrentPoint']} &nbsp</th>
+                        <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterNameOfShip']} &nbsp</th>
+                        <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterCapacity']} &nbsp</th>
+                        <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterCurrentPoint']} &nbsp</th>
                     <tr>
-                          <td><input name="name" class="btn btn-light" placeholder="${phrases['langEnterNameOfShip']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\-]{2,32}" required/></td>
+                          <td><input name="name" class="btn btn-light" placeholder="${phrases['langEnterNameOfShip']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
                           <td><input name="capacity" type="number" class="btn btn-light" placeholder="${phrases['langEnterCapacity']} " style="width: 170px;" required/></td>
                           <td><input name="current_point" class="btn btn-light" placeholder="${phrases['langEnterCurrentPoint']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}" required/></td>
                           <td><input type="submit" class="btn btn-info"  value="${phrases['langAddShip']}"/></td>

@@ -26,6 +26,7 @@ public class Controller extends HttpServlet {
         commands.put("edit_profile", new EditMyProfileCommand());
         commands.put("ships_list", new ShipsListCommand());
         commands.put("cruises_list", new CruisesListCommand());
+        commands.put("cruise_details", new CruiseDetailsCommand());
         commands.put("admin/users_list", new UsersListCommand());
         commands.put("admin/give_a_role", new GiveARoleCommand());
         commands.put("admin/add_ship", new AddShipCommand());

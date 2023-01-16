@@ -17,6 +17,7 @@ public class Cruise implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int duration;
+    private String description;
 
     public Cruise(int shipId, String shipName, String cruiseName, int numberOfPorts
             , double price, LocalDateTime startTime, LocalDateTime endTime) {

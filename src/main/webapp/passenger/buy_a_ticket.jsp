@@ -48,14 +48,14 @@
         <br>
        <c:if test="${cruisesList!=null && cruisesList.size()!=0}">
            <table class="table table-dark table-striped">
-               <th style="color:#0000ff"><h4/> ${phrases['langCruiseName']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langStartDate']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langEndDate']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langNumberOfPorts']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langDuration']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langPrice']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langAmount']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langBuy']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langCruiseName']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langStartDate']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langEndDate']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langNumberOfPorts']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langDuration']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langPrice']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langAmount']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langBuy']} &nbsp</th>
 
                      <c:forEach items="${cruisesList}" var="i">
                          <tr><form action ="../passenger/buy_a_ticket" method ="post">

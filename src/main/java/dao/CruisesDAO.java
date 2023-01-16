@@ -17,6 +17,7 @@ import java.util.List;
 public class CruisesDAO {
     private final static Logger logger = Logger.getLogger(CruisesDAO.class);
     private final DBManager dbManager = DBManager.getInstance();
+
     /* метод отримання круїзу з різалтсету */
     public Cruise getCruise(ResultSet resultSet) throws SQLException {
         Cruise cruise = new Cruise(resultSet.getInt("ship_id")
@@ -29,6 +30,7 @@ public class CruisesDAO {
                 , LocalDateTime.of(resultSet.getDate("end_time").toLocalDate()
                 , resultSet.getTime("end_time").toLocalTime())
         );
+        cruise.setDescription(resultSet.getString("description"));
         cruise.setDuration(resultSet.getInt("duration"));
         cruise.setId(resultSet.getInt("cruise_id"));
         cruise.setStatus(resultSet.getString("status"));
@@ -48,6 +50,7 @@ public class CruisesDAO {
             preparedStatement.setObject(6, cruise.getStartTime());
             preparedStatement.setObject(7, cruise.getEndTime());
             preparedStatement.setInt(8, cruise.getDuration());
+            preparedStatement.setString(9, cruise.getDescription());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
@@ -111,7 +114,6 @@ public class CruisesDAO {
         }
         return cruiseList;
     }
-
 
 
     /* метод отримання списку всіх круїзів за датою */

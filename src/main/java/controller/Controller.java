@@ -52,12 +52,13 @@ public class Controller extends HttpServlet {
     }
 
     public void action(HttpServletRequest req, HttpServletResponse resp, String uri) throws IOException {
-        try {
-            commands.values().stream().filter(command -> command.canHandle(uri, req.getMethod()))
-                    .findFirst().orElse(new GoTo404Command()).execute(req, resp);
-        } catch (ServletException e) {
-            logger.error("failed to execute command with uri ->" + uri + " and method-> " + req.getMethod(), e);
-            throw new RuntimeException(e);
-        }
+        if (!uri.startsWith("images"))
+            try {
+                commands.values().stream().filter(command -> command.canHandle(uri, req.getMethod()))
+                        .findFirst().orElse(new GoTo404Command()).execute(req, resp);
+            } catch (ServletException e) {
+                logger.error("failed to execute command with uri ->" + uri + " and method-> " + req.getMethod(), e);
+                throw new RuntimeException(e);
+            }
     }
 }

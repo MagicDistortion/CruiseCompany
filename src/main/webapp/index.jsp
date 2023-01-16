@@ -9,7 +9,7 @@
      </head>
     <body>
        <style>
-            body {background:#808080 url(images/background1.jpeg) no-repeat;}
+            body {background:#808080 url(images/background1.jpg) no-repeat;}
        </style>
     <%@ include file="header.jspf" %>
         <c:if test="${empty user}">

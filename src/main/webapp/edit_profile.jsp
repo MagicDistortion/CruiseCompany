@@ -9,6 +9,15 @@
     </head>
 
     <body>
+       <style>
+            body {
+            background:#808080;
+            background-image: url(images/edit_profile.jpeg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+               }
+       </style>
         <br><br><br><br><br><br>
 
                 <form action ="edit_profile" method ="post">
@@ -19,7 +28,7 @@
                          <td><input class="form-control" name="surname" value="${user.getSurname()}" pattern="^[A-Za-zА-Яа-яІіЇїєЄ]{2,32}" /></td>
                        </tr>
                        <tr>
-                         <td style="color:#ffff00"/><h3>${phrases['langName']}:</h3></td>
+                         <td style="color:#0000ff"/><h3>${phrases['langName']}:</h3></td>
                          <td><input class="form-control" name="name" value="${user.getName()}" pattern="^[A-Za-zА-Яа-яІіЇїєЄ]{2,32}"/></td>
                        </tr>
                        <tr>
@@ -27,7 +36,7 @@
 	                     <td><input class="form-control" name="login" value="${user.getLogin()}" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}" ></td>
                        </tr>
                        <tr>
-                         <td style="color:#ffff00"/><h3>${phrases['langNewPassword']}:</h3></td>
+                         <td style="color:#0000ff"/><h3>${phrases['langNewPassword']}:</h3></td>
                          <td><input class="form-control" type="password" placeholder="${phrases['langNewPassword']}" name="password" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{4,32}" /></td>
                        </tr>
 	                   <tr>
@@ -35,21 +44,20 @@
 	                     <td><input class="form-control" type="password" placeholder="${phrases['langRePassword']}" name="repassword" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{4,32}"/></td>
                        </tr>
                        <tr>
-                         <td style="color:#ffff00"/><h3>${phrases['langTel']}:</h3></td>
+                         <td style="color:#0000ff"/><h3>${phrases['langTel']}:</h3></td>
                          <td> <input class="form-control" name="tel" value="${user.getTel()}" pattern="^[0-9]{9,12}"/></td>
                        </tr>
                        <tr>
                          <td style="color:#0000ff"/><h3>${phrases['langDateOfBirth']}</h3></td>
                          <td><input class="form-control" type="date" name="date_of_birth" value="${user.getDateOfBirth()}" /></td>
-                         <td style="color:#ffff00"/><h5/>Format: 1900 - ${phrases['langToday']}</td>
                        </tr>
                       </table>
-                    	<input type="submit" class="btn btn-info" value="${phrases['langEditNow']}"/><br>
+                    	<input type="submit" class="btn btn-dark" value="${phrases['langEditNow']}"/><br>
                            <h2 style="color:#B22222">
                                <c:forEach items="${errors}" var="i">
                                   ${i}<br>
                                   </c:forEach>
-                                <a class=" btn btn-warning" href="index.jsp">${phrases['langBackToMain']}</a>
+                                <a class=" btn btn-light" href="index.jsp">${phrases['langBackToMain']}</a>
                            </h2>
                     </div>
                 </form>

@@ -9,7 +9,13 @@
      </head>
     <body>
        <style>
-            body {background:#808080 url(images/background1.jpg) no-repeat;}
+            body {
+            background:#808080;
+            background-image: url(images/index.jpeg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+               }
        </style>
     <%@ include file="header.jspf" %>
         <c:if test="${empty user}">
@@ -18,11 +24,11 @@
                    <div align="center" >
                         <table >
                             <tr>
-	                          <td><h3/>${phrases['langLogin']}:</td>
+	                          <td><h3 style="color:#fff"/>${phrases['langLogin']}:</td>
 	                          <td><input  name="login" class="form-control" placeholder="${phrases['langEnterLogin']}" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}" required/></td>
                             </tr>
                             <tr>
-    	                      <td><h3/>${phrases['langPassword']}:</td>
+    	                      <td><h3 style="color:#fff"/>${phrases['langPassword']}:</td>
 	                          <td><input type="password" class="form-control" name="password" placeholder="${phrases['langEnterPassword']}" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{4,32}" required/></td>
 	                        </tr>
 

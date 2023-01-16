@@ -7,16 +7,22 @@
 		</title>
         		   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
      </head>
-                <style>
-                   body {background:#000000}
-                </style>
+       <style>
+            body {
+            background:#808080;
+            background-image: url(../images/giving_a_role.jpeg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+               }
+       </style>
     <body>
     <%@ include file="../header_admins.jspf" %>
 <br><br>
     <div align="center" >
         <h2 style="color:#fff">${phrases['langGivingARole']}</h2>
         <h2 style="color:#B22222">
-         <table class="table table-dark table-striped table-bordered">
+         <table class="table table-hover ">
             <th style="color:#00ffff"><h4/> ${phrases['langSurname']} &nbsp</th>
             <th style="color:#00ffff"><h4/> ${phrases['langName']} &nbsp </th>
             <th style="color:#00ffff"><h4/> ${phrases['langPickARole']} &nbsp</th>

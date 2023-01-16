@@ -21,14 +21,9 @@
     </div>
     </table>
   </div>
-        <table align="right">
-              <tr>
-                 <td><a align="right" style="color:#000000" class="btn btn-info"href="my_profile" ><h5><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h5></a></td>
-              </tr>
-              <tr>
-                 <td><h5 align="right" style="color:#fff"><mt:myTag/></h5></td>
-              </tr>
-        </table>
+
+<a align="right" style="color:#000000" class="btn btn-info"href="my_profile" ><h5><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h5></a>
+
 </nav>
                       <form align="right" action="../lang" method="get">
                          <input type="hidden" name="lang"

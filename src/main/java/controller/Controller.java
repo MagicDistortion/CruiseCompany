@@ -4,7 +4,6 @@ import commands.*;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/")
+
 public class Controller extends HttpServlet {
     private final Map<String, Command> commands = new HashMap<>();
     private final static Logger logger = Logger.getLogger(Controller.class);
@@ -43,22 +42,22 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        action(req, resp, req.getRequestURI().substring(req.getContextPath().length() + 1));
+        action(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        action(req, resp, req.getRequestURI().substring(req.getContextPath().length() + 1));
+        action(req, resp);
     }
 
-    public void action(HttpServletRequest req, HttpServletResponse resp, String uri) throws IOException {
-        if (!uri.startsWith("images"))
-            try {
-                commands.values().stream().filter(command -> command.canHandle(uri, req.getMethod()))
-                        .findFirst().orElse(new GoTo404Command()).execute(req, resp);
-            } catch (ServletException e) {
-                logger.error("failed to execute command with uri ->" + uri + " and method-> " + req.getMethod(), e);
-                throw new RuntimeException(e);
-            }
+    public void action(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String uri = req.getRequestURI().substring(req.getContextPath().length() + 1);
+        try {
+            commands.values().stream().filter(command -> command.canHandle(uri, req.getMethod()))
+                    .findFirst().orElse(new GoTo404Command()).execute(req, resp);
+        } catch (ServletException e) {
+            logger.error("failed to execute command with uri ->" + uri + " and method-> " + req.getMethod(), e);
+            throw new RuntimeException(e);
+        }
     }
 }

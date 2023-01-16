@@ -35,25 +35,18 @@
     </div>
 </table>
   </div>
-        <table align="right">
-              <tr>
-                 <td> <c:if  test="${user!=null}" >
-                    <c:choose>
-                        <c:when test="${user.getRolesId()==2}">
-                         <h5 align="right" style="color:#fff"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5>
-                        </c:when>
-                        <c:otherwise>
-                        <a align="right" style="color:#000000" class="btn btn-info" href="passenger/my_profile" ><h5><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h5></a>
-                        </c:otherwise>
-                    </c:choose>
-                      </c:if>
-                <c:if  test="${user.getRolesId()==null}" ><h5/><br></c:if>
-                      </td>
-              </tr>
-              <tr>
-                 <td><h5 align="right" style="color:#fff"><mt:myTag/></h5></td>
-              </tr>
-        </table>
+     <c:if  test="${user!=null}" >
+            <c:choose>
+                <c:when test="${user.getRolesId()==2}">
+                 <h5 align="right" style="color:#fff"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5>
+                </c:when>
+                <c:otherwise>
+                <a align="right" style="color:#000000" class="btn btn-info" href="passenger/my_profile" ><h5><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h5></a>
+                </c:otherwise>
+            </c:choose>
+              </c:if>
+        <c:if  test="${user.getRolesId()==null}" ><h5/><br></c:if>
+
 </nav>
           <form align="right" action="lang" method="get">
              <input type="hidden" name="lang"

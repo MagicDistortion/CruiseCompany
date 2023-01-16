@@ -8,9 +8,15 @@
              <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
      </head>
     <body>
-           <style>
-                body {background:#808080 url(images/background.jpg) no-repeat;}
-           </style>
+       <style>
+            body {
+            background:#808080;
+            background-image: url(images/contacts.jpeg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+               }
+       </style>
 	 <%@ include file="header.jspf" %>
 	 <br><br><br><br>
         <div style="color:#fff"/>

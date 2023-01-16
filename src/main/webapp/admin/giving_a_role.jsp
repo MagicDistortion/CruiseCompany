@@ -17,9 +17,9 @@
         <h2 style="color:#fff">${phrases['langGivingARole']}</h2>
         <h2 style="color:#B22222">
          <table class="table table-dark table-striped table-bordered">
-            <th style="color:#0000ff"><h4/> ${phrases['langSurname']} &nbsp</th>
-            <th style="color:#ffff00"><h4/> ${phrases['langName']} &nbsp </th>
-            <th style="color:#0000ff"><h4/> ${phrases['langPickARole']} &nbsp</th>
+            <th style="color:#00ffff"><h4/> ${phrases['langSurname']} &nbsp</th>
+            <th style="color:#00ffff"><h4/> ${phrases['langName']} &nbsp </th>
+            <th style="color:#00ffff"><h4/> ${phrases['langPickARole']} &nbsp</th>
                   <c:forEach items="${userList}" var="i">
                       <tr>
                          <td style="color:#fff"><h4/>${i.getSurname()} &nbsp</td>
@@ -27,12 +27,12 @@
                          <td ><h4/>
                          <form action ="../admin/give_a_role" method ="post">
                             <input type="hidden" name="userId" value="${i.getId()}"/>
-                             <select class="btn btn-info dropdown-toggle" name="role">
+                             <select class="btn btn-light dropdown-toggle" name="role">
                                  <option value="1">${phrases['langPassenger']}</option>
                                  <option value="2">${phrases['langAdmin']}</option>
                                  <option value="3">${phrases['langStaff']}</option>
                              </select>
-                             <input type="submit" class="btn btn-warning" value="${phrases['langPick']}"/>
+                             <input type="submit" class="btn btn-info" value="${phrases['langPick']}"/>
                          </form>
                          </td>
                       </tr>

@@ -17,7 +17,7 @@
        <table align="center">
        <h2  style="color:#fff" align="center">${phrases['langBuyATicket']}</h2>
        <tr>
-       <td> <select class="btn btn-primary dropdown-toggle" placeholder="open" id="sortBy" required>
+       <td> <select class="btn btn-info dropdown-toggle" placeholder="open" id="sortBy" required>
                         <option disabled>${phrases['langPick']}</option>
                         <option value="date" <c:if test="${sortBy.equals('date')}"> selected </c:if>> ${phrases['langByDate']} </option>
                         <option value="duration" <c:if test="${sortBy.equals('duration')}"> selected </c:if> > ${phrases['langByDuration']} </option>
@@ -36,7 +36,7 @@
               </c:choose>
                 name="date" style="width: 150px;" required/>
               <input hidden name="sortBy" value="date"/>
-              <input type="submit" class="btn btn-warning" value="${phrases['langPick']}"/>
+              <input type="submit" class="btn btn-info" value="${phrases['langPick']}"/>
             </form></td>
 
         <td > <form action ="../passenger/getCruises" id="sortByDuration" method ="post" style="display:none" align="center">

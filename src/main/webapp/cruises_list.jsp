@@ -34,16 +34,16 @@
                       <option value="start_time" <c:if test="${sort.equals('start_time')}"> selected </c:if>>${phrases['langByStartDate']}</option>
                       <option value="duration" <c:if test="${sort.equals('duration')}"> selected </c:if>>${phrases['langByDuration']}</option>
                    </select>
-                   <input type="submit" class="btn btn-dark" value="${phrases['langGetThem']}"/><br>
+                   <input type="submit" class="btn btn-info" value="${phrases['langGetThem']}"/><br>
                </form>
            <h2 style="color:#B22222">
            <table class="table table-dark table-striped">
-               <th style="color:#0000ff"><h4/> ${phrases['langCruiseName']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langStartDate']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langEndDate']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langNumberOfPorts']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langDuration']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langPrice']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langCruiseName']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langStartDate']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langEndDate']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langNumberOfPorts']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langDuration']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> ${phrases['langPrice']} &nbsp</th>
                      <c:forEach items="${cruisesList}" var="i">
                          <tr>
                             <td style="color:#fff"><h3/>${i.getCruiseName()} &nbsp</td>
@@ -56,20 +56,20 @@
                      </c:forEach>
            </table>
                       <c:if test="${page>1}">
-                      <a class="btn btn-outline-primary"  href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
+                      <a class="btn btn-outline-info"  href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
                       </c:if>
                      <c:forEach begin="1" end="${pages}" var="i" step="1">
                           <c:choose>
                            <c:when test="${page==i}">
-                            <a class="btn btn-primary" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
+                            <a class="btn btn-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
                            </c:when>
                            <c:otherwise>
-                            <a class="btn btn-outline-primary" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
+                            <a class="btn btn-outline-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
                            </c:otherwise>
                           </c:choose>
                       </c:forEach>
                       <c:if test="${page<pages}">
-                      <a class="btn btn-outline-primary" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
+                      <a class="btn btn-outline-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
                       </c:if>
            </div>
         </h2>

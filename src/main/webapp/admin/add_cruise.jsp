@@ -24,7 +24,7 @@
            <th ><h6 style="color:#fff" align="center"/> ${phrases['langPickStartTime']} &nbsp</th>
            <th ><h6 style="color:#fff" align="center"/> ${phrases['langPickEndTime']} &nbsp</th>
            <tr>
-            <td> <select class="btn btn-primary dropdown-toggle" name="shipId" required>
+            <td> <select class="btn btn-dark dropdown-toggle" name="shipId" required>
                  <option disabled>${phrases['langPick']}</option>
                       <c:forEach items="${shipsList}" var="i">
                          <option value="${i.getId()}">${i.getName()}</option>
@@ -34,7 +34,7 @@
              <td><input name="price" type="number" placeholder="$" class="btn btn-light" style="width: 100px;" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
              <td><input class="form-control" type="datetime-local" value="${timeNow}" name="startTime" style="width: 165px;" required/></td>
              <td><input class="form-control" type="datetime-local" value="${timePlusDay}" name="endTime" style="width: 165px;" required/></td>
-             <td><input type="submit" class="btn btn-warning"  value="${phrases['langAddCruise']}"/></td>
+             <td><input type="submit" class="btn btn-info"  value="${phrases['langAddCruise']}"/></td>
              </div>
              </form>
              </tr>

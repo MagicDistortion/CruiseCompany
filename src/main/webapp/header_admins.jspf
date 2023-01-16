@@ -6,18 +6,18 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-       <table>
+       <table style="border:1px solid blue">
            <tr>
-          <td><a style="color:#fff" class="nav-link" href="../index.jsp"><h5> ${phrases['langMain']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="../contacts.jsp"><h5> ${phrases['langContacts']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="../about_us.jsp"><h5> ${phrases['langAboutUs']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="../ships_list"><h5> ${phrases['langShips']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="../cruises_list"><h5> ${phrases['langCruises']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light"href="../index.jsp"><h5> ${phrases['langMain']}</h5></a></td>
+          <td><a style="color:#000000"class="btn btn-light" href="../contacts.jsp"><h5> ${phrases['langContacts']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="../about_us.jsp"><h5> ${phrases['langAboutUs']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="../ships_list"><h5> ${phrases['langShips']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="../cruises_list"><h5> ${phrases['langCruises']}</h5></a></td>
 
-          <td><a style="color:#fff" class="nav-link" href="users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
-          <td><a style="color:#fff" class="nav-link" href="paid_tickets"><h5>${phrases['langConfirmTickets']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
+          <td><a style="color:#000000"class="btn btn-light" href="add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="paid_tickets"><h5>${phrases['langPaidTickets']}</h5></a></td>
 
            </tr>
           </ul>
@@ -26,10 +26,10 @@
   </div>
         <table align="right">
               <tr>
-                 <td><h5 align="right" style="color:#0000ff"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5></td>
+                 <td><h5 align="right" style="color:#fff"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5></td>
               </tr>
               <tr>
-                 <td><h5 align="right" style="color:#ffff00"><mt:myTag/></h5></td>
+                 <td><h5 align="right" style="color:#fff"><mt:myTag/></h5></td>
               </tr>
         </table>
 </nav>
@@ -37,11 +37,11 @@
                          <input type="hidden" name="lang"
                              <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
                              <c:if test="${lang.equals('UA')}"> value="EN" </c:if>/>
-                         <input type="submit" class="btn btn-primary" value="${phrases['langChangeLanguage']}"/>
+                         <input type="submit" class="btn btn-info" value="${phrases['langChangeLanguage']}"/>
                       </form>
          <div align="right" >
              <form action="../edit_profile.jsp" method="post">
-                <input type="submit" class="btn btn-warning" value="${phrases['langEMP']}"/>
+                <input type="submit" class="btn btn-light" value="${phrases['langEMP']}"/>
              </form>
              <form action="../logout" method="get">
                 <input type="submit" class="btn btn-dark" value="${phrases['langLogOut']}"/>

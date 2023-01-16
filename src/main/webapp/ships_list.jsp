@@ -15,7 +15,6 @@
        <br>
            <div align="center" >
            <h2  style="color:#fff">${phrases['langShips']}</h2>
-           <br>
                <form action ="ships_list" method ="get">
               <nobr style="color:#fff"> ${phrases['langPagination']}
                 <input class="btn btn-dark" name="pagination" size="3" pattern="[1-9]\d*"
@@ -32,12 +31,12 @@
                       <option value="name" <c:if test="${sort.equals('name')}"> selected </c:if> >${phrases['langByShipName']}</option>
                       <option value="capacity" <c:if test="${sort.equals('capacity')}"> selected </c:if>>${phrases['langByCapacity']}</option>
                    </select>
-                   <input type="submit" class="btn btn-dark" value="${phrases['langGetThem']}"/><br>
+                   <input type="submit" class="btn btn-info" value="${phrases['langGetThem']}"/><br>
                </form>
            <h2 style="color:#B22222">
            <table class="table table-dark table-striped">
-               <th style="color:#0000ff"><h4/> ${phrases['langShipName']} &nbsp</th>
-               <th style="color:#0000ff"><h4/> ${phrases['langCapacity']} &nbsp</th>
+               <th style="color:#00FFFF"><h4/> ${phrases['langShipName']} &nbsp</th>
+               <th style="color:#00FFFF"><h4/> ${phrases['langCapacity']} &nbsp</th>
                      <c:forEach items="${shipsList}" var="i">
                          <tr>
                             <td style="color:#fff" ><h3/>${i.getName()} &nbsp</td>
@@ -46,20 +45,20 @@
                      </c:forEach>
            </table>
                       <c:if test="${page>1}">
-                      <a class="btn btn-outline-primary"  href="ships_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
+                      <a class="btn btn-outline-info"  href="ships_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
                       </c:if>
                      <c:forEach begin="1" end="${pages}" var="i" step="1">
                           <c:choose>
                            <c:when test="${page==i}">
-                            <a class="btn btn-primary" href="ships_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
+                            <a class="btn btn-info" href="ships_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
                            </c:when>
                            <c:otherwise>
-                            <a class="btn btn-outline-primary" href="ships_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
+                            <a class="btn btn-outline-info" href="ships_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
                            </c:otherwise>
                           </c:choose>
                       </c:forEach>
                       <c:if test="${page<pages}">
-                      <a class="btn btn-outline-primary" href="ships_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
+                      <a class="btn btn-outline-info" href="ships_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
                       </c:if>
            </div>
         </h2>

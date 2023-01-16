@@ -14,11 +14,11 @@
     <%@ include file="../header_passenger.jspf" %>
        <h2 style="color:#fff" align="center">${phrases['langMyTickets']}</h2>
            <table class="table table-dark table-striped">
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langCruiseName']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langDuration']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langTotalPrice']} &nbsp</th>
-                <th style="color:#0000ff"><h4 align="center"/> ${phrases['langStatus']} &nbsp</th>
+                <th style="color:#00ffff"><h4 align="center"/> ${phrases['langCruiseName']} &nbsp</th>
+                <th style="color:#00ffff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
+                <th style="color:#00ffff"><h4 align="center"/> ${phrases['langDuration']} &nbsp</th>
+                <th style="color:#00ffff"><h4 align="center"/> ${phrases['langTotalPrice']} &nbsp</th>
+                <th style="color:#00ffff"><h4 align="center"/> ${phrases['langStatus']} &nbsp</th>
                 <th/>
                      <c:forEach items="${my_tickets_list}" var="i">
                          <tr align="center">
@@ -32,7 +32,7 @@
                                 <input type="hidden" name="ticket_id" value="${i.getId()}"/>
                                 <td> <input
                                   <c:if test="${user.getMoney()<i.getTotalPrice()}">disabled type="submit" class="btn btn-secondary"</c:if>
-                                 type="submit" class="btn btn-warning" value="${phrases['langPay']}"/></td>
+                                 type="submit" class="btn btn-info" value="${phrases['langPay']}"/></td>
                                 </form>
                             </c:if>
                             <c:if test="${!i.getStatus().equals('not paid')}">
@@ -46,7 +46,7 @@
        <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
        <form action ="../passenger/put_on_the_account" method ="post">
        <input name="deposit" type="number" class="btn btn-light" placeholder="${phrases['langPutOnTheAccount']} " style="width: 200px;" required/>
-       <input type="submit" class="btn btn-warning" value="${phrases['langDeposit']}"/>
+       <input type="submit" class="btn btn-info" value="${phrases['langDeposit']}"/>
        </form>
     </body>
 </html>

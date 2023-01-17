@@ -31,6 +31,7 @@ public class CruisesDAO {
                 , resultSet.getTime("end_time").toLocalTime())
         );
         cruise.setDescription(resultSet.getString("description"));
+        cruise.setRoute(resultSet.getString("route"));
         cruise.setDuration(resultSet.getInt("duration"));
         cruise.setId(resultSet.getInt("cruise_id"));
         cruise.setStatus(resultSet.getString("status"));
@@ -51,6 +52,7 @@ public class CruisesDAO {
             preparedStatement.setObject(7, cruise.getEndTime());
             preparedStatement.setInt(8, cruise.getDuration());
             preparedStatement.setString(9, cruise.getDescription());
+            preparedStatement.setString(10, cruise.getRoute());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();

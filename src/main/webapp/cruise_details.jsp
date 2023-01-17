@@ -17,7 +17,7 @@
                }
        </style>
     <body>
-    <br><br><br>
+    <br>
          <table class="table table-hover" >
            <tr>
              <td style="color:#0000ff; width: 1000px;"/><h3>${phrases['langCruiseName']}:</h3></td>
@@ -30,6 +30,10 @@
            <tr>
              <td style="color:#0000ff"/><h3>${phrases['langDescription']}:</h3></td>
              <td style="color:#000000"/><h3>${cruise.getDescription()}</h3> </td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langRoute']}:</h3></td>
+             <td style="color:#000000"/><h3>${cruise.getRoute()}</h3> </td>
            </tr>
            <tr>
              <td style="color:#0000ff"/><h3>${phrases['langStartTime']}:</h3></td>

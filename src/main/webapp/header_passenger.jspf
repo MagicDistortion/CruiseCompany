@@ -2,7 +2,7 @@
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="mytaglib" prefix="mt" %>
 
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">

@@ -18,37 +18,60 @@
        </style>
     <body>
     <%@ include file="../header_admins.jspf" %>
-<br><br><br><br>
              <form action ="../admin/add_cruise" method ="post">
              <div align="center" >
-           <table>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langPickAShip']} </th>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterDescription']}</th>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterCruiseName']}</th>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterNumberOfPorts']}</th>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterPrice']}</th>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langPickStartTime']}</th>
-           <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langPickEndTime']}</th>
+<table class="table table-hover" >
            <tr>
-            <td> <select class="btn btn-dark dropdown-toggle" name="shipId" required>
-                 <option disabled>${phrases['langPick']}</option>
-                      <c:forEach items="${shipsList}" var="i">
-                         <option value="${i.getId()}">${i.getName()}</option>
-                      </c:forEach></select></td>
+             <td style="color:#0000ff; width: 1000px;"/><h3>${phrases['langPickAShip']}</h3></td>
+             <td> <select class="btn btn-light dropdown-toggle" style="width: 250px;" name="shipId" required>
+                  <option disabled>${phrases['langPick']}</option>
+                   <c:forEach items="${shipsList}" var="i">
+                      <option value="${i.getId()}">${i.getName()}</option>
+                   </c:forEach></select></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langEnterDescription']}</h3></td>
              <td><div class="form-floating">
-                   <textarea name="description" class="form-control" style="width: 300px; height: 80px"></textarea>
-                 </div></td>
-             <td><input name="cruiseName" class="btn btn-light" placeholder="${phrases['langEnterNameOfCruise']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
-             <td><input name="numberOfPorts" class="btn btn-light" placeholder="${phrases['langEnterNumberOfPorts']} " pattern="[0-9]\d*"  size="25" required/></td>
-             <td><input name="price" type="number" placeholder="$" class="btn btn-light" style="width: 100px;" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
-             <td><input class="form-control" type="datetime-local" value="${timeNow}" name="startTime" style="width: 165px;" required/></td>
-             <td><input class="form-control" type="datetime-local" value="${timePlusDay}" name="endTime" style="width: 165px;" required/></td>
-             <td><input type="submit" class="btn btn-info"  value="${phrases['langAddCruise']}"/></td>
-             </div>
-             </form>
-             </tr>
+                <textarea name="description" class="form-control" style="width: 1000px; height: 100px"></textarea>
+              </div></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langEnterRoute']}</h3></td>
+             <td><div class="form-floating">
+                <textarea name="route" class="form-control" style="width: 1000px; height: 100px"></textarea>
+              </div></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langEnterCruiseName']}</h3></td>
+             <td><input name="cruiseName" class="btn btn-light" style="width: 250px;" placeholder="${phrases['langEnterNameOfCruise']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langEnterNumberOfPorts']}</h3></td>
+             <td><input name="numberOfPorts" class="btn btn-light" style="width: 250px;" placeholder="${phrases['langEnterNumberOfPorts']} " pattern="[0-9]\d*"  size="25" required/></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langEnterPrice']}</h3></td>
+             <td><input name="price" type="number" placeholder="$" style="width: 250px;" class="btn btn-light" style="width: 100px;" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langPickStartTime']}</h3></td>
+             <td><input class="form-control" type="datetime-local" value="${timeNow}" style="width: 250px;" name="startTime" style="width: 165px;" required/></td>
+           </tr>
+           <tr>
+             <td style="color:#0000ff"/><h3>${phrases['langPickEndTime']}</h3></td>
+             <td><input class="form-control" type="datetime-local" value="${timePlusDay}" style="width: 250px;" name="endTime" style="width: 165px;" required/></td>
+           </tr>
            </table>
-           <br><br><br>
+            <input type="submit" class="btn btn-info"  value="${phrases['langAddCruise']}"/>
+         </table>
+
+
+
+
+
+
+             </form>
+           <br>
            <h4 style="color:#B22222" align="center">
               <c:forEach items="${errors}" var="i">
                  ${i}<br>

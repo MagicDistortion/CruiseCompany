@@ -7,7 +7,7 @@ public class Constants {
             = "INSERT INTO tickets (cruise_id,user_id,number_of_passengers,total_price) VALUES (?,?,?,?)";
     public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,image) VALUES (?,?,?)";
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,cruise_name,number_of_ports,price," +
-            "start_time,end_time,duration,description) VALUES (?,?,?,?,?,?,?,?,?)";
+            "start_time,end_time,duration,description,route) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
     public static final String FROM_USERS = "SELECT * FROM users ";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";

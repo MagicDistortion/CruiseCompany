@@ -30,8 +30,7 @@ public class ShipsDAO {
                      = connection.prepareStatement(Constants.INSERT_SHIP, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, ship.getName());
             preparedStatement.setInt(2, ship.getCapacity());
-            preparedStatement.setString(3, ship.getCurrent_point());
-            preparedStatement.setString(4, ship.getName()+".jpeg");
+            preparedStatement.setString(3, ship.getName()+".jpeg");
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();

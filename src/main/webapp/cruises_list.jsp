@@ -24,7 +24,7 @@
            <br>
                <form action ="cruises_list" method ="get">
               <nobr style="background:#fff; color:#000000"> ${phrases['langPagination']}
-                <input class="btn btn-dark" type="text" name="pagination" size="3" pattern="[1-9]\d*"
+                <input class="btn btn-light" type="text" name="pagination" size="3" pattern="[1-9]\d*"
                 <c:choose>
                    <c:when test="${not empty pagination}">value="${pagination}"
                    </c:when>

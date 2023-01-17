@@ -5,7 +5,7 @@ public class Constants {
             = "INSERT INTO users (surname,name,login,password,tel,date_of_birth) VALUES (?,?,?,?,?,?)";
     public static final String INSERT_TICKET
             = "INSERT INTO tickets (cruise_id,user_id,number_of_passengers,total_price) VALUES (?,?,?,?)";
-    public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,current_point,image) VALUES (?,?,?,?)";
+    public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,image) VALUES (?,?,?)";
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration,description) VALUES (?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";

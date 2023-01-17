@@ -58,6 +58,26 @@
         <url-pattern>*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>admin=filter</filter-name>
+        <filter-class>filters.AdminFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>admin=filter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>passenger=filter</filter-name>
+        <filter-class>filters.PassengerFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>passenger=filter</filter-name>
+        <url-pattern>/passenger/*</url-pattern>
+    </filter-mapping>
+
     <jsp-config>
         <taglib>
             <taglib-uri>

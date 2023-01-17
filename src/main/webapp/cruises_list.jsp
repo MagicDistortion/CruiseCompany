@@ -20,11 +20,11 @@
        <%@ include file="header.jspf" %>
        <br>
            <div align="center" >
-           <h2  style="color:#fff">${phrases['langCruises']}</h2>
+           <h2 style="color:#000000;background:#fff;width: 100px;">${phrases['langCruises']}</h2>
            <br>
                <form action ="cruises_list" method ="get">
-              <nobr style="color:#fff"> ${phrases['langPagination']}
-                <input class="btn btn-light" type="text" name="pagination" size="3" pattern="[1-9]\d*"
+              <nobr style="background:#fff; color:#000000"> ${phrases['langPagination']}
+                <input class="btn btn-dark" type="text" name="pagination" size="3" pattern="[1-9]\d*"
                 <c:choose>
                    <c:when test="${not empty pagination}">value="${pagination}"
                    </c:when>

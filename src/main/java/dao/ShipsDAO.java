@@ -17,9 +17,9 @@ public class ShipsDAO {
 
     private Ship getShip(ResultSet resultSet) throws SQLException {
         Ship ship = new Ship(resultSet.getString("name")
-                , resultSet.getInt("capacity")
-                , resultSet.getString("current_point"));
+                , resultSet.getInt("capacity"));
         ship.setId(resultSet.getInt("ship_id"));
+        ship.setImage(resultSet.getString("image"));
         return ship;
     }
 
@@ -31,6 +31,7 @@ public class ShipsDAO {
             preparedStatement.setString(1, ship.getName());
             preparedStatement.setInt(2, ship.getCapacity());
             preparedStatement.setString(3, ship.getCurrent_point());
+            preparedStatement.setString(4, ship.getName()+".jpeg");
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
@@ -52,8 +53,7 @@ public class ShipsDAO {
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
                 if (resultSet.next()) {
                     ship = new Ship(resultSet.getString("name")
-                            , resultSet.getInt("capacity")
-                            , resultSet.getString("current_point"));
+                            , resultSet.getInt("capacity"));
                     ship.setId(resultSet.getInt("ship_id"));
                 }
             }

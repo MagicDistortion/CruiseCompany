@@ -35,7 +35,6 @@ public class AddCruiseCommand implements Command {
                         , LocalDateTime.parse(request.getParameter("startTime"))
                         , LocalDateTime.parse(request.getParameter("endTime")));
                 cruise.setDescription(request.getParameter("description"));
-                System.out.println(request.getParameter("description"));
                 cruisesDAO.insertCruise(cruise);
                 errors.add(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
             }

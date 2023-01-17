@@ -17,14 +17,12 @@ public class AddShipCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getMethod().equalsIgnoreCase("post")) {
             if (request.getParameter("name") != null
-                    && request.getParameter("capacity") != null
-                    && request.getParameter("current_point") != null) {
+                    && request.getParameter("capacity") != null) {
                 String name = request.getParameter("name");
                 int capacity = Integer.parseInt(request.getParameter("capacity"));
-                String currentPoint = request.getParameter("current_point");
                 this.request = request;
                 if (!shipsDAO.shipsNameExist(name)) {
-                    shipsDAO.insertShip(new Ship(name, capacity, currentPoint));
+                    shipsDAO.insertShip(new Ship(name, capacity));
                     setError(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
                 } else setError(((Map<?, ?>) request.getAttribute("phrases")).get("langAlreadyExist").toString());
             } else setError(((Map<?, ?>) request.getAttribute("phrases")).get("langInvalidData").toString());

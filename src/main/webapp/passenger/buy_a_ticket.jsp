@@ -18,7 +18,7 @@
        </style>
     <body>
     <%@ include file="../header_passenger.jspf" %>
-<br>
+<br><br><br>
 
        <table align="center">
        <h2  style="color:#fff" align="center">${phrases['langBuyATicket']}</h2>
@@ -61,7 +61,7 @@
                <th style="color:#00ffff"><h4/> ${phrases['langDuration']} &nbsp</th>
                <th style="color:#00ffff"><h4/> ${phrases['langPrice']} &nbsp</th>
                <th style="color:#00ffff"><h4/> ${phrases['langAmount']} &nbsp</th>
-               <th style="color:#00ffff"><h4/> ${phrases['langBuy']} &nbsp</th>
+               <th style="color:#00ffff"><h4/> &nbsp</th>
 
                      <c:forEach items="${cruisesList}" var="i">
                          <tr><form action ="../passenger/buy_a_ticket" method ="post">

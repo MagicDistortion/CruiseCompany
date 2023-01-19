@@ -58,4 +58,8 @@
          </table>
             <div align="center"/> <a class=" btn btn-light" href="cruises_list">${phrases['langBackCruises']}</a>
        </body>
+               <footer align="center"style="color:#fff">
+               <hr>
+                   <p>© 2023 Cruise Company</p>
+               </footer>
 </html>

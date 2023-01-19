@@ -2,36 +2,48 @@ package commands;
 
 import dao.ShipsDAO;
 import models.ships.Ship;
+import utils.WithRequestHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class AddShipCommand implements Command {
-    private HttpServletRequest request;
     private final ShipsDAO shipsDAO = new ShipsDAO();
+    private static final String SAVE_DIR = "images";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getMethod().equalsIgnoreCase("post")) {
-            if (request.getParameter("name") != null
-                    && request.getParameter("capacity") != null) {
-                String name = request.getParameter("name");
-                int capacity = Integer.parseInt(request.getParameter("capacity"));
-                this.request = request;
-                if (!shipsDAO.shipsNameExist(name)) {
-                    shipsDAO.insertShip(new Ship(name, capacity));
-                    setError(((Map<?, ?>) request.getAttribute("phrases")).get("langSuccessfulAdd").toString());
-                } else setError(((Map<?, ?>) request.getAttribute("phrases")).get("langAlreadyExist").toString());
-            } else setError(((Map<?, ?>) request.getAttribute("phrases")).get("langInvalidData").toString());
+        WithRequestHelper withRequestHelper = new WithRequestHelper();
+        if (request.getMethod().equalsIgnoreCase("get")) {
+            response.sendRedirect("add_ship.jsp");
+            return;
         }
-        request.getRequestDispatcher("/admin/add_ship.jsp").forward(request, response);
-    }
+        if (request.getParameter("name") == null || request.getParameter("capacity") == null) {
+            withRequestHelper.setError(request, "langInvalidData");
+            request.getRequestDispatcher("/admin/add_ship.jsp").forward(request, response);
+            return;
+        }
 
-    private void setError(String string) {
-        request.setAttribute("error_message", string);
+        String savePath = request.getServletContext().getRealPath("") + File.separator + SAVE_DIR;
+        String name = request.getParameter("name");
+        int capacity = Integer.parseInt(request.getParameter("capacity"));
+
+        for (Part part : request.getParts()) {
+            String fileName = name + ".jpeg";
+            fileName = new File(fileName).getName();
+            part.write(savePath + File.separator + fileName);
+        }
+        if (shipsDAO.shipsNameExist(name)) {
+            withRequestHelper.setError(request, "langAlreadyExist");
+            request.getRequestDispatcher("/admin/add_ship.jsp").forward(request, response);
+            return;
+        }
+        shipsDAO.insertShip(new Ship(name, capacity));
+        response.sendRedirect("add_ship.jsp");
     }
 
     @Override

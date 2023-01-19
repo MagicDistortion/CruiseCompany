@@ -61,5 +61,10 @@
                            </h2>
                     </div>
                 </form>
+                <br><br><br><br>
+                    <footer align="center"style="color:#000000">
+                    <hr>
+                        <p>© 2023 Cruise Company</p>
+                    </footer>
     </body>
 </html>

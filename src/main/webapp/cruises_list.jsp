@@ -23,7 +23,7 @@
            <h2 style="color:#000000;background:#fff;width: 100px;">${phrases['langCruises']}</h2>
            <br>
                <form action ="cruises_list" method ="get">
-              <nobr style="background:#fff; color:#000000"> ${phrases['langPagination']}
+              <nobr style="background:#000000; color:#fff"> ${phrases['langPagination']}
                 <input class="btn btn-light" type="text" name="pagination" size="3" pattern="[1-9]\d*"
                 <c:choose>
                    <c:when test="${not empty pagination}">value="${pagination}"
@@ -70,23 +70,31 @@
                          </tr>
                      </c:forEach>
            </table>
-                      <c:if test="${page>1}">
-                      <a class="btn btn-outline-info"  href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
-                      </c:if>
-                     <c:forEach begin="1" end="${pages}" var="i" step="1">
-                          <c:choose>
-                           <c:when test="${page==i}">
-                            <a class="btn btn-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
-                           </c:when>
-                           <c:otherwise>
-                            <a class="btn btn-outline-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
-                           </c:otherwise>
-                          </c:choose>
-                      </c:forEach>
-                      <c:if test="${page<pages}">
-                      <a class="btn btn-outline-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
-                      </c:if>
+               <h2 style="color:#B22222">
+                 <c:if  test="${not empty error_message}" >${error_message}</c:if>
+               </h2>
+              <c:if test="${page>1}">
+              <a class="btn btn-outline-info"  href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
+              </c:if>
+             <c:forEach begin="1" end="${pages}" var="i" step="1">
+                  <c:choose>
+                   <c:when test="${page==i}">
+                    <a class="btn btn-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
+                   </c:when>
+                   <c:otherwise>
+                    <a class="btn btn-outline-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${i}">${i}</a>
+                   </c:otherwise>
+                  </c:choose>
+              </c:forEach>
+              <c:if test="${page<pages}">
+              <a class="btn btn-outline-info" href="cruises_list?pagination=${pagination}&sort=${sort}&page=${page+1}">>></a>
+              </c:if>
            </div>
         </h2>
+        <br><br>
+                <footer align="center"style="color:#fff">
+                <hr>
+                    <p>© 2023 Cruise Company</p>
+                </footer>
        </body>
 </html>

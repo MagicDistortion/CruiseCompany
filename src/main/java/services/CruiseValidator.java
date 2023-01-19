@@ -17,26 +17,24 @@ public class CruiseValidator {
     private Map<String, String> phrases;
 
     /* метод запускає перевірку отриманих з Http запиту данних, та повертає лист з помилками якщо вони є */
-    public List<String> validate(HttpServletRequest request,String shipName) {
+    public List<String> validate(HttpServletRequest request, String shipName) {
         phrases = (Map<String, String>) request.getAttribute("phrases");
         errors.clear();
         errors.add(validateCruiseName(request.getParameter("cruiseName")));
-        errors.add(validateShipName(shipName));
         errors.add(validateNumberOfPorts(Integer.parseInt(request.getParameter("numberOfPorts"))));
         errors.add(validatePrice(Double.parseDouble(request.getParameter("price"))));
         errors.add(validateStartTime(request.getParameter("startTime")));
-        errors.add(validateEndTime(request.getParameter("endTime"),request.getParameter("startTime")));
+        errors.add(validateEndTime(request.getParameter("endTime"), request.getParameter("startTime")));
         errors.add(checkNameExist(request.getParameter("cruiseName")));
+        errors.add(checkingTheShipIsFree(Integer.parseInt(request.getParameter("shipId"))
+                , LocalDateTime.parse(request.getParameter("startTime"))
+                , LocalDateTime.parse(request.getParameter("endTime"))));
         errors.removeIf(Objects::isNull);
         return errors;
     }
 
     private String validateCruiseName(String cruiseName) {
         return cruiseName != null && cruiseName.length() >= 2 && cruiseName.length() < 32 ? null : phrases.get("langCruiseNameIsWrong");
-    }
-
-    private String validateShipName(String shipName) {
-        return shipName != null && shipName.length() >= 2 && shipName.length() < 32 ? null : phrases.get("langShipNameIsWrong");
     }
 
     private String validateNumberOfPorts(int numberOfPorts) {
@@ -72,8 +70,13 @@ public class CruiseValidator {
         return endTime.isBefore(startTime) || endTime.isAfter(endTime.plusYears(1))
                 ? phrases.get("langEndTimeIsWrong") : null;
     }
+
     private String checkNameExist(String cruiseName) {
-        return cruisesDAO.cruiseNameExist(cruiseName)?phrases.get("langAlreadyExist"):null;
+        return cruisesDAO.cruiseNameExist(cruiseName) ? phrases.get("langAlreadyExist") : null;
+    }
+
+    private String checkingTheShipIsFree(int shipId, LocalDateTime start, LocalDateTime end) {
+        return cruisesDAO.checkingTheShipIsFreeOnDates(shipId, start, end) ? null : phrases.get("langShipIsBusy");
     }
 
 }

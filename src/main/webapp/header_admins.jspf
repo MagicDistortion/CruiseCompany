@@ -16,7 +16,7 @@
 
           <td><a style="color:#000000" class="btn btn-light" href="users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#000000"class="btn btn-light" href="add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
-          <td><a style="color:#000000" class="btn btn-light" href="ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="add_cruise.jsp"><h5>${phrases['langAddCruise']}</h5></a></td>
           <td><a style="color:#000000" class="btn btn-light" href="paid_tickets"><h5>${phrases['langPaidTickets']}</h5></a></td>
 
            </tr>

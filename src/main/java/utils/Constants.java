@@ -40,6 +40,8 @@ public class Constants {
     public static final String FROM_SHIPS_COUNT = "SELECT count(*) FROM ships";
     public static final String SHIPS_NAME_EXIST = "SELECT count(*) FROM ships where name = ?";
     public static final String CRUISE_NAME_EXIST = "SELECT count(*) FROM cruise where cruise_name = ?";
+    public static final String THE_SHIP_IS_FREE_ON_DATES = "SELECT count(*) FROM cruise " +
+            "where ship_id =? and start_time BETWEEN ? AND ? or ship_id =? and end_time BETWEEN ? and ?";
     public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise where status!='finished' AND status!='canceled'";
 
 

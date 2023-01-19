@@ -4,6 +4,7 @@ import commands.*;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10,      // 10MB
+        maxRequestSize = 1024 * 1024 * 50)//50MB
 public class Controller extends HttpServlet {
     private final Map<String, Command> commands = new HashMap<>();
     private final static Logger logger = Logger.getLogger(Controller.class);

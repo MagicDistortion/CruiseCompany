@@ -22,7 +22,7 @@
            <div align="center" >
            <h2  style="color:#fff">${phrases['langShips']}</h2>
                <form action ="ships_list" method ="get">
-              <nobr style="background:#fff; color:#000000"> ${phrases['langPagination']}
+              <nobr style=" color:#fff "> ${phrases['langPagination']}
                 <input class="btn btn-light" name="pagination" size="3" pattern="[1-9]\d*"
                 <c:choose>
                    <c:when test="${not empty pagination}">value="${pagination}"
@@ -71,5 +71,9 @@
                       </c:if>
            </div>
         </h2>
+                            <footer align="center"style="color:#fff">
+                            <hr>
+                                <p>© 2023 Cruise Company</p>
+                            </footer>
        </body>
 </html>

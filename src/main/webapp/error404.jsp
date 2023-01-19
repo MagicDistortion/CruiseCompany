@@ -7,6 +7,14 @@
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     </head>
     <body>
+        <style>
+              body {background:#000000  url(<c:url value="/images/something_went_wrong.jpeg"/>);
+                    background-attachment:fixed;
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                    }
+        </style>
+        <br><br><br>
          <div align="center" style="color:#000000">
        <c:if test="${lang=='UA'}">
             <h2 align="center">Помилка 404</h2>
@@ -21,5 +29,10 @@
                        <h1> <a class="btn btn-warning" href="/CruiseCompany/index.jsp">Go to Login</a> </h1>
         </c:if>
          </div>
+          <br><br><br><br><br><br><br>
+                 <footer align="center"style="color:#000000">
+                 <hr>
+                     <p>© 2023 Cruise Company</p>
+                 </footer>
     </body>
 </html>

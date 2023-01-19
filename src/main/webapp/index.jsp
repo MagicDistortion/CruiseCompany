@@ -40,5 +40,11 @@
                    </div>
                </form>
         </c:if>
+        <c:if test="${not  empty user}"><br><br><br><br><br><br><br><br><br><br><br><br><br> </c:if>
+        <br><br><br><br><br><br><br>
+                    <footer align="center"style="color:#fff">
+                    <hr>
+                        <p>© 2023 Cruise Company</p>
+                    </footer>
   </body>
 </html>

@@ -21,7 +21,7 @@
          <c:if  test="${user.getRolesId()==2}" >
           <td><a style="color:#000000"class="btn btn-light" href="admin/users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#000000" class="btn btn-light" href="admin/add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
-          <td><a style="color:#000000" class="btn btn-light" href="admin/ships_for_add_cruise"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#000000" class="btn btn-light" href="admin/add_cruise.jsp"><h5>${phrases['langAddCruise']}</h5></a></td>
           <td><a style="color:#000000" class="btn btn-light" href="admin/paid_tickets"><h5>${phrases['langPaidTickets']}</h5></a></td>
 
 
@@ -76,3 +76,4 @@
                </div>
             </c:otherwise>
         </c:choose>
+

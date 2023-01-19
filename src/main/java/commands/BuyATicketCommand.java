@@ -7,6 +7,7 @@ import models.cruises.Cruise;
 import models.ships.Ship;
 import models.tickets.Ticket;
 import models.users.User;
+import utils.WithRequestHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,19 +23,25 @@ public class BuyATicketCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getMethod().equalsIgnoreCase("post")) {
-            User user = (User) request.getSession().getAttribute("user");
-            Cruise cruise = cruisesDAO.findCruiseByID(Integer.parseInt(request.getParameter("cruiseId")));
-            int amount = Integer.parseInt(request.getParameter("amount"));
-            Ticket ticket = new Ticket(cruise, user.getId(), amount);
-            Ship ship = shipsDAO.findShipByID(cruise.getShipId());
-            Map<?, ?> phrases = (Map<?, ?>) request.getAttribute("phrases");
-            if (ticketsDAO.checkingForAvailability(ship, cruise.getId(), amount)) {
-                ticketsDAO.insertTicket(ticket);
-                request.setAttribute("error_message", phrases.get("langSuccessfulAdd"));
-            } else request.setAttribute("error_message", phrases.get("langNotEnoughTickets"));
+        if (request.getMethod().equalsIgnoreCase("get")) {
+            response.sendRedirect("buy_a_ticket.jsp");
+            return;
         }
-        request.getRequestDispatcher("buy_a_ticket.jsp").forward(request, response);
+
+        User user = (User) request.getSession().getAttribute("user");
+        Cruise cruise = cruisesDAO.findCruiseByID(Integer.parseInt(request.getParameter("cruiseId")));
+        int amount = Integer.parseInt(request.getParameter("amount"));
+        Ticket ticket = new Ticket(cruise, user.getId(), amount);
+        Ship ship = shipsDAO.findShipByID(cruise.getShipId());
+        WithRequestHelper withRequestHelper = new WithRequestHelper();
+
+        if (!ticketsDAO.availabilityCheck(ship, cruise.getId(), amount)) {
+            withRequestHelper.setError(request, "langNotEnoughTickets");
+            request.getRequestDispatcher("buy_a_ticket.jsp").forward(request, response);
+            return;
+        }
+        ticketsDAO.insertTicket(ticket);
+        response.sendRedirect("buy_a_ticket.jsp");
     }
 
     @Override

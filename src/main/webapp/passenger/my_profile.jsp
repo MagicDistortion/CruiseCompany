@@ -47,12 +47,17 @@
                          </tr>
                      </c:forEach>
            </table>
-           <br>
-           <br>
-       <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
-       <form action ="../passenger/put_on_the_account" method ="post">
-       <input name="deposit" type="number" class="btn btn-light" placeholder="${phrases['langPutOnTheAccount']} " style="width: 200px;" required/>
-       <input type="submit" class="btn btn-info" value="${phrases['langDeposit']}"/>
-       </form>
+           <br><br><br><br><br><br>
+
+
+            <footer align="left" style="color:#fff">
+            <hr>
+                   <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
+                   <form action ="../passenger/put_on_the_account" method ="post">
+                   <input name="deposit" type="number" class="btn btn-light" placeholder="${phrases['langPutOnTheAccount']} " style="width: 200px;" required/>
+                   <input type="submit" class="btn btn-info" value="${phrases['langDeposit']}"/>
+                   </form>
+                <p align="center">© 2023 Cruise Company</p>
+            </footer>
     </body>
 </html>

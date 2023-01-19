@@ -147,13 +147,17 @@ public class TicketsDAO {
 
 
     /* метод перевірки наявності квитків */
-    public Boolean checkingForAvailability(Ship ship, int cruiseId, int amount) {
+    public Boolean availabilityCheck(Ship ship, int cruiseId, int amount) {
         try (Connection connection = dbManager.getConnection();
-             ResultSet resultSet = connection.prepareStatement(Constants.FIND_PAID_TICKETS).executeQuery()) {
-            while (resultSet.next()) {
-                amount += resultSet.getInt("number_of_passengers");
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FROM_TICKETS)) {
+            preparedStatement.setInt(1, cruiseId);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) {
+                    amount += resultSet.getInt("number_of_passengers");
+                }
+                return amount <= ship.getCapacity();
             }
-            return amount <= ship.getCapacity();
         } catch (SQLException e) {
             logger.error("failed to checking for availability ", e);
             throw new RuntimeException(e);

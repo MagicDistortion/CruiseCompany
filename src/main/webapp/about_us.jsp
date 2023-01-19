@@ -29,5 +29,10 @@
             <h3 align="center">We are the best cruise company in Odesa city </h3
         </c:if>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <footer align="center"style="color:#fff">
+            <hr>
+                <p>© 2023 Cruise Company</p>
+            </footer>
     </body>
 </html>

@@ -2,32 +2,41 @@ package commands;
 
 import dao.UsersDAO;
 import models.users.User;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 public class LogInCommand implements Command {
     private final UsersDAO usersDAO = new UsersDAO();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getMethod().equalsIgnoreCase("post")) {
-            String login = request.getParameter("login");
-            String password = request.getParameter("password");
-            User user = usersDAO.findUserByLogin(login);
-            Map<?, ?> phrases = (Map<?, ?>) request.getAttribute("phrases");
-            if (user != null) {
-                if (user.getPassword().equals(password)) {
-                    request.getSession().setAttribute("user", user);
-                } else {
-                    request.setAttribute("error_message", phrases.get("langWrongPassword"));
-                }
-            } else request.setAttribute("error_message", " Login -> " + login + " " + phrases.get("langNotFound"));
+        if (request.getMethod().equalsIgnoreCase("get")
+                ||request.getParameter("login") == null
+                || request.getParameter("password") == null) {
+            response.sendRedirect("index.jsp");
+            return;
         }
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        User user = usersDAO.findUserByLogin(login);
+        RequestAssistant requestAssistant = new RequestAssistant();
+        if (user == null) {
+            request.setAttribute("error_message"
+                    , " Login -> " + login + " " + requestAssistant.getPhrase(request, "langNotFound"));
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
+        if (!user.getPassword().equals(password)) {
+            requestAssistant.setError(request, "langWrongPassword");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
+        request.getSession().setAttribute("user", user);
+        response.sendRedirect("index.jsp");
     }
 
     public boolean canHandle(String uri, String method) {

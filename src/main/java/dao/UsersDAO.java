@@ -157,21 +157,6 @@ public class UsersDAO {
         }
     }
 
-    /* метод отримання списку всіх користувачів */
-    public List<User> findAllUsers() {
-        List<User> userList = new ArrayList<>();
-        try (Connection connection = dbManager.getConnection();
-             ResultSet resultSet = connection.prepareStatement(Constants.FROM_USERS).executeQuery()) {
-            while (resultSet.next()) {
-                User user = getUser(resultSet);
-                userList.add(user);
-            }
-        } catch (SQLException e) {
-            logger.error("failed to get users list", e);
-            throw new RuntimeException(e);
-        }
-        return userList;
-    }
 
     /* метод пошуку користувача по логіну */
     public User findUserByLogin(String login) {

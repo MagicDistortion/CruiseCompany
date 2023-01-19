@@ -2,7 +2,7 @@ package commands;
 
 import models.cruises.Cruise;
 import services.Paginator;
-import utils.WithRequestHelper;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +15,10 @@ public class CruisesListCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        WithRequestHelper withRequestHelper = new WithRequestHelper();
+        RequestAssistant requestAssistant = new RequestAssistant();
         List<Cruise> cruiseList = paginator.paginationCruisesList(request);
         request.setAttribute("cruisesList", cruiseList);
-        if (cruiseList.isEmpty()) withRequestHelper.setError(request, "langEmpty");
+        if (cruiseList.isEmpty()) requestAssistant.setError(request, "langEmpty");
         request.getRequestDispatcher("cruises_list.jsp").forward(request, response);
     }
 

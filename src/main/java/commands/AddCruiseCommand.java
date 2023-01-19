@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 public class AddCruiseCommand implements Command {
     private final ShipsDAO shipsDAO = new ShipsDAO();
@@ -28,7 +27,7 @@ public class AddCruiseCommand implements Command {
         int shipId = Integer.parseInt(request.getParameter("shipId"));
         Ship ship = shipsDAO.findShipByID(shipId);
         String shipName = ship.getName();
-        List<String> errors = cruiseValidator.validate(request, shipName);
+        List<String> errors = cruiseValidator.validate(request);
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
             request.getRequestDispatcher("ships_for_add_cruise").forward(request, response);

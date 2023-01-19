@@ -17,7 +17,7 @@ public class CruiseValidator {
     private Map<String, String> phrases;
 
     /* метод запускає перевірку отриманих з Http запиту данних, та повертає лист з помилками якщо вони є */
-    public List<String> validate(HttpServletRequest request, String shipName) {
+    public List<String> validate(HttpServletRequest request) {
         phrases = (Map<String, String>) request.getAttribute("phrases");
         errors.clear();
         errors.add(validateCruiseName(request.getParameter("cruiseName")));

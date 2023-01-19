@@ -47,6 +47,9 @@
                          </tr>
                      </c:forEach>
            </table>
+                  <h2 style="color:#B22222" align="center">
+                    <c:if  test="${not empty error_message}" >${error_message}</c:if>
+                  </h2>
            <br><br><br><br><br><br>
 
 

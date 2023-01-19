@@ -2,7 +2,7 @@ package commands;
 
 import dao.ShipsDAO;
 import models.ships.Ship;
-import utils.WithRequestHelper;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +17,13 @@ public class AddShipCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        WithRequestHelper withRequestHelper = new WithRequestHelper();
+        RequestAssistant requestAssistant = new RequestAssistant();
         if (request.getMethod().equalsIgnoreCase("get")) {
             response.sendRedirect("add_ship.jsp");
             return;
         }
         if (request.getParameter("name") == null || request.getParameter("capacity") == null) {
-            withRequestHelper.setError(request, "langInvalidData");
+            requestAssistant.setError(request, "langInvalidData");
             request.getRequestDispatcher("/admin/add_ship.jsp").forward(request, response);
             return;
         }
@@ -38,7 +38,7 @@ public class AddShipCommand implements Command {
             part.write(savePath + File.separator + fileName);
         }
         if (shipsDAO.shipsNameExist(name)) {
-            withRequestHelper.setError(request, "langAlreadyExist");
+            requestAssistant.setError(request, "langAlreadyExist");
             request.getRequestDispatcher("/admin/add_ship.jsp").forward(request, response);
             return;
         }

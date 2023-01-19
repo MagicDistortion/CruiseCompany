@@ -12,12 +12,15 @@ public class GiveARoleCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getMethod().equalsIgnoreCase("post")) {
-            int role = Integer.parseInt(request.getParameter("role"));
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            if (role >= 1 && role <= 3 && userId != 0)
-                usersDAO.updateUserRole(role, userId);
+        if (request.getMethod().equalsIgnoreCase("get")
+                || request.getParameter("role") == null
+                || request.getParameter("userId") == null) {
+            response.sendRedirect("users_list");
+            return;
         }
+        int role = Integer.parseInt(request.getParameter("role"));
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        if (role >= 1 && role <= 3 && userId != 0) usersDAO.updateUserRole(role, userId);
         response.sendRedirect("users_list");
     }
 

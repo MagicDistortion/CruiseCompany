@@ -7,13 +7,12 @@ import models.cruises.Cruise;
 import models.ships.Ship;
 import models.tickets.Ticket;
 import models.users.User;
-import utils.WithRequestHelper;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 public class BuyATicketCommand implements Command {
     private final CruisesDAO cruisesDAO = new CruisesDAO();
@@ -33,10 +32,10 @@ public class BuyATicketCommand implements Command {
         int amount = Integer.parseInt(request.getParameter("amount"));
         Ticket ticket = new Ticket(cruise, user.getId(), amount);
         Ship ship = shipsDAO.findShipByID(cruise.getShipId());
-        WithRequestHelper withRequestHelper = new WithRequestHelper();
+        RequestAssistant requestAssistant = new RequestAssistant();
 
         if (!ticketsDAO.availabilityCheck(ship, cruise.getId(), amount)) {
-            withRequestHelper.setError(request, "langNotEnoughTickets");
+            requestAssistant.setError(request, "langNotEnoughTickets");
             request.getRequestDispatcher("buy_a_ticket.jsp").forward(request, response);
             return;
         }

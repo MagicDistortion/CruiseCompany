@@ -16,14 +16,16 @@ public class EditMyProfileCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getMethod().equalsIgnoreCase("post")) {
-            HttpSession session = request.getSession();
-            EditProfileValidator validatorEditForm = new EditProfileValidator();
-            List<String> errors = validatorEditForm.editValidate(request);
-            User user = usersDAO.findUserByID(((User) session.getAttribute("user")).getId());
-            session.setAttribute("user", user);
-            request.setAttribute("errors", errors);
+        if (request.getMethod().equalsIgnoreCase("get")) {
+            response.sendRedirect("edit_profile.jsp");
+            return;
         }
+        HttpSession session = request.getSession();
+        EditProfileValidator validatorEditForm = new EditProfileValidator();
+        List<String> errors = validatorEditForm.editValidate(request);
+        User user = usersDAO.findUserByID(((User) session.getAttribute("user")).getId());
+        session.setAttribute("user", user);
+        request.setAttribute("errors", errors);
         request.getRequestDispatcher("edit_profile.jsp").forward(request, response);
     }
 

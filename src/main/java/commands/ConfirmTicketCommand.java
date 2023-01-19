@@ -14,13 +14,13 @@ public class ConfirmTicketCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getMethod().equalsIgnoreCase("post")) {
-            if (request.getParameter("ticket_id") != null) {
-                dbManager.inTransaction(connection -> {
-                    ticketsDAO.updateStatus(connection, "confirm", Integer.parseInt(request.getParameter("ticket_id")));
-                });
-            }
+        if (request.getMethod().equalsIgnoreCase("get")||request.getParameter("ticket_id") == null) {
+            response.sendRedirect("paid_tickets");
+            return;
         }
+        dbManager.inTransaction(connection -> ticketsDAO.updateStatus(connection
+                , "confirm"
+                , Integer.parseInt(request.getParameter("ticket_id"))));
         response.sendRedirect("paid_tickets");
     }
 

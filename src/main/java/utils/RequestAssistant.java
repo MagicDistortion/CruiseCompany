@@ -3,7 +3,7 @@ package utils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-public class WithRequestHelper {
+public class RequestAssistant {
     public String getPhrase(HttpServletRequest request, String key) {
         return ((Map<?, ?>) request.getAttribute("phrases")).get(key).toString();
     }

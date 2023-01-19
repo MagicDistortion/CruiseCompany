@@ -9,7 +9,6 @@ public class Constants {
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration,description,route) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
-    public static final String FROM_USERS = "SELECT * FROM users ";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_CRUISES = "SELECT * FROM cruise where status!='finished' AND status!='canceled'";
     public static final String FROM_TICKETS = "SELECT * FROM tickets where cruise_id=? ";
@@ -24,8 +23,6 @@ public class Constants {
     public static final String UPDATE_USER_DATE_OF_BIRTH = "UPDATE users SET `date_of_birth`= ?  WHERE `users_id` = ?";
     public static final String FIND_BY_LOGIN = "SELECT * FROM users WHERE login = ? ";
     public static final String FIND_BY_ID = "SELECT * FROM users WHERE users_id = ? ";
-    public static final String FIND_ALL_PASSENGERS = "SELECT * FROM users where roles_id=1 ";
-    public static final String FIND_ALL_ADMINS = "SELECT * FROM users where roles_id=2 ";
     public static final String FIND_TICKET_BY_USER_ID = "SELECT * FROM tickets where user_id=? ";
     public static final String FIND_PAID_TICKETS = "SELECT * FROM tickets where status='paid' or status='confirm'";
     public static final String FIND_TICKET_BY_ID = "SELECT * FROM tickets where ticket_id=? ";

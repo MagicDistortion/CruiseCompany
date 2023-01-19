@@ -16,7 +16,6 @@ public class TicketsDAO {
     private final static Logger logger = Logger.getLogger(TicketsDAO.class);
     private final DBManager dbManager = DBManager.getInstance();
     private final CruisesDAO cruiseDAO = new CruisesDAO();
-    private final ShipsDAO shipsDAO = new ShipsDAO();
 
 
     /* метод додавання квитка  */

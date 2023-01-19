@@ -57,18 +57,19 @@
     	<input type="submit" class="btn btn-dark" value="${phrases['langRegister']}"/><br>
 
     <h2 style="color:#B22222">
-     <c:forEach items="${errors}" var="i">
-     ${i}<br>
-     </c:forEach>
-     <a class=" btn btn-light" href="index.jsp">${phrases['langBackToMain']}</a>
+         <c:forEach items="${errors}" var="i">
+             ${i}<br>
+         </c:forEach>
+             <c:if  test="${not empty error_message}" >${error_message}</c:if>
     </h2>
+     <a class=" btn btn-light" href="index.jsp">${phrases['langBackToMain']}</a>
 
 </div>
 </form>
 <br><br><br><br>
-                    <footer align="center"style="color:#fff">
-                    <hr>
-                        <p>© 2023 Cruise Company</p>
-                    </footer>
+            <footer align="center"style="color:#fff">
+            <hr>
+                <p>© 2023 Cruise Company</p>
+            </footer>
 </body>
 </html>

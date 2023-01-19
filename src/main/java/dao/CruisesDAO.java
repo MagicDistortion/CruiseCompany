@@ -1,7 +1,6 @@
 package dao;
 
 import models.cruises.Cruise;
-import models.ships.Ship;
 import org.apache.log4j.Logger;
 import utils.Constants;
 
@@ -100,23 +99,6 @@ public class CruisesDAO {
         }
         return price;
     }
-
-    /* метод отримання списку всіх круїзів */
-    public List<Cruise> findAllCruises() {
-        List<Cruise> cruiseList = new ArrayList<>();
-        try (Connection connection = dbManager.getConnection();
-             ResultSet resultSet = connection.prepareStatement(Constants.FROM_CRUISES).executeQuery()) {
-            while (resultSet.next()) {
-                Cruise cruise = getCruise(resultSet);
-                cruiseList.add(cruise);
-            }
-        } catch (SQLException e) {
-            logger.error("failed to get cruises list", e);
-            throw new RuntimeException(e);
-        }
-        return cruiseList;
-    }
-
 
     /* метод отримання списку всіх круїзів за датою */
     public List<Cruise> findCruisesListByDate(LocalDate date) {

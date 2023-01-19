@@ -83,7 +83,7 @@ public class EditProfileValidator {
 
     /* перевірка та оновлення телефону */
     private String validatePhoneNumber(String number) {
-        String finalTel = "";
+        String finalTel;
         if (number == null) return "phone number is wrong";
         if (number.length() == 11 && number.startsWith("80")) {
             number = number.substring(1);

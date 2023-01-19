@@ -2,13 +2,13 @@ package commands;
 
 import models.users.User;
 import dao.UsersDAO;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class UsersListCommand implements Command {
     private final UsersDAO usersDAO = new UsersDAO();
@@ -17,8 +17,10 @@ public class UsersListCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<User> allUsers = usersDAO.findUsersWithOutRole();
         request.setAttribute("userList", allUsers);
-        if (allUsers.size() == 0)
-            request.setAttribute("error_message", ((Map<?, ?>) request.getAttribute("phrases")).get("langEmpty"));
+        if (allUsers.size() == 0){
+            RequestAssistant requestAssistant = new RequestAssistant();
+            requestAssistant.setError(request, "langEmpty");
+        }
         request.getRequestDispatcher("/admin/giving_a_role.jsp").forward(request, response);
     }
 

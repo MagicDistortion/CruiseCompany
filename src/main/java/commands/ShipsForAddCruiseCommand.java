@@ -26,14 +26,12 @@ public class ShipsForAddCruiseCommand implements Command {
         request.setAttribute("endTime", endTime);
         if (startTime == null || endTime == null || LocalDateTime.parse(endTime).isBefore(LocalDateTime.parse(startTime))
                 || LocalDateTime.parse(startTime).isBefore(LocalDateTime.now())) {
-            request.setAttribute("startTime", startTime);
-            request.setAttribute("endTime", endTime);
             requestAssistant.setError(request, "langInvalidData");
             request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
             return;
         }
-        List<Ship> shipList = shipsDAO.findAllShips().stream().filter(ship -> cruisesDAO.checkingTheShipIsFreeOnDates
-                (ship.getId(), LocalDateTime.parse(startTime), LocalDateTime.parse(endTime))).collect(Collectors.toList());
+        List<Ship> shipList = shipsDAO.findAllShips().stream().filter(ship ->
+                cruisesDAO.checkingTheShipIsFreeOnDates(ship.getId(), startTime, endTime)).collect(Collectors.toList());
         request.setAttribute("shipsList", shipList);
         request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
     }

@@ -27,8 +27,8 @@ public class CruiseValidator {
         errors.add(validateEndTime(request.getParameter("endTime"), request.getParameter("startTime")));
         errors.add(checkNameExist(request.getParameter("cruiseName")));
         errors.add(checkingTheShipIsFree(Integer.parseInt(request.getParameter("shipId"))
-                , LocalDateTime.parse(request.getParameter("startTime"))
-                , LocalDateTime.parse(request.getParameter("endTime"))));
+                , request.getParameter("startTime")
+                , request.getParameter("endTime")));
         errors.removeIf(Objects::isNull);
         return errors;
     }
@@ -75,7 +75,7 @@ public class CruiseValidator {
         return cruisesDAO.cruiseNameExist(cruiseName) ? phrases.get("langAlreadyExist") : null;
     }
 
-    private String checkingTheShipIsFree(int shipId, LocalDateTime start, LocalDateTime end) {
+    private String checkingTheShipIsFree(int shipId, String start, String end) {
         return cruisesDAO.checkingTheShipIsFreeOnDates(shipId, start, end) ? null : phrases.get("langShipIsBusy");
     }
 

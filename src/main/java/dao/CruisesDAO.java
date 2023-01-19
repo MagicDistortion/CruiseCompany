@@ -186,15 +186,15 @@ public class CruisesDAO {
     }
 
     /* метод перевірки чи вільний лайнер на наші дати*/
-    public boolean checkingTheShipIsFreeOnDates(int shipId, LocalDateTime start, LocalDateTime end) {
+    public boolean checkingTheShipIsFreeOnDates(int shipId, String start, String end) {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.THE_SHIP_IS_FREE_ON_DATES)) {
             preparedStatement.setInt(1, shipId);
-            preparedStatement.setObject(2, start);
-            preparedStatement.setObject(3, end);
+            preparedStatement.setString(2, start);
+            preparedStatement.setString(3, end);
             preparedStatement.setInt(4, shipId);
-            preparedStatement.setObject(5, start);
-            preparedStatement.setObject(6, end);
+            preparedStatement.setString(5, start);
+            preparedStatement.setString(6, end);
             preparedStatement.executeQuery();
             ResultSet resultSet = preparedStatement.getResultSet();
             resultSet.next();

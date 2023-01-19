@@ -51,7 +51,7 @@
                          <td style="color:#0000ff"/><h3>${phrases['langDateOfBirth']}</h3></td>
                          <td><input class="form-control" type="date" name="date_of_birth" value="${user.getDateOfBirth()}" /></td>
                        </tr>
-                      </table>
+                      </table><br>
                     	<input type="submit" class="btn btn-dark" value="${phrases['langEditNow']}"/><br>
                            <h2 style="color:#B22222">
                                <c:forEach items="${errors}" var="i">
@@ -61,10 +61,8 @@
                            </h2>
                     </div>
                 </form>
-                <br><br><br><br>
-                    <footer align="center"style="color:#000000">
-                    <hr>
-                        <p>© 2023 Cruise Company</p>
-                    </footer>
+                <footer style=" position: absolute; top: 90%; width: 100%; color:#000000">
+                <hr> <p align="center" >© 2023 Oceania Cruises</p>
+                </footer>
     </body>
 </html>

@@ -50,17 +50,16 @@
                   <h2 style="color:#B22222" align="center">
                     <c:if  test="${not empty error_message}" >${error_message}</c:if>
                   </h2>
-           <br><br><br><br><br><br>
 
 
-            <footer align="left" style="color:#fff">
-            <hr>
-                   <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
+                <footer style=" position: absolute; top: 80%; width: 100%; color:#fff">
+                  <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
                    <form action ="../passenger/put_on_the_account" method ="post">
                    <input name="deposit" type="number" class="btn btn-light" placeholder="${phrases['langPutOnTheAccount']} " style="width: 200px;" required/>
                    <input type="submit" class="btn btn-info" value="${phrases['langDeposit']}"/>
                    </form>
-                <p align="center">© 2023 Cruise Company</p>
-            </footer>
+                <hr> <p align="center" >© 2023 Oceania Cruises</p>
+                </footer>
+
     </body>
 </html>

@@ -31,10 +31,8 @@
             <h2 align="center"> or by e-mail magicdistortion@gmail.com</h2>
         </c:if>
         </div>
-        <br><br><br><br><br><br><br><br><br>
-            <footer align="center"style="color:#fff">
-            <hr>
-                <p>© 2023 Cruise Company</p>
-            </footer>
+                <footer style=" position: absolute; top: 90%; width: 100%; color:#fff">
+                <hr> <p align="center" >© 2023 Oceania Cruises</p>
+                </footer>
     </body>
 </html>

@@ -19,20 +19,16 @@
        <c:if test="${lang=='UA'}">
             <h2 align="center">Помилка 500</h2>
             <h2 align="center">Упс. Щось пішло не так. Поверніться на головну.Та спробуйте знову пізніше </h2>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-                       <h1> <a class="btn btn-warning" href="/CruiseCompany/index.jsp">Повернутись на головну</a> </h1>
+                       <h1> <a class="btn btn-warning" style=" position: absolute; top: 65%; left : 42%" href="/CruiseCompany/index.jsp">Повернутись на головну</a> </h1>
         </c:if>
         <c:if test="${lang=='EN'}">
             <h2 align="center">Error 500</h2>
             <h2 align="center">Oops. Something went wrong. Go to Login. And try again Later </h2>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-                       <h1> <a class="btn btn-warning" href="/CruiseCompany/index.jsp">Go to Login</a> </h1>
+                       <h1> <a class="btn btn-warning" style=" position: absolute; top: 65%; left : 42%" href="/CruiseCompany/index.jsp">Go to Login</a> </h1>
         </c:if>
          </div>
-                   <br><br><br><br><br><br><br>
-                          <footer align="center"style="color:#000000">
-                          <hr>
-                              <p>© 2023 Cruise Company</p>
-                          </footer>
+                <footer style=" position: absolute; top: 90%; width: 100%; color:#000000">
+                <hr> <p align="center" >© 2023 Oceania Cruises</p>
+                </footer>
     </body>
 </html>

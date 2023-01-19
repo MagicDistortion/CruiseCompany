@@ -53,7 +53,7 @@
             <td style="color:#fff"/><h3/> ${phrases['langDateOfBirth']}:</td>
             <td><input class="form-control" type="date" name="date_of_birth" value="1900-01-01" required/></td>
         </tr>
-    </table>
+    </table><br>
     	<input type="submit" class="btn btn-dark" value="${phrases['langRegister']}"/><br>
 
     <h2 style="color:#B22222">
@@ -66,10 +66,8 @@
 
 </div>
 </form>
-<br><br><br><br>
-            <footer align="center"style="color:#fff">
-            <hr>
-                <p>© 2023 Cruise Company</p>
-            </footer>
+                <footer style=" position: absolute; top: 90%; width: 100%; color:#fff">
+                <hr> <p align="center" >© 2023 Oceania Cruises</p>
+                </footer>
 </body>
 </html>

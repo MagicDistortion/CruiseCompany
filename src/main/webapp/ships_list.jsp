@@ -71,9 +71,8 @@
                       </c:if>
            </div>
         </h2>
-                            <footer align="center"style="color:#fff">
-                            <hr>
-                                <p>© 2023 Cruise Company</p>
-                            </footer>
+                <footer style=" position: relative; top: 90%; width: 100%; color:#fff">
+                <hr> <p align="center" >© 2023 Oceania Cruises</p>
+                </footer>
        </body>
 </html>

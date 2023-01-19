@@ -27,8 +27,7 @@ public class CruiseValidator {
         errors.add(validateEndTime(request.getParameter("endTime"), request.getParameter("startTime")));
         errors.add(checkNameExist(request.getParameter("cruiseName")));
         errors.add(checkingTheShipIsFree(Integer.parseInt(request.getParameter("shipId"))
-                , request.getParameter("startTime")
-                , request.getParameter("endTime")));
+                , request.getParameter("startTime"), request.getParameter("endTime")));
         errors.removeIf(Objects::isNull);
         return errors;
     }

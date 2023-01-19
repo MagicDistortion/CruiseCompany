@@ -20,7 +20,7 @@ public class AddCruiseCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getMethod().equalsIgnoreCase("get")) {
-            response.sendRedirect("ships_for_add_cruise");
+            response.sendRedirect("add_cruise.jsp");
             return;
         }
         CruiseValidator cruiseValidator = new CruiseValidator();
@@ -30,7 +30,7 @@ public class AddCruiseCommand implements Command {
         List<String> errors = cruiseValidator.validate(request);
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
-            request.getRequestDispatcher("ships_for_add_cruise").forward(request, response);
+            request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
             return;
         }
         Cruise cruise = new Cruise(shipId
@@ -41,8 +41,9 @@ public class AddCruiseCommand implements Command {
                 , LocalDateTime.parse(request.getParameter("startTime"))
                 , LocalDateTime.parse(request.getParameter("endTime")));
         cruise.setDescription(request.getParameter("description"));
+        cruise.setRoute(request.getParameter("route"));
         cruisesDAO.insertCruise(cruise);
-        response.sendRedirect("ships_for_add_cruise");
+        response.sendRedirect("add_cruise.jsp");
     }
 
     @Override

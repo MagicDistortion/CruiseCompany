@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShipsForAddCruiseCommand implements Command {
     private final ShipsDAO shipsDAO = new ShipsDAO();
@@ -19,29 +19,21 @@ public class ShipsForAddCruiseCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Ship> shipList = new ArrayList<>();
         RequestAssistant requestAssistant = new RequestAssistant();
-        if (request.getParameter("startTime") == null || request.getParameter("endTime") == null
-                || LocalDateTime.parse(request.getParameter("endTime"))
-                .isBefore(LocalDateTime.parse(request.getParameter("startTime")))) {
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        request.setAttribute("startTime", startTime);
+        request.setAttribute("endTime", endTime);
+        if (startTime == null || endTime == null || LocalDateTime.parse(endTime).isBefore(LocalDateTime.parse(startTime))
+                || LocalDateTime.parse(startTime).isBefore(LocalDateTime.now())) {
+            request.setAttribute("startTime", startTime);
+            request.setAttribute("endTime", endTime);
             requestAssistant.setError(request, "langInvalidData");
             request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
             return;
         }
-        LocalDateTime startTime = LocalDateTime.parse(request.getParameter("startTime"));
-        LocalDateTime endTime = LocalDateTime.parse(request.getParameter("endTime"));
-        request.setAttribute("startTime", startTime);
-        request.setAttribute("endTime", endTime);
-
-//        shipsDAO.findAllShips().removeIf(ship -> cruisesDAO.checkingTheShipIsFreeOnDates(ship.getId(), startTime, endTime));
-//        List<Ship> collect = shipsDAO.findAllShips().stream().filter(ship ->
-//                cruisesDAO.checkingTheShipIsFreeOnDates(ship.getId(), startTime, endTime)).collect(Collectors.toList());
-
-        for (Ship ship : shipsDAO.findAllShips()) {
-            if (cruisesDAO.checkingTheShipIsFreeOnDates(ship.getId(), startTime, endTime)) {
-                shipList.add(ship);
-            }
-        }
+        List<Ship> shipList = shipsDAO.findAllShips().stream().filter(ship -> cruisesDAO.checkingTheShipIsFreeOnDates
+                (ship.getId(), LocalDateTime.parse(startTime), LocalDateTime.parse(endTime))).collect(Collectors.toList());
         request.setAttribute("shipsList", shipList);
         request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
     }

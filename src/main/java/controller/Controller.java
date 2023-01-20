@@ -41,6 +41,7 @@ public class Controller extends HttpServlet {
         commands.put("passenger/put_on_the_account", new PutOnTheAccountCommand());
         commands.put("admin/paid_tickets", new PaidTicketsCommand());
         commands.put("admin/confirm_tickets", new ConfirmTicketCommand());
+        commands.put("admin/reject_ticket", new RejectTicketCommand());
     }
 
     @Override

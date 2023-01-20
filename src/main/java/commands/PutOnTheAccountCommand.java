@@ -20,13 +20,13 @@ public class PutOnTheAccountCommand implements Command {
             return;
         }
         User user = (User) request.getSession().getAttribute("user");
-        double deposit = user.getMoney() + Integer.parseInt(request.getParameter("deposit"));
         dbManager.inTransaction(connection -> {
-            usersDAO.updateUserMoney(connection, deposit, user.getId());
-            user.setMoney(deposit);
+            usersDAO.updateUserMoney(connection, Integer.parseInt(request.getParameter("deposit")), user.getId(), "+");
+            user.setMoney(user.getMoney() + Integer.parseInt(request.getParameter("deposit")));
         });
         response.sendRedirect("my_profile");
     }
+
     @Override
     public boolean canHandle(String uri, String method) {
         return uri.equalsIgnoreCase("passenger/put_on_the_account");

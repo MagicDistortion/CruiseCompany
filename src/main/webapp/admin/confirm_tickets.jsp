@@ -24,18 +24,23 @@
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langCruiseName']} &nbsp</th>
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langTotalPrice']} &nbsp</th>
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
-                <th/>
+                <th/><th/>
                      <c:forEach items="${all_paid_tickets}" var="i">
                          <tr align="center">
                             <td style="color:#fff" ><h3/>${i.getId()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getCruiseName()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getTotalPrice()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getNumberOfPassengers()} &nbsp</td>
-                                <form action ="../admin/confirm_ticket" method ="post">
-                                <input type="hidden" name="ticket_id" value="${i.getId()}"/>
-                                <td> <input
-                                 type="submit" class="btn btn-info" value="${phrases['langConfirm']}"/></td>
-                                </form>
+                    <form action ="../admin/confirm_ticket" method ="post">
+                    <input type="hidden" name="ticket_id" value="${i.getId()}"/>
+                    <td> <input
+                     type="submit" class="btn btn-info" value="${phrases['langConfirm']}"/></td>
+                     </form>
+                    <form action ="../admin/reject_ticket" method ="post">
+                    <input type="hidden" name="ticket_id" value="${i.getId()}"/>
+                    <td> <input
+                     type="submit" class="btn btn-danger" value="${phrases['langReject']}"/></td>
+                    </form>
                          </tr>
                      </c:forEach>
            </table>

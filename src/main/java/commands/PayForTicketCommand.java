@@ -32,11 +32,10 @@ public class PayForTicketCommand implements Command {
             request.getRequestDispatcher("my_profile").forward(request,response);
             return;
         }
-        double result = money - ticket.getTotalPrice();
         dbManager.inTransaction(connection -> {
             ticketsDAO.updateStatus(connection, "paid", ticket.getId());
-            usersDAO.updateUserMoney(connection, result, user.getId());
-            user.setMoney(result);
+            usersDAO.updateUserMoney(connection, ticket.getTotalPrice(), user.getId(),"-");
+            user.setMoney(money - ticket.getTotalPrice());
         });
         response.sendRedirect("my_profile");
     }

@@ -133,8 +133,9 @@ public class UsersDAO {
     }
 
     /* метод оновлення рахунку користувача */
-    public void updateUserMoney(Connection connection, double deposit, int id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_MONEY)) {
+    public void updateUserMoney(Connection connection, double deposit, int id, String sign) {
+        String sql = "UPDATE users SET money=money"+sign+"? WHERE (`users_id` = ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setDouble(1, deposit);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();

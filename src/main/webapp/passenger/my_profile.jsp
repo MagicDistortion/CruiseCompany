@@ -19,6 +19,13 @@
     <body>
     <%@ include file="../header_passenger.jspf" %>
        <h2 style="color:#fff" align="center">${phrases['langMyTickets']}</h2>
+          <form action ="../passenger/my_profile" method ="get" align="center">
+                <select  class="btn btn-light dropdown-toggle" name="sort">
+                   <option value="not paid" <c:if test="${sort.equals('not paid')}"> selected </c:if>>${phrases['langNotPaid']}</option>
+                   <option value="paid" <c:if test="${sort.equals('paid')}"> selected </c:if>>${phrases['langPaid']}</option>
+                   <option value="rejected" <c:if test="${sort.equals('rejected')}"> selected </c:if>>${phrases['langRejected']}</option>
+                <input type="submit" class="btn btn-dark" value="${phrases['langGetThem']}"/><br>
+            </form>
            <table class="table table-hover">
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langCruiseName']} &nbsp</th>
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langAmount']} &nbsp</th>
@@ -40,17 +47,20 @@
                                   <c:if test="${user.getMoney()<i.getTotalPrice()}">disabled type="submit" class="btn btn-secondary"</c:if>
                                  type="submit" class="btn btn-info" value="${phrases['langPay']}"/></td>
                                 </form>
+                        <form action ="../passenger/refuse_ticket" method ="post">
+                        <input type="hidden" name="ticket_id" value="${i.getId()}"/>
+                        <td> <input type="submit" class="btn btn-danger" value="${phrases['langReject']}"/></td>
+                        </form>
                             </c:if>
-                            <c:if test="${!i.getStatus().equals('not paid')}">
-                            <td/>
-                            </c:if>
+                                    <c:if test="${!i.getStatus().equals('not paid')}">
+                                    <td/>
+                                    </c:if>
                          </tr>
                      </c:forEach>
            </table>
                   <h2 style="color:#B22222" align="center">
                     <c:if  test="${not empty error_message}" >${error_message}</c:if>
                   </h2>
-
 
                 <footer style=" position: absolute; top: 80%; width: 100%; color:#fff">
                   <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>

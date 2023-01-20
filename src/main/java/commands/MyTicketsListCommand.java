@@ -15,8 +15,21 @@ public class MyTicketsListCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String sort = "not paid";
+        if (request.getParameter("sort") != null) sort = request.getParameter("sort");
+        request.setAttribute("sort", sort);
+        switch (sort) {
+            case "not paid":
+                sort = "and status='not paid'";
+                break;
+            case "paid":
+                sort = "and (status='paid' or status='confirmed')";
+                break;
+            case "rejected":
+                sort = "and status='rejected'";
+        }
         int userId = ((User) request.getSession().getAttribute("user")).getId();
-        List<Ticket> ticketList = ticketsDAO.findTicketsByUserId(userId);
+        List<Ticket> ticketList = ticketsDAO.findTicketsByUserId(userId, sort);
         request.setAttribute("my_tickets_list", ticketList);
         request.getRequestDispatcher("my_profile.jsp").forward(request, response);
     }

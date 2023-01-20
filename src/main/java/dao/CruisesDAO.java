@@ -190,9 +190,8 @@ public class CruisesDAO {
             preparedStatement.setInt(1, shipId);
             preparedStatement.setString(2, start);
             preparedStatement.setString(3, end);
-            preparedStatement.setInt(4, shipId);
-            preparedStatement.setString(5, start);
-            preparedStatement.setString(6, end);
+            preparedStatement.setString(4, start);
+            preparedStatement.setString(5, end);
             preparedStatement.executeQuery();
             ResultSet resultSet = preparedStatement.getResultSet();
             resultSet.next();

@@ -71,7 +71,7 @@
                             <td style="color:#fff" align="center"><h3/>${i.getNumberOfPorts()} &nbsp</td>
                             <td style="color:#fff" align="center"><h3/>${i.getDuration()}${phrases['langDays']}  &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getPrice()}$ &nbsp</td>
-                            <td><input class="form-control" type="number" value="1" name="amount" style="width: 80px;" required/></td>
+                            <td><input class="form-control" type="number" value="1" min="1" max="100" name="amount" style="width: 80px;" required/></td>
                             <input type="hidden" name="cruiseId" value="${i.getId()}"/>
                             <td><input type="submit" class="btn btn-warning" value="${phrases['langBuy']}"/></td>
                             </form>

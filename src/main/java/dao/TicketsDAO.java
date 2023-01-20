@@ -51,10 +51,10 @@ public class TicketsDAO {
     }
 
     /* метод пошуку квитка по id пасажира */
-    public List<Ticket> findTicketsByUserId(int userId) {
+    public List<Ticket> findTicketsByUserId(int userId,String sort) {
         List<Ticket> ticketList = new ArrayList<>();
         try (Connection connection = dbManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID+sort)) {
             preparedStatement.setInt(1, userId);
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
@@ -155,6 +155,8 @@ public class TicketsDAO {
                 while (resultSet.next()) {
                     amount += resultSet.getInt("number_of_passengers");
                 }
+                System.out.println(amount);
+                System.out.println(ship.getCapacity());
                 return amount <= ship.getCapacity();
             }
         } catch (SQLException e) {

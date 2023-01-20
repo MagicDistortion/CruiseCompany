@@ -104,14 +104,14 @@ public class CruisesDAO {
     public List<Cruise> findCruisesListByDate(LocalDate date) {
         List<Cruise> cruiseList = new ArrayList<>();
         try (Connection connection = dbManager.getConnection();
-             ResultSet resultSet = connection.prepareStatement(Constants.FROM_CRUISES).executeQuery()) {
-            while (resultSet.next()) {
-                Cruise cruise = getCruise(resultSet);
-                if (cruise.getStartTime().toLocalDate().equals(date))
-                    cruiseList.add(cruise);
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FROM_CRUISES_BY_DATE)) {
+            preparedStatement.setObject(1, date);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) cruiseList.add(getCruise(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("failed to get cruises list by date ", e);
+            logger.error("failed to get cruises list by date -> " + date, e);
             throw new RuntimeException(e);
         }
         return cruiseList;
@@ -125,12 +125,10 @@ public class CruisesDAO {
             preparedStatement.setInt(1, duration);
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
-                while (resultSet.next()) {
-                    cruiseList.add(getCruise(resultSet));
-                }
+                while (resultSet.next()) cruiseList.add(getCruise(resultSet));
             }
         } catch (SQLException e) {
-            logger.error("failed to get cruises list by duration ", e);
+            logger.error("failed to get cruises list by duration ->" + duration, e);
             throw new RuntimeException(e);
         }
         return cruiseList;

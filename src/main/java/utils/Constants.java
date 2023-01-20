@@ -10,9 +10,11 @@ public class Constants {
             "start_time,end_time,duration,description,route) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
-    public static final String FROM_CRUISES = "SELECT * FROM cruise where status!='finished' AND status!='canceled'";
+    public static final String FROM_CRUISES = "SELECT * FROM cruise where status='didn`t start'";
+    public static final String FROM_CRUISES_BY_DATE = "SELECT * FROM cruise where" +
+            " date_format(start_time, '%Y-%m-%d')=? AND status='didn`t start'";
     public static final String FROM_TICKETS = "SELECT * FROM tickets where cruise_id=? ";
-    public static final String FROM_CRUISES_BY_DURATION = "SELECT * FROM cruise  where duration = ? AND status!='finished' AND status!='canceled'";
+    public static final String FROM_CRUISES_BY_DURATION = "SELECT * FROM cruise  where duration = ? AND status='didn`t start'";
     public static final String UPDATE_USER_ROLE = "UPDATE users SET `roles_id` = ? WHERE (`users_id` = ?)";
     public static final String UPDATE_USER_SURNAME = "UPDATE users SET `surname` = ? WHERE (`users_id` = ?)";
     public static final String UPDATE_USER_NAME = "UPDATE users SET `name` = ? WHERE (`users_id` = ?)";
@@ -24,7 +26,7 @@ public class Constants {
     public static final String FIND_BY_LOGIN = "SELECT * FROM users WHERE login = ? ";
     public static final String FIND_BY_ID = "SELECT * FROM users WHERE users_id = ? ";
     public static final String FIND_TICKET_BY_USER_ID = "SELECT * FROM tickets where user_id=? ";
-    public static final String FIND_PAID_TICKETS = "SELECT * FROM tickets where status='paid' or status='confirm'";
+    public static final String FIND_PAID_TICKETS = "SELECT * FROM tickets where status='paid'";
     public static final String FIND_TICKET_BY_ID = "SELECT * FROM tickets where ticket_id=? ";
     public static final String FIND_CRUISE_BY_ID = "SELECT * FROM cruise WHERE cruise_id=? ";
     public static final String FIND_SHIP_BY_ID = "SELECT * FROM ships WHERE ship_id=? ";
@@ -39,7 +41,7 @@ public class Constants {
     public static final String CRUISE_NAME_EXIST = "SELECT count(*) FROM cruise where cruise_name = ?";
     public static final String THE_SHIP_IS_FREE_ON_DATES = "SELECT count(*) FROM cruise " +
             "where ship_id =? and start_time BETWEEN ? AND ? or ship_id =? and end_time BETWEEN ? and ?";
-    public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise where status!='finished' AND status!='canceled'";
+    public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise where status='didn`t start'";
 
 
 }

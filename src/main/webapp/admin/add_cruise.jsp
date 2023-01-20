@@ -24,8 +24,8 @@
            <th style="color:#00FFFF"><h4/> ${phrases['langPickStartTime']} &nbsp</th>
            <th style="color:#00FFFF"><h4/> ${phrases['langPickEndTime']} &nbsp</th>
             <tr>
-                 <td><input class="form-control" type="datetime-local" value="${startTime}" style="width: 250px;" name="startTime" style="width: 165px;" required/></td>
-                 <td><input class="form-control" type="datetime-local" value="${endTime}" style="width: 250px;" name="endTime" style="width: 165px;" required/></td>
+                 <td><input class="form-control" type="datetime-local" value="${startTime}" style="width: 250px;" name="startTime" min="${timeNow}" style="width: 165px;" required/></td>
+                 <td><input class="form-control" type="datetime-local" value="${endTime}" style="width: 250px;" name="endTime" min="${timeNow}" style="width: 165px;" required/></td>
                  <td><input type="submit" class="btn btn-info" value="${phrases['langConfirm']}"/></td>
             </tr>
         </table>

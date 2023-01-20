@@ -49,6 +49,16 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>time=filter</filter-name>
+        <filter-class>filters.TimeFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>time=filter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>Language=filter</filter-name>
         <filter-class>filters.LangFilter</filter-class>
     </filter>

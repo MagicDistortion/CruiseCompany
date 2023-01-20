@@ -35,6 +35,7 @@
               <c:choose>
                 <c:when test="${empty date}">
                     value=<mt:myTag/>
+                    min=<mt:myTag/>
                 </c:when>
                 <c:otherwise>
                      value="${date}"
@@ -46,7 +47,7 @@
             </form></td>
 
         <td > <form action ="../passenger/getCruises" id="sortByDuration" method ="post" style="display:none" align="center">
-             <input name="duration" type="number" <c:if test="${duration!=null}"> value="${duration}" </c:if> value="1" class="btn btn-light" style="width: 150px;" required/>
+             <input name="duration" type="number" min="1" <c:if test="${duration!=null}"> value="${duration}" </c:if> value="1" class="btn btn-light" style="width: 150px;" required/>
              <input hidden name="sortBy" value="duration"/>
              <input type="submit" class="btn btn-warning" value="${phrases['langPick']}"/>
              </form></td>

@@ -31,17 +31,16 @@
        </td>
 
    <td > <form action ="../passenger/getCruises" id="sortByDate"  method ="post">
-              <input class="btn btn-light" type="date"
+              <input class="btn btn-light" type="date" name="date"
               <c:choose>
                 <c:when test="${empty date}">
-                    value=<mt:myTag/>
-                    min=<mt:myTag/>
+                    value=<mt:DateNowTag/>
                 </c:when>
                 <c:otherwise>
                      value="${date}"
                 </c:otherwise>
               </c:choose>
-                name="date" style="width: 150px;" required/>
+                min=<mt:DateNowTag/> style="width: 150px;" required/>
               <input hidden name="sortBy" value="date"/>
               <input type="submit" class="btn btn-info" value="${phrases['langPick']}"/>
             </form></td>

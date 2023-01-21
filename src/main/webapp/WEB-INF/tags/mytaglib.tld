@@ -6,8 +6,8 @@
     <uri> /WEB-INF/tld/mytaglib.tld </uri>
 
     <tag>
-        <name> myTag </name>
-        <tag-class>utils.MyTag</tag-class>
+        <name> DateNowTag </name>
+        <tag-class>utils.DateNowTag</tag-class>
         <body-content> empty </body-content>
     </tag>
 </taglib>

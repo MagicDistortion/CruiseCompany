@@ -3,6 +3,7 @@ package commands;
 import dao.TicketsDAO;
 
 import models.tickets.Ticket;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,10 @@ public class PaidTicketsCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        RequestAssistant requestAssistant = new RequestAssistant();
         List<Ticket> allPaidTickets = ticketsDAO.findAllPaidTickets();
         request.setAttribute("all_paid_tickets", allPaidTickets);
+        if (allPaidTickets.isEmpty()) requestAssistant.setError(request, "langEmpty");
         request.getRequestDispatcher("confirm_tickets.jsp").forward(request,response);
     }
 

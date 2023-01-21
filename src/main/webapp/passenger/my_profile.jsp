@@ -57,7 +57,7 @@
                                     </c:if>
                          </tr>
                      </c:forEach>
-           </table>
+           </table><br>
                   <h2 style="color:#B22222" align="center">
                     <c:if  test="${not empty error_message}" >${error_message}</c:if>
                   </h2>

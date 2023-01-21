@@ -3,6 +3,7 @@ package commands;
 import dao.TicketsDAO;
 import models.tickets.Ticket;
 import models.users.User;
+import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ public class MyTicketsListCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String sort = "not paid";
+        RequestAssistant requestAssistant = new RequestAssistant();
         if (request.getParameter("sort") != null) sort = request.getParameter("sort");
         request.setAttribute("sort", sort);
         switch (sort) {
@@ -31,6 +33,7 @@ public class MyTicketsListCommand implements Command {
         int userId = ((User) request.getSession().getAttribute("user")).getId();
         List<Ticket> ticketList = ticketsDAO.findTicketsByUserId(userId, sort);
         request.setAttribute("my_tickets_list", ticketList);
+        if (ticketList.isEmpty()) requestAssistant.setError(request, "langEmpty");
         request.getRequestDispatcher("my_profile.jsp").forward(request, response);
     }
 

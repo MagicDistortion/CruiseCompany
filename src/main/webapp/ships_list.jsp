@@ -52,7 +52,10 @@
                             <td style="color:#fff; vertical-align: middle" ><h1/>${i.getCapacity()} &nbsp</td>
                          </tr>
                      </c:forEach>
-           </table>
+           </table><br>
+                  <h2 style="color:#B22222">
+                    <c:if  test="${not empty error_message}" >${error_message}</c:if>
+                  </h2>
                       <c:if test="${page>1}">
                       <a class="btn btn-outline-info"  href="ships_list?pagination=${pagination}&sort=${sort}&page=${page-1}"><<</a>
                       </c:if>

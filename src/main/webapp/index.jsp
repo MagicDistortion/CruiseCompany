@@ -40,7 +40,6 @@
                    </div>
                </form>
         </c:if>
-        <c:if test="${not  empty user}"> </c:if>
                 <footer style=" position: absolute; top: 90%; width: 100%; color:#fff">
                 <hr> <p align="center" >© 2023 Oceania Cruises</p>
                 </footer>

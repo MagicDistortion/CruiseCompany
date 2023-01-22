@@ -1,7 +1,9 @@
 package commands;
 
 import dao.CruisesDAO;
+import dao.RouteDAO;
 import models.cruises.Cruise;
+import models.route.Route;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +12,15 @@ import java.io.IOException;
 
 public class CruiseDetailsCommand implements Command {
     private final CruisesDAO cruisesDAO = new CruisesDAO();
+    private final RouteDAO routeDAO = new RouteDAO();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("cruiseId") != null) {
             Cruise cruise = cruisesDAO.findCruiseByID(Integer.parseInt(request.getParameter("cruiseId")));
+            Route route = routeDAO.findRouteByID(cruise.getRouteId());
             request.setAttribute("cruise", cruise);
+            request.setAttribute("route", route);
         }
         request.getRequestDispatcher("cruise_details.jsp").forward(request, response);
     }

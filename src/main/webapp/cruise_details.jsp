@@ -33,7 +33,7 @@
            </tr>
            <tr>
              <td style="color:#0000ff"/><h3>${phrases['langRoute']}:</h3></td>
-             <td style="color:#000000"/><h3>${cruise.getRoute()}</h3> </td>
+             <td style="color:#000000"/><h3>${route.getRoute()}</h3> </td>
            </tr>
            <tr>
              <td style="color:#0000ff"/><h3>${phrases['langStartTime']}:</h3></td>

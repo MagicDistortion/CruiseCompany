@@ -14,12 +14,7 @@
           <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="../ships_list"><h6> ${phrases['langShips']}</h6></a></td>
           <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="../cruises_list"><h6> ${phrases['langCruises']}</h6></a></td>
 
-          <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="users_list"><h6>${phrases['langGivingARole']}</h6></a></td>
-          <td><a style="color:#000000;border:1px solid blue"class="btn btn-light" href="add_ship.jsp"><h6>${phrases['langAddShip']}</h6></a></td>
-          <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="add_cruise.jsp"><h6>${phrases['langAddCruise']}</h6></a></td>
-          <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="add_route.jsp"><h6>${phrases['langAddRoute']}</h6></a></td>
-          <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="paid_tickets"><h6>${phrases['langPaidTickets']}</h6></a></td>
-
+          <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="my_cruises"><h6>${phrases['langMyCruises']}</h6></a></td>
            </tr>
           </ul>
     </div>

@@ -20,7 +20,7 @@ public class CruisesDAO {
     /* метод отримання круїзу з різалтсету */
     public Cruise getCruise(ResultSet resultSet) throws SQLException {
         Cruise cruise = new Cruise(resultSet.getInt("ship_id")
-                ,resultSet.getInt("route_id")
+                , resultSet.getInt("route_id")
                 , resultSet.getString("ship_name")
                 , resultSet.getString("cruise_name")
                 , resultSet.getInt("number_of_ports")
@@ -80,6 +80,23 @@ public class CruisesDAO {
             throw new RuntimeException(e);
         }
         return cruise;
+    }
+
+    /* метод пошуку круїзу по id лайнера */
+    public List<Cruise> findCruisesByShipID(int id) {
+        List<Cruise> cruiseList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_CRUISE_BY_SHIP_ID)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) cruiseList.add(getCruise(resultSet));
+            }
+        } catch (SQLException e) {
+            logger.error("failed to find cruises by ship id ->" + id, e);
+            throw new RuntimeException(e);
+        }
+        return cruiseList;
     }
 
 

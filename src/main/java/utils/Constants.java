@@ -31,6 +31,8 @@ public class Constants {
     public static final String FIND_PAID_TICKETS = "SELECT * FROM tickets where status='paid'";
     public static final String FIND_TICKET_BY_ID = "SELECT * FROM tickets where ticket_id=? ";
     public static final String FIND_CRUISE_BY_ID = "SELECT * FROM cruise WHERE cruise_id=? ";
+    public static final String FIND_CRUISE_BY_SHIP_ID = "SELECT * FROM cruise WHERE ship_id=? AND status='didn`t start' ";
+    public static final String FIND_SHIP_ID_BY_STAFF_ID = "SELECT * FROM staff WHERE staff_id=? ";
     public static final String FIND_ROUTE_BY_ID = "SELECT * FROM route WHERE route_id=? ";
     public static final String FIND_SHIP_BY_ID = "SELECT * FROM ships WHERE ship_id=? ";
     public static final String UPDATE_NUMBER_OF_PASSENGERS = "UPDATE tickets SET number_of_passengers=? WHERE ticket_id=? ";

@@ -69,6 +69,15 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>staff=filter</filter-name>
+        <filter-class>filters.StaffFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>staff=filter</filter-name>
+        <url-pattern>/staff/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>passenger=filter</filter-name>
         <filter-class>filters.PassengerFilter</filter-class>
     </filter>

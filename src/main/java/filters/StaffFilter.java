@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /* фільтр до сторінок для пасажирів*/
-public class PassengerFilter implements Filter {
+public class StaffFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
     }
@@ -20,7 +20,7 @@ public class PassengerFilter implements Filter {
         int role = 0;
         if (httpServlet.getSession().getAttribute("user") != null)
             role = ((User) httpServlet.getSession().getAttribute("user")).getRolesId();
-        if (role == 1 || role == 3) {
+        if (role != 3) {
             httpServletResponse.sendRedirect("../index.jsp");
         } else filterChain.doFilter(servletRequest, servletResponse);
     }

@@ -6,6 +6,7 @@ public class Constants {
     public static final String INSERT_TICKET
             = "INSERT INTO tickets (cruise_id,user_id,number_of_passengers,total_price) VALUES (?,?,?,?)";
     public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,image) VALUES (?,?,?)";
+    public static final String INSERT_ROUTE = "INSERT INTO route (name,route) VALUES (?,?)";
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration,description,route) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
@@ -38,6 +39,7 @@ public class Constants {
     public static final String EXIST_TEL = "SELECT count(*) FROM users WHERE tel = ? ";
     public static final String FROM_SHIPS_COUNT = "SELECT count(*) FROM ships";
     public static final String SHIPS_NAME_EXIST = "SELECT count(*) FROM ships where name = ?";
+    public static final String ROUTE_NAME_EXIST = "SELECT count(*) FROM route where name = ?";
     public static final String THE_SHIP_IS_FREE_ON_DATES = "SELECT count(*) FROM cruise where ship_id = ? and " +
             "(? BETWEEN start_time AND end_time OR ? BETWEEN start_time AND end_time OR ? <start_time AND ?>end_time)";
     public static final String FROM_CRUISES_COUNT = "SELECT count(*) FROM cruise where status='didn`t start'";

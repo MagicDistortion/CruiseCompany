@@ -17,6 +17,7 @@
           <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#000000;border:1px solid blue"class="btn btn-light" href="add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
           <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="add_cruise.jsp"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="add_route.jsp"><h5>${phrases['langAddRoute']}</h5></a></td>
           <td><a style="color:#000000;border:1px solid blue" class="btn btn-light" href="paid_tickets"><h5>${phrases['langPaidTickets']}</h5></a></td>
 
            </tr>
@@ -24,21 +25,18 @@
     </div>
     </table>
   </div>
-
-        <h5 align="right" style="color:#000000"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5>
-
 </nav>
-                      <form align="right" action="../lang" method="get">
-                         <input type="hidden" name="lang"
-                             <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
-                             <c:if test="${lang.equals('UA')}"> value="EN" </c:if>/>
-                         <input type="submit" style="color:#000000;border:1px solid blue" class="btn btn-light" value="${phrases['langChangeLanguage']}"/>
-                      </form>
-         <div align="right" >
-             <form action="../edit_profile.jsp" method="post">
-                <input type="submit" style="color:#000000;border:1px solid blue" class="btn btn-light" value="${phrases['langEMP']}"/>
-             </form>
-             <form action="../logout" method="get">
-                <input type="submit" class="btn btn-dark" value="${phrases['langLogOut']}"/>
-             </form>
-         </div>
+      <form align="right" action="../lang" method="get">
+         <input type="hidden" name="lang"
+             <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
+             <c:if test="${lang.equals('UA')}"> value="EN" </c:if>/>
+         <input type="submit" style="color:#000000;border:1px solid blue" class="btn btn-light" value="${phrases['langChangeLanguage']}"/>
+      </form>
+             <div align="right" >
+                 <form action="../edit_profile.jsp" method="post">
+                    <input type="submit" style="color:#000000;border:1px solid blue" class="btn btn-light" value="${phrases['langEMP']}"/>
+                 </form>
+                 <form action="../logout" method="get">
+                    <input type="submit" class="btn btn-dark" value="${phrases['langLogOut']}"/>
+                 </form>
+             </div>

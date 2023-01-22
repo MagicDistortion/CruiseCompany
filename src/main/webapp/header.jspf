@@ -22,6 +22,7 @@
           <td><a style="color:#000000 ;border:1px solid blue"class="btn btn-light" href="admin/users_list"><h5>${phrases['langGivingARole']}</h5></a></td>
           <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/add_ship.jsp"><h5>${phrases['langAddShip']}</h5></a></td>
           <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/add_cruise.jsp"><h5>${phrases['langAddCruise']}</h5></a></td>
+          <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/add_route.jsp"><h5>${phrases['langAddRoute']}</h5></a></td>
           <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/paid_tickets"><h5>${phrases['langPaidTickets']}</h5></a></td>
 
 
@@ -36,23 +37,15 @@
 </table>
   </div>
      <c:if  test="${user!=null}" >
-            <c:choose>
-                <c:when test="${user.getRolesId()==2}">
-                 <h5 align="right" style="color:#000000"><tf:user message="${phrases['langHi']}${user.getName()}"/></h5>
-                </c:when>
-                <c:otherwise>
+                <c:if test="${user.getRolesId()!=2}">
                 <a align="right" style="color:#000000" class="btn btn-info" href="passenger/my_profile" ><h5><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h5></a>
-                </c:otherwise>
-            </c:choose>
-              </c:if>
-        <c:if  test="${user.getRolesId()==null}" ><h5/><br></c:if>
-
+                </c:if>
+     </c:if>
 </nav>
           <form align="right" action="lang" method="get">
              <input type="hidden" name="lang"
                  <c:if test="${lang.equals('EN')}"> value="UA" </c:if>
-                 <c:if test="${lang.equals('UA')}"> value="EN" </c:if>
-             />
+                 <c:if test="${lang.equals('UA')}"> value="EN" </c:if>/>
              <input type="submit" style="color:#000000;border:1px solid blue" class="btn btn-light" value="${phrases['langChangeLanguage']}"/>
           </form>
         <c:choose>

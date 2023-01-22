@@ -55,10 +55,8 @@
                               <c:forEach items="${shipsList}" var="i">
                                  <option value="${i.getId()}">${i.getName()}</option>
                               </c:forEach></select></td>
-                     <td><div class="form-floating">
-                           <textarea name="description" class="form-control" style="width: 300px; height: 80px"></textarea></div></td>
-                     <td><div class="form-floating">
-                           <textarea name="route" class="form-control" style="width: 300px; height: 80px"></textarea></div></td>
+                     <td><textarea name="description" class="form-control" style="width: 300px; height: 80px"></textarea></td>
+                     <td><textarea name="route" class="form-control" style="width: 300px; height: 80px"></textarea></td>
                      <td><input name="cruiseName" class="btn btn-light" style="height: 80px" placeholder="${phrases['langEnterNameOfCruise']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
                      <td><input name="numberOfPorts" class="btn btn-light" style="height: 80px" placeholder="${phrases['langEnterNumberOfPorts']} " pattern="[0-9]\d*"  size="25" required/></td>
                      <td><input name="price" type="number" placeholder="$" style="height: 80px; width: 100px;" class="btn btn-light" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>

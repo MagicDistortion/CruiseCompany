@@ -22,8 +22,7 @@
 <h2 style="color:#fff" align="center">${phrases['langAddShip']}</h2>
 
              <form action ="../admin/add_ship" method ="post" enctype="multipart/form-data">
-             <div align="center" >
-                <table>
+                <table align="center">
                         <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterNameOfShip']} &nbsp</th>
                         <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterCapacity']} &nbsp</th>
                         <th><h6 style="color:#00ffff" align="center"/> ${phrases['langAddImage']} &nbsp</th>
@@ -35,10 +34,9 @@
                     </tr>
                 </table>
                           <br>
-                <h2 style="color:#B22222">
+                <h2 style="color:#B22222" align="center">
                     <c:if  test="${not empty error_message}" >${error_message}</c:if>
                 </h2>
-             </div>
              </form>
                 <footer style=" position: absolute; top: 90%; width: 100%; color:#fff">
                 <hr> <p align="center" >© 2023 Oceania Cruises</p>

@@ -18,14 +18,14 @@
        </style>
     <body>
     <%@ include file="../header_admins.jspf" %>
-<br><br><br><br><br><br>
-<h2 style="color:#fff" align="center">${phrases['langAddShip']}</h2>
+<br><br>
+<h2 style="color:#000000" align="center">${phrases['langAddShip']}</h2>
 
              <form action ="../admin/add_ship" method ="post" enctype="multipart/form-data">
                 <table align="center">
-                        <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterNameOfShip']} &nbsp</th>
-                        <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterCapacity']} &nbsp</th>
-                        <th><h6 style="color:#00ffff" align="center"/> ${phrases['langAddImage']} &nbsp</th>
+                        <th><h6 style="color:#000000" align="center"/> ${phrases['langEnterNameOfShip']} &nbsp</th>
+                        <th><h6 style="color:#000000" align="center"/> ${phrases['langEnterCapacity']} &nbsp</th>
+                        <th><h6 style="color:#000000" align="center"/> ${phrases['langAddImage']} &nbsp</th>
                     <tr>
                           <td><input name="name" class="btn btn-light" placeholder="${phrases['langEnterNameOfShip']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
                           <td><input name="capacity" type="number" class="btn btn-light" placeholder="${phrases['langEnterCapacity']} " style="width: 170px;" required/></td>

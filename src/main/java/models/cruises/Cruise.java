@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class Cruise implements Serializable {
     private int id;
     private int shipId;
+    private int routeId;
     private String shipName;
     private String cruiseName;
     private int numberOfPorts;
@@ -18,12 +19,12 @@ public class Cruise implements Serializable {
     private LocalDateTime endTime;
     private int duration;
     private String description;
-    private String route;
 
-    public Cruise(int shipId, String shipName, String cruiseName, int numberOfPorts
+    public Cruise(int shipId, int routeId, String shipName, String cruiseName, int numberOfPorts
             , double price, LocalDateTime startTime, LocalDateTime endTime) {
         this.shipId = shipId;
         this.shipName = shipName;
+        this.routeId = routeId;
         this.cruiseName = cruiseName;
         this.numberOfPorts = numberOfPorts;
         this.price = price;
@@ -34,10 +35,10 @@ public class Cruise implements Serializable {
     }
 
     public String getStartTimeString() {
-        return startTime.toLocalDate()+" "+startTime.toLocalTime();
+        return startTime.toLocalDate() + " " + startTime.toLocalTime();
     }
 
     public String getEndTimeString() {
-        return endTime.toLocalDate()+" "+endTime.toLocalTime();
+        return endTime.toLocalDate() + " " + endTime.toLocalTime();
     }
 }

@@ -1,7 +1,9 @@
 package commands;
 
 import dao.CruisesDAO;
+import dao.RouteDAO;
 import dao.ShipsDAO;
+import models.route.Route;
 import models.ships.Ship;
 import utils.RequestAssistant;
 
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 public class ShipsForAddCruiseCommand implements Command {
     private final ShipsDAO shipsDAO = new ShipsDAO();
     private final CruisesDAO cruisesDAO = new CruisesDAO();
+    private final RouteDAO routeDAO = new RouteDAO();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -32,7 +35,9 @@ public class ShipsForAddCruiseCommand implements Command {
         }
         List<Ship> shipList = shipsDAO.findAllShips().stream().filter(ship ->
                 cruisesDAO.checkingTheShipIsFreeOnDates(ship.getId(), startTime, endTime)).collect(Collectors.toList());
+        List<Route> routeList = routeDAO.findAllRoutes();
         request.setAttribute("shipsList", shipList);
+        request.setAttribute("routeList", routeList);
         request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
     }
 

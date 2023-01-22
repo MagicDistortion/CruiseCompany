@@ -20,6 +20,7 @@ public class CruisesDAO {
     /* метод отримання круїзу з різалтсету */
     public Cruise getCruise(ResultSet resultSet) throws SQLException {
         Cruise cruise = new Cruise(resultSet.getInt("ship_id")
+                ,resultSet.getInt("route_id")
                 , resultSet.getString("ship_name")
                 , resultSet.getString("cruise_name")
                 , resultSet.getInt("number_of_ports")
@@ -30,7 +31,6 @@ public class CruisesDAO {
                 , resultSet.getTime("end_time").toLocalTime())
         );
         cruise.setDescription(resultSet.getString("description"));
-        cruise.setRoute(resultSet.getString("route"));
         cruise.setDuration(resultSet.getInt("duration"));
         cruise.setId(resultSet.getInt("cruise_id"));
         cruise.setStatus(resultSet.getString("status"));
@@ -44,14 +44,14 @@ public class CruisesDAO {
                      = connection.prepareStatement(Constants.INSERT_CRUISE, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, cruise.getShipId());
             preparedStatement.setString(2, cruise.getShipName());
-            preparedStatement.setString(3, cruise.getCruiseName());
-            preparedStatement.setInt(4, cruise.getNumberOfPorts());
-            preparedStatement.setDouble(5, cruise.getPrice());
-            preparedStatement.setObject(6, cruise.getStartTime());
-            preparedStatement.setObject(7, cruise.getEndTime());
-            preparedStatement.setInt(8, cruise.getDuration());
-            preparedStatement.setString(9, cruise.getDescription());
-            preparedStatement.setString(10, cruise.getRoute());
+            preparedStatement.setInt(3, cruise.getRouteId());
+            preparedStatement.setString(4, cruise.getCruiseName());
+            preparedStatement.setInt(5, cruise.getNumberOfPorts());
+            preparedStatement.setDouble(6, cruise.getPrice());
+            preparedStatement.setObject(7, cruise.getStartTime());
+            preparedStatement.setObject(8, cruise.getEndTime());
+            preparedStatement.setInt(9, cruise.getDuration());
+            preparedStatement.setString(10, cruise.getDescription());
             preparedStatement.executeUpdate();
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();

@@ -44,10 +44,9 @@
                      <div align="center" >
                    <table>
                    <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langPickAShip']} </th>
+                   <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langPickRoute']}</th>
                    <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterDescription']}</th>
-                   <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterRoute']}</th>
                    <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterCruiseName']}</th>
-                   <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterNumberOfPorts']}</th>
                    <th ><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterPrice']}</th>
                    <tr>
                     <td> <select class="btn btn-dark dropdown-toggle" name="shipId" required style=" height: 80px">
@@ -55,10 +54,13 @@
                               <c:forEach items="${shipsList}" var="i">
                                  <option value="${i.getId()}">${i.getName()}</option>
                               </c:forEach></select></td>
-                     <td><textarea name="description" class="form-control" style="width: 300px; height: 80px"></textarea></td>
-                     <td><textarea name="route" class="form-control" style="width: 300px; height: 80px"></textarea></td>
+                    <td> <select class="btn btn-dark dropdown-toggle" name="routeId" required style=" height: 80px">
+                         <option disabled>${phrases['langPick']}</option>
+                              <c:forEach items="${routeList}" var="i">
+                                 <option value="${i.getId()}">${i.getName()}</option>
+                              </c:forEach></select></td>
+                     <td><textarea name="description" placeholder="langEnterDescription" class="form-control" style="width: 300px; height: 80px"></textarea></td>
                      <td><input name="cruiseName" class="btn btn-light" style="height: 80px" placeholder="${phrases['langEnterNameOfCruise']} " pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
-                     <td><input name="numberOfPorts" class="btn btn-light" style="height: 80px" placeholder="${phrases['langEnterNumberOfPorts']} " pattern="[0-9]\d*"  size="25" required/></td>
                      <td><input name="price" type="number" placeholder="$" style="height: 80px; width: 100px;" class="btn btn-light" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ]{2,32}"  required/></td>
                      <td><input type="submit" class="btn btn-info" style="height: 80px" value="${phrases['langAddCruise']}"/></td>
                             <input type="hidden" name="startTime" value="${startTime}"/>

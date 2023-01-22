@@ -17,11 +17,11 @@ public class CruiseValidator {
     private Map<String, String> phrases;
 
     /* метод запускає перевірку отриманих з Http запиту данних, та повертає лист з помилками якщо вони є */
-    public List<String> validate(HttpServletRequest request) {
+    public List<String> validate(HttpServletRequest request,int numberOfPorts) {
         phrases = (Map<String, String>) request.getAttribute("phrases");
         errors.clear();
         errors.add(validateCruiseName(request.getParameter("cruiseName")));
-        errors.add(validateNumberOfPorts(Integer.parseInt(request.getParameter("numberOfPorts"))));
+        errors.add(validateNumberOfPorts(numberOfPorts));
         errors.add(validatePrice(Double.parseDouble(request.getParameter("price"))));
         errors.add(validateStartTime(request.getParameter("startTime")));
         errors.add(validateEndTime(request.getParameter("endTime"), request.getParameter("startTime")));

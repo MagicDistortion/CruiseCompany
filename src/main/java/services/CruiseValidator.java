@@ -25,7 +25,6 @@ public class CruiseValidator {
         errors.add(validatePrice(Double.parseDouble(request.getParameter("price"))));
         errors.add(validateStartTime(request.getParameter("startTime")));
         errors.add(validateEndTime(request.getParameter("endTime"), request.getParameter("startTime")));
-        errors.add(checkNameExist(request.getParameter("cruiseName")));
         errors.add(checkingTheShipIsFree(Integer.parseInt(request.getParameter("shipId"))
                 , request.getParameter("startTime"), request.getParameter("endTime")));
         errors.removeIf(Objects::isNull);
@@ -68,10 +67,6 @@ public class CruiseValidator {
         }
         return endTime.isBefore(startTime) || endTime.isAfter(endTime.plusYears(1))
                 ? phrases.get("langEndTimeIsWrong") : null;
-    }
-
-    private String checkNameExist(String cruiseName) {
-        return cruisesDAO.cruiseNameExist(cruiseName) ? phrases.get("langAlreadyExist") : null;
     }
 
     private String checkingTheShipIsFree(int shipId, String start, String end) {

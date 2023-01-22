@@ -168,20 +168,6 @@ public class CruisesDAO {
         return count;
     }
 
-    /* метод перевірки наявності назви лайнера*/
-    public boolean cruiseNameExist(String name) {
-        try (Connection connection = dbManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Constants.CRUISE_NAME_EXIST)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.executeQuery();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            resultSet.next();
-            return resultSet.getBoolean(1);
-        } catch (SQLException e) {
-            logger.error("failed to check cruise name -> " + name, e);
-            throw new RuntimeException(e);
-        }
-    }
 
     /* метод перевірки чи вільний лайнер на наші дати*/
     public boolean checkingTheShipIsFreeOnDates(int shipId, String start, String end) {

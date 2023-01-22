@@ -7,7 +7,6 @@ import services.EditProfileValidator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,11 +19,10 @@ public class EditMyProfileCommand implements Command {
             response.sendRedirect("edit_profile.jsp");
             return;
         }
-        HttpSession session = request.getSession();
         EditProfileValidator validatorEditForm = new EditProfileValidator();
         List<String> errors = validatorEditForm.editValidate(request);
-        User user = usersDAO.findUserByID(((User) session.getAttribute("user")).getId());
-        session.setAttribute("user", user);
+        User user = usersDAO.findUserByID(((User) request.getSession().getAttribute("user")).getId());
+        request.getSession().setAttribute("user", user);
         request.setAttribute("errors", errors);
         request.getRequestDispatcher("edit_profile.jsp").forward(request, response);
     }

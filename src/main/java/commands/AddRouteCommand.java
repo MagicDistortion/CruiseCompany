@@ -1,20 +1,15 @@
 package commands;
 
 import dao.RouteDAO;
-import dao.ShipsDAO;
 import models.route.Route;
-import models.ships.Ship;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
 
 public class AddRouteCommand implements Command {
-    private final ShipsDAO shipsDAO = new ShipsDAO();
     private final RouteDAO routeDAO = new RouteDAO();
 
     @Override

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/* фільтр до сторінок для пасажирів*/
+/* фільтр до сторінок для персоналу*/
 public class StaffFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {

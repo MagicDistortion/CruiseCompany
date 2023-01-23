@@ -1,6 +1,7 @@
 package dao;
 
 import models.cruises.Cruise;
+import models.ships.Ship;
 import org.apache.log4j.Logger;
 import utils.Constants;
 
@@ -61,6 +62,21 @@ public class CruisesDAO {
             logger.error("failed to insert cruise", e);
             throw new RuntimeException(e);
         }
+    }
+
+    /* метод отримання списку всіх круїзів */
+    public List<Cruise> findAllCruises() {
+        List<Cruise> cruiseList = new ArrayList<>();
+        try (Connection connection = dbManager.getConnection();
+             ResultSet resultSet = connection.prepareStatement(Constants.FIND_ALL_CRUISES).executeQuery()) {
+            while (resultSet.next()) {
+                cruiseList.add(getCruise(resultSet));
+            }
+        } catch (SQLException e) {
+            logger.error("failed to get cruises list", e);
+            throw new RuntimeException(e);
+        }
+        return cruiseList;
     }
 
     /* метод пошуку круїзу по id */
@@ -185,6 +201,17 @@ public class CruisesDAO {
         return count;
     }
 
+    /* метод оновлення статусу круїзу*/
+    public void updateStatus(Connection connection, String status, int cruiseId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_CRUISE_STATUS)) {
+            preparedStatement.setString(1, status);
+            preparedStatement.setInt(2, cruiseId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("failed to update status for cruise by id ->" + cruiseId, e);
+            throw new RuntimeException(e);
+        }
+    }
 
     /* метод перевірки чи вільний лайнер на наші дати*/
     public boolean checkingTheShipIsFreeOnDates(int shipId, String start, String end) {

@@ -12,6 +12,7 @@ public class Constants {
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_ROUTE = "SELECT * FROM route ";
+    public static final String FIND_ALL_CRUISES = "SELECT * FROM cruise where status!='completed'";
     public static final String FROM_CRUISES = "SELECT * FROM cruise where status='didn`t start'";
     public static final String FROM_CRUISES_BY_DATE = "SELECT * FROM cruise where" +
             " date_format(start_time, '%Y-%m-%d')=? AND status='didn`t start'";
@@ -38,6 +39,7 @@ public class Constants {
     public static final String UPDATE_NUMBER_OF_PASSENGERS = "UPDATE tickets SET number_of_passengers=? WHERE ticket_id=? ";
     public static final String UPDATE_TOTAL_PRICE = "Update tickets SET total_price=? WHERE ticket_id = ?";
     public static final String UPDATE_TICKET_STATUS = "Update tickets SET status=? WHERE ticket_id = ?";
+    public static final String UPDATE_CRUISE_STATUS = "Update cruise SET status=? WHERE cruise_id = ?";
     public static final String GET_CRUISE_PRICE = "SELECT * FROM cruise left join tickets on cruise.cruise_id=tickets.cruise_id" +
             " WHERE ticket_id =?";
     public static final String EXIST_TEL = "SELECT count(*) FROM users WHERE tel = ? ";

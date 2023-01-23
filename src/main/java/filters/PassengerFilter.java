@@ -24,5 +24,4 @@ public class PassengerFilter implements Filter {
             httpServletResponse.sendRedirect("../index.jsp");
         } else filterChain.doFilter(servletRequest, servletResponse);
     }
-
 }

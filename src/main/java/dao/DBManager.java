@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.log4j.Logger;
 import utils.ConfigurationManager;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;

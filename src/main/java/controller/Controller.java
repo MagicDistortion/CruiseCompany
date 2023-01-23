@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/* Клас контроллер */
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10,      // 10MB
         maxRequestSize = 1024 * 1024 * 50)//50MB
@@ -19,6 +20,7 @@ public class Controller extends HttpServlet {
     private final Map<String, Command> commands = new HashMap<>();
     private final static Logger logger = Logger.getLogger(Controller.class);
 
+    /* метод ініціалізації мапи з командами */
     @Override
     public void init() {
         commands.put("login", new LogInCommand());
@@ -47,16 +49,19 @@ public class Controller extends HttpServlet {
         commands.put("staff/my_cruises", new MyCruisesCommand());
     }
 
+    /* метод get викликає метод action */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         action(req, resp);
     }
 
+    /* метод post викликає метод action */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         action(req, resp);
     }
 
+    /* метод викликає execute у команди котра спроможна обробляти поточний uri ,або перенаправляє на сторінку 404 */
     public void action(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String uri = req.getRequestURI().substring(req.getContextPath().length() + 1);
         try {

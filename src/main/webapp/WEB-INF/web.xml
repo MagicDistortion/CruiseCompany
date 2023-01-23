@@ -29,10 +29,10 @@
         <location>/error404.jsp</location>
     </error-page>
 
-    <!--      <error-page>-->
-    <!--        <error-code>500</error-code>-->
-    <!--        <location>/error500.jsp</location>-->
-    <!--      </error-page>-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error500.jsp</location>
+    </error-page>
 
     <filter>
         <filter-name>encoding=filter</filter-name>
@@ -77,6 +77,7 @@
         <filter-name>staff=filter</filter-name>
         <url-pattern>/staff/*</url-pattern>
     </filter-mapping>
+
     <filter>
         <filter-name>passenger=filter</filter-name>
         <filter-class>filters.PassengerFilter</filter-class>
@@ -89,12 +90,8 @@
 
     <jsp-config>
         <taglib>
-            <taglib-uri>
-                mytaglib
-            </taglib-uri>
-            <taglib-location>
-                /WEB-INF/tags/mytaglib.tld
-            </taglib-location>
+            <taglib-uri>mytaglib</taglib-uri>
+            <taglib-location>/WEB-INF/tags/mytaglib.tld</taglib-location>
         </taglib>
     </jsp-config>
 </web-app>

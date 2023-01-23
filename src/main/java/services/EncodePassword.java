@@ -6,10 +6,11 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/* Класс шифрування паролю користувача */
 public class EncodePassword {
 
     private static final Logger LOGGER = Logger.getLogger(EncodePassword.class);
-
+    /* метод шифрування паролю */
     public String getHashPassword(String input) {
         byte[] byteDigest = new byte[0];
         try {

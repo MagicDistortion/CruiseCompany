@@ -35,14 +35,13 @@ public class UsersDAO {
 
     /* метод додавання користувача  */
     public void insertUser(User user) {
-        EncodePassword encodePassword = new EncodePassword();
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement
                      = connection.prepareStatement(Constants.INSERT_USERS, PreparedStatement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getSurname());
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getLogin());
-            preparedStatement.setString(4, encodePassword.getHashPassword(user.getPassword()));
+            preparedStatement.setString(4, new EncodePassword().getHashPassword(user.getPassword()));
             preparedStatement.setString(5, user.getTel());
             preparedStatement.setObject(6, user.getDateOfBirth());
             preparedStatement.executeUpdate();
@@ -110,10 +109,9 @@ public class UsersDAO {
 
     /* метод оновлення Паролю користувача */
     public void updateUserPassword(String password, int id) {
-        EncodePassword encodePassword = new EncodePassword();
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_PASSWORD)) {
-            preparedStatement.setString(1, encodePassword.getHashPassword(password));
+            preparedStatement.setString(1, new EncodePassword().getHashPassword(password));
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

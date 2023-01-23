@@ -16,7 +16,7 @@ public class LogInCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getMethod().equalsIgnoreCase("get")
-                ||request.getParameter("login") == null
+                || request.getParameter("login") == null
                 || request.getParameter("password") == null) {
             response.sendRedirect("index.jsp");
             return;
@@ -24,7 +24,6 @@ public class LogInCommand implements Command {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         User user = usersDAO.findUserByLogin(login);
-        EncodePassword encodePassword = new EncodePassword();
         RequestAssistant requestAssistant = new RequestAssistant();
         if (user == null) {
             request.setAttribute("error_message"
@@ -32,7 +31,7 @@ public class LogInCommand implements Command {
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;
         }
-        if (!user.getPassword().equals(encodePassword.getHashPassword(password))) {
+        if (!user.getPassword().equals(new EncodePassword().getHashPassword(password))) {
             requestAssistant.setError(request, "langWrongPassword");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;

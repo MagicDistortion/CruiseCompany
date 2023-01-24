@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -18,6 +19,7 @@ import static org.mockito.Mockito.never;
 
 class AddCruiseCommandTest extends BaseTest {
     private final static String path = "add_cruise.jsp";
+    private final static String uri ="admin/add_cruise";
 
     @Test
     void execute() throws ServletException, IOException {
@@ -45,5 +47,10 @@ class AddCruiseCommandTest extends BaseTest {
         verify(response, times(1)).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, never()).forward(request, response);
+    }
+
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new AddCruiseCommand().canHandle(uri,"get"));
     }
 }

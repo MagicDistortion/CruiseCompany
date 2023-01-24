@@ -102,5 +102,5 @@ CREATE TABLE "tickets" (
   CONSTRAINT "fk_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("users_id") ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO "tickets" VALUES (1,1,3,1,200,'rejected'),(2,1,3,1,200,'confirmed'),(3,1,3,2,400,'rejected'),(4,1,3,1,200,'confirmed'),(5,1,3,196,39600,'paid'),(12,1,3,1,200,'confirmed'),(13,1,3,3,600,'rejected'),(14,3,12,1,300,'confirmed'),(15,1,12,1,200,'rejected'),(16,9,12,1,200,'rejected');
+INSERT INTO "tickets" VALUES (1,1,3,1,200,'not paid'),(2,1,3,1,200,'confirmed'),(3,1,3,2,400,'rejected'),(4,1,3,1,200,'confirmed'),(5,1,3,196,39600,'paid'),(12,1,3,1,200,'confirmed'),(13,1,3,3,600,'rejected'),(14,3,12,1,300,'confirmed'),(15,1,12,1,200,'rejected'),(16,9,12,1,200,'rejected');
 

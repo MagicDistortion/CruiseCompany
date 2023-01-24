@@ -20,7 +20,7 @@ public class PassengerFilter implements Filter {
         int role = 0;
         if (httpServlet.getSession().getAttribute("user") != null)
             role = ((User) httpServlet.getSession().getAttribute("user")).getRolesId();
-        if (role == 1 || role == 3) {
+        if (role == 2 || role == 3) {
             httpServletResponse.sendRedirect("../index.jsp");
         } else filterChain.doFilter(servletRequest, servletResponse);
     }

@@ -60,7 +60,7 @@ CREATE TABLE "cruise" (
   "cruise_name" varchar(100) NOT NULL,
   "number_of_ports" int NOT NULL,
   "price" double NOT NULL,
-  "status" varchar(45) NOT NULL DEFAULT 'didn"t start',
+  "status" varchar(45) NOT NULL DEFAULT 'didn`t start',
   "start_time" datetime NOT NULL,
   "end_time" datetime NOT NULL,
   "duration" int NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE "cruise" (
   CONSTRAINT "fk_ship_name" FOREIGN KEY ("ship_name") REFERENCES "ships" ("name") ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO "cruise" VALUES (1,1,'Royal',1,'Cruise',7,200,'started','2023-01-23 18:26:00','2023-01-27 18:26:00',6,'description'),(2,2,'Voyage',2,'started cruise',8,300,'didn"t start','2023-01-24 19:50:00','2023-01-30 18:49:00',8,'description'),(3,1,'Royal',1,'Royal Cruise',7,300,'didn"t start','2023-01-30 23:40:00','2023-02-04 23:40:00',5,'Description'),(9,5,'Odyssey',1,'Loving Cruise',7,200,'started','2023-01-24 00:00:00','2023-01-31 00:38:00',7,'Description');
+INSERT INTO "cruise" VALUES (1,1,'Royal',1,'Cruise',7,200,'started','2023-01-23 18:26:00','2023-01-27 18:26:00',6,'description'),(2,2,'Voyage',2,'started cruise',8,300,'didn`t start','2023-01-24 19:50:00','2023-01-30 18:49:00',8,'description'),(3,1,'Royal',1,'Royal Cruise',7,300,'didn`t start','2023-01-30 23:40:00','2023-02-04 23:40:00',5,'Description'),(9,5,'Odyssey',1,'Loving Cruise',7,200,'started','2023-01-24 00:00:00','2023-01-31 00:38:00',7,'Description');
 
 
 

@@ -4,36 +4,32 @@ import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 
-class AddShipCommandTest extends BaseTest {
-    private final static String path = "add_ship.jsp";
+class CruisesListCommandTest extends BaseTest {
+    private final static String path = "cruises_list.jsp";
+
     @Test
     void execute() throws ServletException, IOException {
-        final AddShipCommand command = new AddShipCommand();
+        final CruisesListCommand command = new CruisesListCommand();
 
-        final ServletContext servletContext =mock((ServletContext.class));
         final HttpServletRequest request = mock(HttpServletRequest.class);
         final HttpServletResponse response = mock(HttpServletResponse.class);
         final RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
-        when(request.getMethod()).thenReturn("post");
-        when(request.getParameter("name")).thenReturn("TestShip");
-        when(request.getParameter("capacity")).thenReturn("300");
-        when(request.getServletContext()).thenReturn(servletContext);
+        when(request.getRequestDispatcher(path)).thenReturn(dispatcher);
+        when(request.getParameter("sort")).thenReturn("name");
 
         command.execute(request, response);
 
-        verify(response, times(1)).sendRedirect(path);
+        verify(response, never()).sendRedirect(path);
         verify(request, never()).getSession();
-        verify(dispatcher, never()).forward(request, response);
+        verify(dispatcher, times(1)).forward(request, response);
     }
 }

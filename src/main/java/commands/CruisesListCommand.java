@@ -15,10 +15,9 @@ public class CruisesListCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestAssistant requestAssistant = new RequestAssistant();
         List<Cruise> cruiseList = paginator.paginationCruisesList(request);
         request.setAttribute("cruisesList", cruiseList);
-        if (cruiseList.isEmpty()) requestAssistant.setError(request, "langEmpty");
+        if (cruiseList.isEmpty()) new RequestAssistant().setError(request, "langEmpty");
         request.getRequestDispatcher("cruises_list.jsp").forward(request, response);
     }
 

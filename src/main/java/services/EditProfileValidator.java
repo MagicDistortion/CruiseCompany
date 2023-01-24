@@ -25,14 +25,13 @@ public class EditProfileValidator {
         user = new User(req.getParameter("surname"), req.getParameter("name"), req.getParameter("login")
                 , req.getParameter("password"), req.getParameter("tel"), LocalDate.parse(req.getParameter("date_of_birth")));
         user.setId(oldUser.getId());
-
         if (!user.getSurname().equals(oldUser.getSurname()) && !user.getSurname().isEmpty())
             errors.add(validateSurname(user.getSurname()));
         if (!user.getName().equals(oldUser.getName()) && !user.getName().isEmpty())
             errors.add(validateName(user.getName()));
         if (!user.getLogin().equals(oldUser.getLogin()) && !user.getLogin().isEmpty())
             errors.add(validateLogin(user.getLogin()));
-        if (!String.valueOf(user.getPassword().hashCode()).equals(oldUser.getPassword()) && !user.getPassword().isEmpty())
+        if (!String.valueOf(new EncodePassword().getHashPassword(user.getPassword())).equals(oldUser.getPassword()) && !user.getPassword().isEmpty())
             errors.add(validatePassword(user.getPassword(), req.getParameter("repassword")));
         if (!user.getTel().equals(oldUser.getTel()) && !user.getTel().isEmpty())
             errors.add(validatePhoneNumber(user.getTel()));

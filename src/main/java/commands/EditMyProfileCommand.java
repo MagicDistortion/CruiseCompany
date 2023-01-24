@@ -19,8 +19,7 @@ public class EditMyProfileCommand implements Command {
             response.sendRedirect("edit_profile.jsp");
             return;
         }
-        EditProfileValidator validatorEditForm = new EditProfileValidator();
-        List<String> errors = validatorEditForm.editValidate(request);
+        List<String> errors = new EditProfileValidator().editValidate(request);
         User user = usersDAO.findUserByID(((User) request.getSession().getAttribute("user")).getId());
         request.getSession().setAttribute("user", user);
         request.setAttribute("errors", errors);

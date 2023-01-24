@@ -77,9 +77,6 @@ CREATE TABLE "cruise" (
 
 INSERT INTO "cruise" VALUES (1,1,'Royal',1,'Cruise',7,200,'started','2023-01-23 18:26:00','2023-01-27 18:26:00',6,'description'),(2,2,'Voyage',2,'started cruise',8,300,'didn`t start','2023-01-24 19:50:00','2023-01-30 18:49:00',8,'description'),(3,1,'Royal',1,'Royal Cruise',7,300,'didn`t start','2023-01-30 23:40:00','2023-02-04 23:40:00',5,'Description'),(9,5,'Odyssey',1,'Loving Cruise',7,200,'started','2023-01-24 00:00:00','2023-01-31 00:38:00',7,'Description');
 
-
-
-
 CREATE TABLE "staff" (
   "id_of_ship" int NOT NULL,
   "staff_id" int NOT NULL,
@@ -105,5 +102,5 @@ CREATE TABLE "tickets" (
   CONSTRAINT "fk_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("users_id") ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO "tickets" VALUES (1,1,3,1,200,'rejected'),(2,1,3,1,200,'confirmed'),(3,1,3,2,400,'rejected'),(4,1,3,1,200,'confirmed'),(5,1,3,196,39600,'rejected'),(12,1,3,1,200,'confirmed'),(13,1,3,3,600,'rejected'),(14,3,12,1,300,'confirmed'),(15,1,12,1,200,'rejected'),(16,9,12,1,200,'rejected');
+INSERT INTO "tickets" VALUES (1,1,3,1,200,'rejected'),(2,1,3,1,200,'confirmed'),(3,1,3,2,400,'rejected'),(4,1,3,1,200,'confirmed'),(5,1,3,196,39600,'paid'),(12,1,3,1,200,'confirmed'),(13,1,3,3,600,'rejected'),(14,3,12,1,300,'confirmed'),(15,1,12,1,200,'rejected'),(16,9,12,1,200,'rejected');
 

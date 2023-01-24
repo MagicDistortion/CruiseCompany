@@ -32,7 +32,7 @@
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langDuration']} &nbsp</th>
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langTotalPrice']} &nbsp</th>
                 <th style="color:#00ffff"><h4 align="center"/> ${phrases['langStatus']} &nbsp</th>
-                <th/>
+                <th/><th/>
                      <c:forEach items="${my_tickets_list}" var="i">
                          <tr align="center">
                             <td style="color:#fff" ><h3/>${i.getCruiseName()} &nbsp</td>
@@ -40,21 +40,24 @@
                             <td style="color:#fff"><h3/>${i.getDuration()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getTotalPrice()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getStatus()} &nbsp</td>
-                            <c:if test="${i.getStatus().equals('not paid')}">
+                        <c:if test="${i.getStatus().equals('not paid')}">
                                 <form action ="../passenger/pay_for_ticket" method ="post">
                                 <input type="hidden" name="ticket_id" value="${i.getId()}"/>
                                 <td> <input
                                   <c:if test="${user.getMoney()<i.getTotalPrice()}">disabled type="submit" class="btn btn-secondary"</c:if>
                                  type="submit" class="btn btn-info" value="${phrases['langPay']}"/></td>
                                 </form>
-                        <form action ="../passenger/refuse_ticket" method ="post">
-                        <input type="hidden" name="ticket_id" value="${i.getId()}"/>
-                        <td> <input type="submit" class="btn btn-danger" value="${phrases['langReject']}"/></td>
-                        </form>
-                            </c:if>
-                                    <c:if test="${!i.getStatus().equals('not paid')}">
-                                    <td/>
-                                    </c:if>
+                                    <form action ="../passenger/refuse_ticket" method ="post">
+                                    <input type="hidden" name="ticket_id" value="${i.getId()}"/>
+                                    <td> <input type="submit" class="btn btn-danger" value="${phrases['langReject']}"/></td>
+                                    </form>
+                        </c:if>
+                                <c:if test="${i.getStatus().equals('confirmed')}">
+                                    <form action ="../passenger/download_ticket" method ="get">
+                                    <input type="hidden" name="ticket_id" value="${i.getId()}"/>
+                                    <td><input type="submit" class="btn btn-warning" value="${phrases['langDownload']}"/></td>
+                                    </form>
+                                </c:if>
                          </tr>
                      </c:forEach>
            </table><br>
@@ -70,6 +73,5 @@
                    </form>
                 <hr> <p align="center" >© 2023 Oceania Cruises</p>
                 </footer>
-
     </body>
 </html>

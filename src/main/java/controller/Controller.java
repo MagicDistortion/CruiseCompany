@@ -47,6 +47,7 @@ public class Controller extends HttpServlet {
         commands.put("admin/add_route", new AddRouteCommand());
         commands.put("passenger/refuse_ticket", new RefuseTicketCommand());
         commands.put("staff/my_cruises", new MyCruisesCommand());
+        commands.put("passenger/download_ticket", new DownloadTicketCommand());
     }
 
     /* метод get викликає метод action */

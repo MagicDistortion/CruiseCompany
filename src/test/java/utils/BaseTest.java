@@ -1,6 +1,7 @@
+package utils;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import utils.ConfigurationManager;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -15,6 +16,8 @@ import static org.mockito.Mockito.times;
 
 class UsersListCommandTest extends BaseTest {
     private final static String path = "/admin/giving_a_role.jsp";
+    private final static String uri = "admin/users_list";
+
 
     @Test
     void execute() throws ServletException, IOException {
@@ -32,5 +35,10 @@ class UsersListCommandTest extends BaseTest {
         verify(response, never()).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, times(1)).forward(request, response);
+    }
+
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new UsersListCommand().canHandle(uri, "get"));
     }
 }

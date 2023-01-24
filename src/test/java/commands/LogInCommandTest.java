@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -18,6 +19,8 @@ import static org.mockito.Mockito.never;
 
 class LogInCommandTest extends BaseTest {
     private final static String path = "index.jsp";
+    private final static String uri = "login";
+
 
     @Test
     void execute() throws IOException, ServletException {
@@ -60,5 +63,9 @@ class LogInCommandTest extends BaseTest {
         verify(response, never()).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, times(1)).forward(request, response);
+    }
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new LogInCommand().canHandle(uri, "get"));
     }
 }

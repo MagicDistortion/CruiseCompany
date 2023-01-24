@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -16,6 +17,7 @@ import static org.mockito.Mockito.*;
 class LanguageCommandTest extends BaseTest {
 
     private final static String path = "index.jsp";
+    private final static String uri = "lang";
 
     @Test
     void execute() throws ServletException, IOException {
@@ -35,5 +37,9 @@ class LanguageCommandTest extends BaseTest {
         verify(response, times(1)).sendRedirect(path);
         verify(request, times(1)).getSession();
         verify(dispatcher, never()).forward(request, response);
+    }
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new LanguageCommand().canHandle(uri, "get"));
     }
 }

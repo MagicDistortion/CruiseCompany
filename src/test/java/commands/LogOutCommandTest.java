@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -14,6 +15,8 @@ import static org.mockito.Mockito.times;
 
 class LogOutCommandTest extends BaseTest {
     private final static String path = "index.jsp";
+    private final static String uri = "logout";
+
 
     @Test
     void execute() throws IOException {
@@ -28,5 +31,9 @@ class LogOutCommandTest extends BaseTest {
 
         verify(response, times(1)).sendRedirect(path);
         verify(request, times(1)).getSession();
+    }
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new LogOutCommand().canHandle(uri, "get"));
     }
 }

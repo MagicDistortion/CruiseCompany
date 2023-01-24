@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -14,6 +15,7 @@ import static org.mockito.Mockito.never;
 
 class AddRouteCommandTest extends BaseTest {
     private final static String path = "add_route.jsp";
+    private final static String uri ="admin/add_route";
 
     @Test
     void execute() throws ServletException, IOException {
@@ -32,5 +34,9 @@ class AddRouteCommandTest extends BaseTest {
         verify(response, times(1)).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, never()).forward(request, response);
+    }
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new AddRouteCommand().canHandle(uri,"get"));
     }
 }

@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -14,6 +15,7 @@ import static org.mockito.Mockito.times;
 
 class ShipsListCommandTest extends BaseTest {
     private final static String path = "ships_list.jsp";
+    private final static String uri = "ships_list";
 
     @Test
     void execute() throws ServletException, IOException {
@@ -30,5 +32,9 @@ class ShipsListCommandTest extends BaseTest {
         verify(response, never()).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, times(1)).forward(request, response);
+    }
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new ShipsListCommand().canHandle(uri, "get"));
     }
 }

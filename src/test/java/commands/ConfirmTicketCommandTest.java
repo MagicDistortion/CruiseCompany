@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -15,6 +16,8 @@ import static org.mockito.Mockito.never;
 
 class ConfirmTicketCommandTest extends BaseTest {
     private final static String path = "paid_tickets";
+    private final static String uri ="admin/confirm_ticket";
+
 
     @Test
     void execute() throws ServletException, IOException {
@@ -32,5 +35,9 @@ class ConfirmTicketCommandTest extends BaseTest {
         verify(response, times(1)).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, never()).forward(request, response);
+    }
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new ConfirmTicketCommand().canHandle(uri,"get"));
     }
 }

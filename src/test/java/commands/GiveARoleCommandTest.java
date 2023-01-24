@@ -1,5 +1,6 @@
 package commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
@@ -15,6 +16,8 @@ import static org.mockito.Mockito.never;
 
 class GiveARoleCommandTest extends BaseTest {
     private final static String path = "users_list";
+    private final static String uri = "admin/give_a_role";
+
 
     @Test
     void execute() throws ServletException, IOException {
@@ -33,5 +36,10 @@ class GiveARoleCommandTest extends BaseTest {
         verify(response, times(1)).sendRedirect(path);
         verify(request, never()).getSession();
         verify(dispatcher, never()).forward(request, response);
+    }
+
+    @Test
+    void canHandle() {
+        Assertions.assertTrue(new GiveARoleCommand().canHandle(uri, "does not matter"));
     }
 }

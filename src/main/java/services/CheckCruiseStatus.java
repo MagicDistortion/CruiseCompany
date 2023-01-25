@@ -18,7 +18,7 @@ public class CheckCruiseStatus {
         if (instance == null) instance = new CheckCruiseStatus();
         return instance;
     }
-    /* метод раз на хвилину перевіряє статуси не завершених круїзів  */
+    /* метод раз на хвилину перевіряє статуси незавершених круїзів  */
     public void checkStatus() {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override

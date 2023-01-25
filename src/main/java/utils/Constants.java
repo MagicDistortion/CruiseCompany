@@ -3,7 +3,7 @@ package utils;
 public class Constants {
     public static final String INSERT_USERS
             = "INSERT INTO users (surname,name,login,password,tel,date_of_birth) VALUES (?,?,?,?,?,?)";
-    public static final String INSERT_STAFF = "INSERT INTO staff (staff_id) VALUES (?)";
+    public static final String INSERT_STAFF = "INSERT INTO staff (staff_id,id_of_ship) VALUES (?,?)";
     public static final String INSERT_TICKET
             = "INSERT INTO tickets (cruise_id,user_id,number_of_passengers,total_price) VALUES (?,?,?,?)";
     public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,image) VALUES (?,?,?)";
@@ -11,6 +11,8 @@ public class Constants {
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,route_id,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration,description) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
+    public static final String FROM_USERS_FIND_STAFF= "SELECT * FROM CruiseDB.users left join staff" +
+            " on users_id=staff_id where roles_id =3 and staff_id is null";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_ROUTE = "SELECT * FROM route ";
     public static final String FIND_ALL_CRUISES = "SELECT * FROM cruise where status!='completed'";

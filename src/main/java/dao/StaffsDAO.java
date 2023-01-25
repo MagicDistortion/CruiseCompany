@@ -1,8 +1,6 @@
 package dao;
 
-import models.users.User;
 import org.apache.log4j.Logger;
-import services.EncodePassword;
 import utils.Constants;
 
 import java.sql.Connection;
@@ -15,12 +13,14 @@ public class StaffsDAO {
     private final DBManager dbManager = DBManager.getInstance();
 
     /* метод додавання персоналу  */
-    public void insertStaff(Connection connection, int staffId) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.INSERT_STAFF)) {
+    public void insertStaff(int staffId, int shipId) {
+        try (Connection connection = dbManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.INSERT_STAFF)) {
             preparedStatement.setInt(1, staffId);
+            preparedStatement.setInt(2, shipId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("failed to insert staff by id->" + staffId, e);
+            logger.error("failed to insert staff->", e);
             throw new RuntimeException(e);
         }
     }

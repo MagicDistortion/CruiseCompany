@@ -1,32 +1,32 @@
 package commands;
 
-import dao.UsersDAO;
+import dao.StaffsDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class GiveARoleCommand implements Command {
-    private final UsersDAO usersDAO = new UsersDAO();
+public class AssignShipCommand implements Command {
+    private final StaffsDAO staffsDAO = new StaffsDAO();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getMethod().equalsIgnoreCase("get")
-                || request.getParameter("role") == null
+                || request.getParameter("shipId") == null
                 || request.getParameter("userId") == null) {
             response.sendRedirect("users_list");
             return;
         }
-        int role = Integer.parseInt(request.getParameter("role"));
         int userId = Integer.parseInt(request.getParameter("userId"));
-        if (role >= 1 && role <= 3 && userId != 0) usersDAO.updateUserRole(role, userId);
+        int shipId = Integer.parseInt(request.getParameter("shipId"));
+        staffsDAO.insertStaff(userId, shipId);
         response.sendRedirect("users_list");
     }
 
     @Override
     public boolean canHandle(String uri, String method) {
-        return uri.equalsIgnoreCase("admin/give_a_role");
+        return uri.equalsIgnoreCase("admin/assign_a_ship");
     }
 }
 

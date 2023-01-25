@@ -20,8 +20,10 @@
     <%@ include file="../header_admins.jspf" %>
 <br><br>
     <div align="center" >
-        <h2 style="color:#fff">${phrases['langGivingARole']}</h2>
-        <h2 style="color:#B22222">
+        <table class="table table-hover ">
+        <tr>
+        <td>
+        <h2 style="color:#fff" align="center">${phrases['langGivingARole']}</h2>
          <table class="table table-hover ">
             <th style="color:#00ffff"><h4/> ${phrases['langSurname']} &nbsp</th>
             <th style="color:#00ffff"><h4/> ${phrases['langName']} &nbsp </th>
@@ -43,11 +45,41 @@
                          </td>
                       </tr>
                   </c:forEach>
-        </table>
-                     <h2 style="color:#B22222">
-                          <c:if  test="${not empty error_message}" >${error_message}</c:if>
-                     </h2>
-        </h2>
+        </table><br>
+                             <h2 style="color:#B22222" align="center">
+                                  <c:if  test="${not empty users_List_error}" >${users_List_error}</c:if>
+                             </h2>
+        </td>
+        <td>
+        <h2 style="color:#fff" align="center">${phrases['langAssignShip']}</h2>
+         <table class="table table-hover ">
+                    <th style="color:#00ffff"><h4/> ${phrases['langSurname']} &nbsp</th>
+                    <th style="color:#00ffff"><h4/> ${phrases['langName']} &nbsp </th>
+                    <th style="color:#00ffff"><h4/> ${phrases['langPickAShip']} &nbsp</th>
+                    <th/>
+                          <c:forEach items="${staffList}" var="i">
+                              <tr>
+                                 <td style="color:#fff"><h4/>${i.getSurname()} &nbsp</td>
+                                 <td style="color:#fff"><h4/>${i.getName()} &nbsp</td>
+                                 <td ><h4/>
+                                 <form action ="../admin/assign_a_ship" method ="post">
+                                    <input type="hidden" name="userId" value="${i.getId()}"/>
+                                     <select class="btn btn-light dropdown-toggle" name="shipId">
+                                           <c:forEach items="${shipsList}" var="i">
+                                              <option value="${i.getId()}">${i.getName()}</option>
+                                           </c:forEach></select></td>
+                                     </select>
+                                   <td><input type="submit" class="btn btn-info" value="${phrases['langAssignShip']}"/></td>
+                                 </form>
+                                 </td>
+                              </tr>
+                          </c:forEach>
+         </table></br>
+                      <h2 style="color:#B22222" align="center">
+                           <c:if  test="${not empty staff_List_error}" >${staff_List_error}</c:if>
+                      </h2>
+        </td></tr>
+       </table>
     </div>
                 <footer style=" position: absolute; top: 90%; width: 100%; color:#fff">
                 <hr> <p align="center" >© 2023 Oceania Cruises</p>

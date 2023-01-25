@@ -26,10 +26,12 @@ public class UsersListCommand implements Command {
         request.setAttribute("staffList", staffList);
         request.setAttribute("shipsList", shipsList);
 
-        if (allUsers.size() == 0)
+        if (allUsers.size() == 0) {
             request.setAttribute("users_List_error", (requestAssistant.getPhrase(request, "langEmpty")));
-        if (staffList.size() == 0)
+        }
+        if (staffList.size() == 0) {
             request.setAttribute("staff_List_error", (requestAssistant.getPhrase(request, "langEmpty")));
+        }
 
         request.getRequestDispatcher("/admin/giving_a_role.jsp").forward(request, response);
     }

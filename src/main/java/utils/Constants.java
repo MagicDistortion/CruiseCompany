@@ -11,7 +11,7 @@ public class Constants {
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,route_id,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration,description) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
-    public static final String FROM_USERS_FIND_STAFF= "SELECT * FROM CruiseDB.users left join staff" +
+    public static final String FROM_USERS_FIND_STAFF= "SELECT * FROM users left join staff" +
             " on users_id=staff_id where roles_id =3 and staff_id is null";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_ROUTE = "SELECT * FROM route ";

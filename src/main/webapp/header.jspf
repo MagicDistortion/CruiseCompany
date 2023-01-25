@@ -20,7 +20,7 @@
          </c:if>
 
          <c:if  test="${user.getRolesId()==2}" >
-          <td><a style="color:#000000 ;border:1px solid blue"class="btn btn-light" href="admin/users_list"><h6>${phrases['langGivingARole']}</h6></a></td>
+          <td><a style="color:#000000 ;border:1px solid blue"class="btn btn-light" href="admin/users_list"><h6>${phrases['langUsers']}</h6></a></td>
           <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/add_ship.jsp"><h6>${phrases['langAddShip']}</h6></a></td>
           <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/add_cruise.jsp"><h6>${phrases['langAddCruise']}</h6></a></td>
           <td><a style="color:#000000 ;border:1px solid blue" class="btn btn-light" href="admin/add_route.jsp"><h6>${phrases['langAddRoute']}</h6></a></td>

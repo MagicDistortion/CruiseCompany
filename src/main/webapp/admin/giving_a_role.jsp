@@ -69,7 +69,7 @@
                                               <option value="${i.getId()}">${i.getName()}</option>
                                            </c:forEach></select></td>
                                      </select>
-                                   <td><input type="submit" class="btn btn-info" value="${phrases['langAssignShip']}"/></td>
+                                   <td><input type="submit" class="btn btn-info" value="${phrases['langPick']}"/></td>
                                  </form>
                                  </td>
                               </tr>

@@ -48,7 +48,6 @@
                <th style="color:#00ffff"><h4/> ${phrases['langShipName']}</th>
                <th style="color:#00ffff"><h4/> ${phrases['langStartTime']}</th>
                <th style="color:#00ffff"><h4/> ${phrases['langEndTime']}</th>
-               <th style="color:#00ffff"><h4/> ${phrases['langNumberOfPorts']}</th>
                <th style="color:#00ffff"><h4/> ${phrases['langDuration']}</th>
                <th style="color:#00ffff"><h4/> ${phrases['langPrice']}</th>
                <th style="color:#00ffff"><h4/> &nbsp</th>
@@ -58,7 +57,6 @@
                             <td style="color:#fff"><h3/>${i.getShipName()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getStartTimeString()} &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getEndTimeString()} &nbsp</td>
-                            <td style="color:#fff" align="center"><h3/>${i.getNumberOfPorts()} &nbsp</td>
                             <td style="color:#fff" align="center"><h3/>${i.getDuration()}${phrases['langDays']}  &nbsp</td>
                             <td style="color:#fff"><h3/>${i.getPrice()}$ &nbsp</td>
                             <td>

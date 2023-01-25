@@ -155,8 +155,6 @@ public class TicketsDAO {
                 while (resultSet.next()) {
                     amount += resultSet.getInt("number_of_passengers");
                 }
-                System.out.println(amount);
-                System.out.println(ship.getCapacity());
                 return amount <= ship.getCapacity();
             }
         } catch (SQLException e) {

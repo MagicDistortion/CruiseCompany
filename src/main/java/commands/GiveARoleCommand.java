@@ -1,5 +1,7 @@
 package commands;
 
+import dao.DBManager;
+import dao.StaffsDAO;
 import dao.UsersDAO;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,8 @@ import java.io.IOException;
 
 public class GiveARoleCommand implements Command {
     private final UsersDAO usersDAO = new UsersDAO();
+    private final StaffsDAO staffsDAO = new StaffsDAO();
+    private final DBManager dbManager = DBManager.getInstance();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -20,7 +24,12 @@ public class GiveARoleCommand implements Command {
         }
         int role = Integer.parseInt(request.getParameter("role"));
         int userId = Integer.parseInt(request.getParameter("userId"));
-        if (role >= 1 && role <= 3 && userId != 0) usersDAO.updateUserRole(role, userId);
+        dbManager.inTransaction(connection -> {
+            if (role >= 1 && role <= 3 && userId != 0) {
+                usersDAO.updateUserRole(connection, role, userId);
+//                if (role == 3) staffsDAO.insertStaff(connection, userId);
+            }
+        });
         response.sendRedirect("users_list");
     }
 

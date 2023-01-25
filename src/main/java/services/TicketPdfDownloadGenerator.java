@@ -10,16 +10,18 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
+/* класс генерує квиток у пдф форматі  */
 public class TicketPdfDownloadGenerator {
     private final static Logger logger = Logger.getLogger(TicketPdfDownloadGenerator.class);
 
+    /* метод генерації квитка*/
     public void generate(Ticket ticket, HttpServletResponse response) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
 
-            Font font = new Font(BaseFont.createFont("pdf/arial.ttf",BaseFont.IDENTITY_H, BaseFont.EMBEDDED));
+            Font font = new Font(BaseFont.createFont("pdf/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED));
             PdfPTable pdfPTable = new PdfPTable(4);
             PdfPTable pdfPTable2 = new PdfPTable(1);
             PdfPTable pdfPTable4 = new PdfPTable(1);

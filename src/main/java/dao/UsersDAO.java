@@ -48,6 +48,7 @@ public class UsersDAO {
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 generatedKeys.next();
                 user.setId(generatedKeys.getInt(1));
+                user.setRolesId(4);
             }
         } catch (SQLException e) {
             logger.error("failed to insert user", e);
@@ -56,9 +57,8 @@ public class UsersDAO {
     }
 
     /* метод оновлення ролі користувача  */
-    public void updateUserRole(int role, int id) {
-        try (Connection connection = dbManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_ROLE)) {
+    public void updateUserRole(Connection connection, int role, int id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_USER_ROLE)) {
             preparedStatement.setInt(1, role);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();

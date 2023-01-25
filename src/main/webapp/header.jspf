@@ -35,11 +35,9 @@
     </div>
 </table>
   </div>
-     <c:if  test="${user!=null}" >
-                <c:if test="${user.getRolesId()==1}">
-                <a align="right" style="color:#000000" class="btn btn-info" href="passenger/my_profile" ><h6><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h6></a>
-                </c:if>
-     </c:if>
+        <c:if test="${user.getRolesId()==1||user.getRolesId()==4}">
+        <a align="right" style="color:#000000" class="btn btn-info" href="passenger/my_profile" ><h6><tf:user message="${phrases['langMyMoney']} - ${user.getMoney()}$"/></h6></a>
+        </c:if>
 </nav>
           <form align="right" action="lang" method="get">
              <input type="hidden" name="lang"

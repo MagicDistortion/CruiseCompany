@@ -3,6 +3,7 @@ package utils;
 public class Constants {
     public static final String INSERT_USERS
             = "INSERT INTO users (surname,name,login,password,tel,date_of_birth) VALUES (?,?,?,?,?,?)";
+    public static final String INSERT_STAFF = "INSERT INTO staff (staff_id) VALUES (?)";
     public static final String INSERT_TICKET
             = "INSERT INTO tickets (cruise_id,user_id,number_of_passengers,total_price) VALUES (?,?,?,?)";
     public static final String INSERT_SHIP = "INSERT INTO ships (name,capacity,image) VALUES (?,?,?)";

@@ -1,6 +1,8 @@
 package dao;
 
+import models.users.User;
 import org.apache.log4j.Logger;
+import services.EncodePassword;
 import utils.Constants;
 
 import java.sql.Connection;
@@ -11,6 +13,17 @@ import java.sql.SQLException;
 public class StaffsDAO {
     private final static Logger logger = Logger.getLogger(StaffsDAO.class);
     private final DBManager dbManager = DBManager.getInstance();
+
+    /* метод додавання персоналу  */
+    public void insertStaff(Connection connection, int staffId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.INSERT_STAFF)) {
+            preparedStatement.setInt(1, staffId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("failed to insert staff by id->" + staffId, e);
+            throw new RuntimeException(e);
+        }
+    }
 
     /* метод пошуку id лайнера за id персонала */
     public int findShipByStaffId(int id) {

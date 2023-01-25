@@ -2,7 +2,7 @@ package commands;
 
 import dao.TicketsDAO;
 import models.tickets.Ticket;
-import services.TicketDownloadManager;
+import services.TicketPdfDownloadGenerator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +14,10 @@ public class DownloadTicketCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Ticket ticket = ticketsDAO.findTicketById(Integer.parseInt(request.getParameter("ticket_id")));
-        String fileName = ticket.getCruiseName() + ticket.getId()+".pdf";
-        response.setHeader("Content-Type", "application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-
-        TicketDownloadManager ticketDownloadManager = new TicketDownloadManager();
-        ticketDownloadManager.run(ticket, response);
+        String fileName = ticket.getCruiseName() + ticket.getId() + ".pdf";
+        response.setHeader("Content-Type", "application/pdf\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName);
+        new TicketPdfDownloadGenerator().generate(ticket, response);
     }
 
     @Override

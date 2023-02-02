@@ -1,5 +1,6 @@
-package commands;
+package commands.userCommands;
 
+import commands.Command;
 import dao.UsersDAO;
 import models.users.User;
 import services.EditProfileValidator;

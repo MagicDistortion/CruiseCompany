@@ -1,5 +1,6 @@
-package commands;
+package commands.ticketCommands;
 
+import commands.Command;
 import dao.DBManager;
 import dao.TicketsDAO;
 import dao.UsersDAO;

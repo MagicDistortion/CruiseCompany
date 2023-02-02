@@ -51,9 +51,7 @@ public class ShipsDAO {
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
                 if (resultSet.next()) {
-                    ship = new Ship(resultSet.getString("name")
-                            , resultSet.getInt("capacity"));
-                    ship.setId(resultSet.getInt("ship_id"));
+                    ship = getShip(resultSet);
                 }
             }
         } catch (SQLException e) {

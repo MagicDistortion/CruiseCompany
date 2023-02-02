@@ -1,5 +1,6 @@
-package commands;
+package commands.shipCommands;
 
+import commands.Command;
 import dao.ShipsDAO;
 import models.ships.Ship;
 import utils.RequestAssistant;

@@ -1,5 +1,6 @@
-package commands;
+package commands.shipCommands;
 
+import commands.Command;
 import dao.StaffsDAO;
 
 import javax.servlet.ServletException;

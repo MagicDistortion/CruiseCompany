@@ -1,5 +1,6 @@
 package commands;
 
+import commands.ticketCommands.PaidTicketsCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;

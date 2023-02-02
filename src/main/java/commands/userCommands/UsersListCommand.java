@@ -1,5 +1,6 @@
-package commands;
+package commands.userCommands;
 
+import commands.Command;
 import dao.ShipsDAO;
 import models.ships.Ship;
 import models.users.User;

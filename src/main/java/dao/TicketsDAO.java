@@ -51,10 +51,10 @@ public class TicketsDAO {
     }
 
     /* метод пошуку квитка по id пасажира */
-    public List<Ticket> findTicketsByUserId(int userId,String sort) {
+    public List<Ticket> findTicketsByUserId(int userId, String sort) {
         List<Ticket> ticketList = new ArrayList<>();
         try (Connection connection = dbManager.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID+sort)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Constants.FIND_TICKET_BY_USER_ID + sort)) {
             preparedStatement.setInt(1, userId);
             preparedStatement.execute();
             try (ResultSet resultSet = preparedStatement.getResultSet()) {
@@ -104,34 +104,6 @@ public class TicketsDAO {
         return ticket;
     }
 
-    /* метод оновлення кількості пасажирів по квитку*/
-    public void updateNumberOfPassengers(int numberOfPassengers, int ticketId) {
-        dbManager.inTransaction(connection -> {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_NUMBER_OF_PASSENGERS)) {
-                preparedStatement.setInt(1, numberOfPassengers);
-                preparedStatement.setInt(2, ticketId);
-                preparedStatement.executeUpdate();
-                double price = cruiseDAO.getPriceOfCruise(connection, ticketId);
-                updateTotalPrice(connection, numberOfPassengers, price, ticketId);
-            } catch (SQLException e) {
-                logger.error("failed to update number of passengers by ticket`s id ->" + ticketId, e);
-                throw new RuntimeException(e);
-            }
-        });
-    }
-
-    /* метод оновлення загальної вартості по квитку*/
-    public void updateTotalPrice(Connection connection, int numberOfPassengers, double price, int ticketId) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_TOTAL_PRICE)) {
-            preparedStatement.setDouble(1, numberOfPassengers * price);
-            preparedStatement.setInt(2, ticketId);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            logger.error("failed to update number of passengers by ticket`s id ->" + ticketId, e);
-            throw new RuntimeException(e);
-        }
-    }
-
     /* метод оновлення статусу квитка*/
     public void updateStatus(Connection connection, String status, int ticketId) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Constants.UPDATE_TICKET_STATUS)) {
@@ -150,13 +122,11 @@ public class TicketsDAO {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Constants.FROM_TICKETS)) {
             preparedStatement.setInt(1, cruiseId);
-            preparedStatement.execute();
-            try (ResultSet resultSet = preparedStatement.getResultSet()) {
-                while (resultSet.next()) {
-                    amount += resultSet.getInt("number_of_passengers");
-                }
-                return amount <= ship.getCapacity();
-            }
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            resultSet.next();
+            amount += resultSet.getInt(1);
+            return amount <= ship.getCapacity();
         } catch (SQLException e) {
             logger.error("failed to checking for availability ", e);
             throw new RuntimeException(e);

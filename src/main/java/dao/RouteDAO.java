@@ -1,9 +1,7 @@
 package dao;
 
-import models.cruises.Cruise;
 import models.route.Route;
 import org.apache.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 import utils.Constants;
 
 import java.sql.Connection;

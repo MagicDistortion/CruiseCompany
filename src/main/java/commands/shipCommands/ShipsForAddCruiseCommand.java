@@ -1,5 +1,6 @@
-package commands;
+package commands.shipCommands;
 
+import commands.Command;
 import dao.CruisesDAO;
 import dao.RouteDAO;
 import dao.ShipsDAO;

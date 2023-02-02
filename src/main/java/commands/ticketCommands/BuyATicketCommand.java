@@ -1,5 +1,6 @@
-package commands;
+package commands.ticketCommands;
 
+import commands.Command;
 import dao.CruisesDAO;
 import dao.ShipsDAO;
 import dao.TicketsDAO;

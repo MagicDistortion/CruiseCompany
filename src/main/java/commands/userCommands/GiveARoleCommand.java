@@ -1,5 +1,6 @@
-package commands;
+package commands.userCommands;
 
+import commands.Command;
 import dao.UsersDAO;
 
 import javax.servlet.ServletException;

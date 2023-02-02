@@ -65,7 +65,7 @@
                     <c:if  test="${not empty error_message}" >${error_message}</c:if>
                   </h2>
 
-                <footer style=" position: absolute; top: 80%; width: 100%; color:#fff">
+                <footer style=" position: relative; top: 80%; width: 100%; color:#fff">
                   <h4 style="color:#fff">${phrases['langMyMoney']} = ${user.getMoney()}$</h4>
                    <form action ="../passenger/put_on_the_account" method ="post">
                    <input name="deposit" type="number" class="btn btn-light" placeholder="${phrases['langPutOnTheAccount']} " style="width: 200px;" required/>

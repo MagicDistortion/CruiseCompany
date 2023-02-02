@@ -1,5 +1,6 @@
 package commands;
 
+import commands.userCommands.EditMyProfileCommand;
 import models.users.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

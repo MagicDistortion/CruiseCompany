@@ -2,8 +2,6 @@
 
 The task of the final project is to develop a web application that supports the functionality according to the task variant.
 
-## Variants
-
 Cruise company  
 
 ### ENG

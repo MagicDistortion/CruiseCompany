@@ -11,7 +11,7 @@ public class Constants {
     public static final String INSERT_CRUISE = "INSERT INTO cruise (ship_id,ship_name,route_id,cruise_name,number_of_ports,price," +
             "start_time,end_time,duration,description) VALUES (?,?,?,?,?,?,?,?,?,?)";
     public static final String FROM_USERS_WITHOUT_ROLE = "SELECT * FROM users where roles_id = 4";
-    public static final String FROM_USERS_FIND_STAFF= "SELECT * FROM users left join staff" +
+    public static final String FROM_USERS_FIND_STAFF = "SELECT * FROM users left join staff" +
             " on users_id=staff_id where roles_id =3 and staff_id is null";
     public static final String FROM_SHIPS = "SELECT * FROM ships ";
     public static final String FROM_ROUTE = "SELECT * FROM route ";
@@ -19,7 +19,7 @@ public class Constants {
     public static final String FROM_CRUISES = "SELECT * FROM cruise where status='didn`t start'";
     public static final String FROM_CRUISES_BY_DATE = "SELECT * FROM cruise where" +
             " date_format(start_time, '%Y-%m-%d')=? AND status='didn`t start'";
-    public static final String FROM_TICKETS = "SELECT * FROM tickets where cruise_id=? and status!='rejected'";
+    public static final String FROM_TICKETS = "SELECT count(number_of_passengers) FROM tickets where cruise_id=? and (status='paid' or status='confirmed')";
     public static final String FROM_CRUISES_BY_DURATION = "SELECT * FROM cruise  where duration = ? AND status='didn`t start'";
     public static final String UPDATE_USER_ROLE = "UPDATE users SET `roles_id` = ? WHERE (`users_id` = ?)";
     public static final String UPDATE_USER_SURNAME = "UPDATE users SET `surname` = ? WHERE (`users_id` = ?)";
@@ -31,7 +31,7 @@ public class Constants {
     public static final String UPDATE_USER_DATE_OF_BIRTH = "UPDATE users SET `date_of_birth`= ?  WHERE `users_id` = ?";
     public static final String FIND_BY_LOGIN = "SELECT * FROM users WHERE login = ? ";
     public static final String FIND_BY_ID = "SELECT * FROM users WHERE users_id = ? ";
-    public static final String FIND_TICKET_BY_USER_ID = "SELECT * FROM tickets where user_id=? ";
+    public static final String FIND_TICKET_BY_USER_ID = "SELECT * FROM tickets left join cruise on tickets.cruise_id=cruise.cruise_id where user_id=? ";
     public static final String FIND_PAID_TICKETS = "SELECT * FROM tickets where status='paid'";
     public static final String FIND_TICKET_BY_ID = "SELECT * FROM tickets where ticket_id=? ";
     public static final String FIND_CRUISE_BY_ID = "SELECT * FROM cruise WHERE cruise_id=? ";
@@ -39,8 +39,6 @@ public class Constants {
     public static final String FIND_SHIP_ID_BY_STAFF_ID = "SELECT * FROM staff WHERE staff_id=? ";
     public static final String FIND_ROUTE_BY_ID = "SELECT * FROM route WHERE route_id=? ";
     public static final String FIND_SHIP_BY_ID = "SELECT * FROM ships WHERE ship_id=? ";
-    public static final String UPDATE_NUMBER_OF_PASSENGERS = "UPDATE tickets SET number_of_passengers=? WHERE ticket_id=? ";
-    public static final String UPDATE_TOTAL_PRICE = "Update tickets SET total_price=? WHERE ticket_id = ?";
     public static final String UPDATE_TICKET_STATUS = "Update tickets SET status=? WHERE ticket_id = ?";
     public static final String UPDATE_CRUISE_STATUS = "Update cruise SET status=? WHERE cruise_id = ?";
     public static final String GET_CRUISE_PRICE = "SELECT * FROM cruise left join tickets on cruise.cruise_id=tickets.cruise_id" +

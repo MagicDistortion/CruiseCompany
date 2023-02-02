@@ -1,5 +1,6 @@
 package commands;
 
+import commands.cruiseCommands.AddRouteCommand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;

@@ -1,5 +1,6 @@
-package commands;
+package commands.ticketCommands;
 
+import commands.Command;
 import dao.TicketsDAO;
 
 import models.tickets.Ticket;

@@ -1,5 +1,6 @@
-package commands;
+package commands.ticketCommands;
 
+import commands.Command;
 import dao.TicketsDAO;
 import models.tickets.Ticket;
 import models.users.User;
@@ -22,13 +23,13 @@ public class MyTicketsListCommand implements Command {
         request.setAttribute("sort", sort);
         switch (sort) {
             case "not paid":
-                sort = "and status='not paid'";
+                sort = "and tickets.status='not paid' and cruise.status='didn`t start'";
                 break;
             case "paid":
-                sort = "and (status='paid' or status='confirmed')";
+                sort = "and (tickets.status='paid' or tickets.status='confirmed') and cruise.status!='completed'";
                 break;
             case "rejected":
-                sort = "and status='rejected'";
+                sort = "and tickets.status='rejected' and cruise.status='didn`t start'";
         }
         int userId = ((User) request.getSession().getAttribute("user")).getId();
         List<Ticket> ticketList = ticketsDAO.findTicketsByUserId(userId, sort);

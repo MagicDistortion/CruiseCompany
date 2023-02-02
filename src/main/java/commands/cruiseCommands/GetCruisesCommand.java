@@ -1,5 +1,6 @@
-package commands;
+package commands.cruiseCommands;
 
+import commands.Command;
 import dao.CruisesDAO;
 import models.cruises.Cruise;
 import utils.RequestAssistant;

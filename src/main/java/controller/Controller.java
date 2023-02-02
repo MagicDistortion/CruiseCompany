@@ -1,6 +1,10 @@
 package controller;
 
 import commands.*;
+import commands.cruiseCommands.*;
+import commands.shipCommands.*;
+import commands.ticketCommands.*;
+import commands.userCommands.*;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

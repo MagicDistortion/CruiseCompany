@@ -11,15 +11,16 @@ import java.util.TimerTask;
 
 /* класс перевірки статусів круїзів  */
 public class CheckCruiseStatus {
-    private final CruisesDAO cruisesDAO = new CruisesDAO();
     private static CheckCruiseStatus instance;
 
     public static synchronized CheckCruiseStatus getInstance() {
         if (instance == null) instance = new CheckCruiseStatus();
         return instance;
     }
+
     /* метод раз на хвилину перевіряє статуси незавершених круїзів  */
     public void checkStatus() {
+        CruisesDAO cruisesDAO = new CruisesDAO();
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

@@ -1,6 +1,6 @@
 package dao;
 
-import models.route.Route;
+import models.Route;
 import org.apache.log4j.Logger;
 import utils.Constants;
 

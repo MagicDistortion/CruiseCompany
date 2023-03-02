@@ -1,7 +1,6 @@
-package models.tickets;
+package models;
 
 import lombok.Data;
-import models.cruises.Cruise;
 
 @Data
 public class Ticket {

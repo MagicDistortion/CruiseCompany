@@ -2,8 +2,8 @@ package commands.ticketCommands;
 
 import commands.Command;
 import dao.TicketsDAO;
-import models.tickets.Ticket;
-import models.users.User;
+import models.Ticket;
+import models.User;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

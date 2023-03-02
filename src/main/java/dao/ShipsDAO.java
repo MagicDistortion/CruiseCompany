@@ -1,6 +1,6 @@
 package dao;
 
-import models.ships.Ship;
+import models.Ship;
 import org.apache.log4j.Logger;
 import utils.Constants;
 

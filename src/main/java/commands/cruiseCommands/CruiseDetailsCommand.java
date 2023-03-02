@@ -3,8 +3,8 @@ package commands.cruiseCommands;
 import commands.Command;
 import dao.CruisesDAO;
 import dao.RouteDAO;
-import models.cruises.Cruise;
-import models.route.Route;
+import models.Cruise;
+import models.Route;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

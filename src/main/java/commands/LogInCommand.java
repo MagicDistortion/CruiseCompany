@@ -1,7 +1,7 @@
 package commands;
 
 import dao.UsersDAO;
-import models.users.User;
+import models.User;
 import services.EncodePassword;
 import utils.RequestAssistant;
 

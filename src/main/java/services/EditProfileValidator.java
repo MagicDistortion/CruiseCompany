@@ -1,7 +1,7 @@
 package services;
 
 import dao.UsersDAO;
-import models.users.User;
+import models.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.DateTimeException;

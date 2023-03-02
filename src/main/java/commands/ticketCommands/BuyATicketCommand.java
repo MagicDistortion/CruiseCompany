@@ -4,10 +4,10 @@ import commands.Command;
 import dao.CruisesDAO;
 import dao.ShipsDAO;
 import dao.TicketsDAO;
-import models.cruises.Cruise;
-import models.ships.Ship;
-import models.tickets.Ticket;
-import models.users.User;
+import models.Cruise;
+import models.Ship;
+import models.Ticket;
+import models.User;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

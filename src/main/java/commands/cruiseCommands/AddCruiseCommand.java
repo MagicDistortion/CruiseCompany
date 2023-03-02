@@ -4,9 +4,9 @@ import commands.Command;
 import dao.CruisesDAO;
 import dao.RouteDAO;
 import dao.ShipsDAO;
-import models.cruises.Cruise;
-import models.route.Route;
-import models.ships.Ship;
+import models.Cruise;
+import models.Route;
+import models.Ship;
 import services.CruiseValidator;
 
 import javax.servlet.ServletException;

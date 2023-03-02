@@ -1,7 +1,7 @@
 package commands.shipCommands;
 
 import commands.Command;
-import models.ships.Ship;
+import models.Ship;
 import services.Paginator;
 import utils.RequestAssistant;
 

@@ -1,4 +1,4 @@
-package models.route;
+package models;
 
 import lombok.Data;
 

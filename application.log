@@ -1,15 +1,15 @@
 2022-11-23 15:15:58 ERROR [main]: failed to upgrade telephone number 
 java.lang.RuntimeException: wrong number tel
-	at models.users.User.upgradeTel(User.java:42)
-	at models.users.User.setTel(User.java:34)
-	at models.users.User.main(User.java:53)
+	at models.User.upgradeTel(User.java:42)
+	at models.User.setTel(User.java:34)
+	at models.User.main(User.java:53)
 2022-11-23 15:42:46 ERROR [main]: failed to upgrade telephone number 
 Error type: TOO_SHORT_AFTER_IDD. Phone number had an IDD, but after this was not long enough to be a viable phone number.
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parseHelper(PhoneNumberUtil.java:3287)
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3122)
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3112)
-	at models.users.User.upgradeTel(User.java:41)
-	at models.users.User.<init>(User.java:26)
+	at models.User.upgradeTel(User.java:41)
+	at models.User.<init>(User.java:26)
 	at dao.UsersDAO.getUser(UsersDAO.java:26)
 	at dao.UsersDAO.findAllUsers(UsersDAO.java:61)
 	at dao.UsersDAO.main(UsersDAO.java:75)
@@ -105,7 +105,7 @@ java.sql.SQLException: Before start of result set
 	at dao.UsersDAO.main(UsersDAO.java:216)
 2022-11-26 17:48:48 ERROR [main]: failed to upgrade telephone number 
 java.lang.RuntimeException: wrong number tel
-	at models.users.User.updateTel(User.java:43)
+	at models.User.updateTel(User.java:43)
 	at services.SignUpValidator.validatePhoneNumber(Validator.java:63)
 	at dao.UsersDAO.main(UsersDAO.java:218)
 2022-11-26 17:51:43 ERROR [main]: failed to upgrade telephone number 
@@ -113,7 +113,7 @@ Error type: NOT_A_NUMBER. The phone number supplied was null.
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parseHelper(PhoneNumberUtil.java:3230)
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3122)
 	at com.google.i18n.phonenumbers.PhoneNumberUtil.parse(PhoneNumberUtil.java:3112)
-	at models.users.User.updateTel(User.java:41)
+	at models.User.updateTel(User.java:41)
 	at services.SignUpValidator.validatePhoneNumber(Validator.java:63)
 	at dao.UsersDAO.main(UsersDAO.java:218)
 2022-11-26 18:15:31 ERROR [main]: failed to update telephone number ->62252039

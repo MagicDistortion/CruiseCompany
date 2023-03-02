@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
-import models.tickets.Ticket;
+import models.Ticket;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletResponse;

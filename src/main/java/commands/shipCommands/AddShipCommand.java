@@ -2,7 +2,7 @@ package commands.shipCommands;
 
 import commands.Command;
 import dao.ShipsDAO;
-import models.ships.Ship;
+import models.Ship;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

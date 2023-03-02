@@ -1,4 +1,4 @@
-package models.ships;
+package models;
 
 import lombok.Data;
 

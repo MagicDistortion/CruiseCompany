@@ -1,7 +1,7 @@
 package dao;
 
-import models.ships.Ship;
-import models.tickets.Ticket;
+import models.Ship;
+import models.Ticket;
 import org.apache.log4j.Logger;
 import utils.Constants;
 

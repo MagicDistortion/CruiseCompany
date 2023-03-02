@@ -1,4 +1,4 @@
-package models.users;
+package models;
 
 import lombok.Data;
 import services.SignUpValidator;

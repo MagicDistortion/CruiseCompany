@@ -2,10 +2,10 @@ package commands.ticketCommands;
 
 import commands.Command;
 import dao.*;
-import models.cruises.Cruise;
-import models.ships.Ship;
-import models.tickets.Ticket;
-import models.users.User;
+import models.Cruise;
+import models.Ship;
+import models.Ticket;
+import models.User;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

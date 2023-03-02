@@ -1,6 +1,6 @@
 package dao;
 
-import models.users.User;
+import models.User;
 import org.apache.log4j.Logger;
 import services.EncodePassword;
 import services.SignUpValidator;

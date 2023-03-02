@@ -1,6 +1,6 @@
 package dao;
 
-import models.cruises.Cruise;
+import models.Cruise;
 import org.apache.log4j.Logger;
 import utils.Constants;
 

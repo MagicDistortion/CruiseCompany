@@ -2,7 +2,7 @@ package commands.cruiseCommands;
 
 import commands.Command;
 import dao.RouteDAO;
-import models.route.Route;
+import models.Route;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

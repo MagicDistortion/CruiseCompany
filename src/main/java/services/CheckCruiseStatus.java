@@ -2,7 +2,7 @@ package services;
 
 import dao.CruisesDAO;
 import dao.DBManager;
-import models.cruises.Cruise;
+import models.Cruise;
 
 import java.time.LocalDateTime;
 import java.util.List;

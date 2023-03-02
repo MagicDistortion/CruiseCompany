@@ -3,7 +3,7 @@ package commands.userCommands;
 import commands.Command;
 import dao.DBManager;
 import dao.UsersDAO;
-import models.users.User;
+import models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

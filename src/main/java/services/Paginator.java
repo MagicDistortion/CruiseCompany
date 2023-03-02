@@ -2,8 +2,8 @@ package services;
 
 import dao.CruisesDAO;
 import dao.ShipsDAO;
-import models.cruises.Cruise;
-import models.ships.Ship;
+import models.Cruise;
+import models.Ship;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

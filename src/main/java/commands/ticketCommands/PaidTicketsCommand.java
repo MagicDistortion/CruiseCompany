@@ -3,7 +3,7 @@ package commands.ticketCommands;
 import commands.Command;
 import dao.TicketsDAO;
 
-import models.tickets.Ticket;
+import models.Ticket;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

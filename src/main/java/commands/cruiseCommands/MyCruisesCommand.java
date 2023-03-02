@@ -3,8 +3,8 @@ package commands.cruiseCommands;
 import commands.Command;
 import dao.CruisesDAO;
 import dao.StaffsDAO;
-import models.cruises.Cruise;
-import models.users.User;
+import models.Cruise;
+import models.User;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

@@ -2,7 +2,7 @@ package commands.ticketCommands;
 
 import commands.Command;
 import dao.TicketsDAO;
-import models.tickets.Ticket;
+import models.Ticket;
 import services.TicketPdfDownloadGenerator;
 
 import javax.servlet.http.HttpServletRequest;

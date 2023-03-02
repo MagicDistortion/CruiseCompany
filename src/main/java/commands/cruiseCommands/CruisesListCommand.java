@@ -1,7 +1,7 @@
 package commands.cruiseCommands;
 
 import commands.Command;
-import models.cruises.Cruise;
+import models.Cruise;
 import services.Paginator;
 import utils.RequestAssistant;
 

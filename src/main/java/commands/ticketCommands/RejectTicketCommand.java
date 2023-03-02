@@ -4,7 +4,7 @@ import commands.Command;
 import dao.DBManager;
 import dao.TicketsDAO;
 import dao.UsersDAO;
-import models.tickets.Ticket;
+import models.Ticket;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

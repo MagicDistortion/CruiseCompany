@@ -2,7 +2,7 @@ package commands.userCommands;
 
 import commands.Command;
 import dao.UsersDAO;
-import models.users.User;
+import models.User;
 import services.EditProfileValidator;
 
 import javax.servlet.ServletException;

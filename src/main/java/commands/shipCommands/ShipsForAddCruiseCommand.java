@@ -4,8 +4,8 @@ import commands.Command;
 import dao.CruisesDAO;
 import dao.RouteDAO;
 import dao.ShipsDAO;
-import models.route.Route;
-import models.ships.Ship;
+import models.Route;
+import models.Ship;
 import utils.RequestAssistant;
 
 import javax.servlet.ServletException;

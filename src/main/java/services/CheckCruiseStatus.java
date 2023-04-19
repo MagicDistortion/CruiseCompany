@@ -13,6 +13,9 @@ import java.util.TimerTask;
 public class CheckCruiseStatus {
     private static CheckCruiseStatus instance;
 
+    private CheckCruiseStatus() {
+    }
+
     public static synchronized CheckCruiseStatus getInstance() {
         if (instance == null) instance = new CheckCruiseStatus();
         return instance;
@@ -30,9 +33,9 @@ public class CheckCruiseStatus {
                     cruisesList.forEach(cruise -> {
                         LocalDateTime startTime = cruise.getStartTime();
                         LocalDateTime endTime = cruise.getEndTime();
-                        if (timeNow.isAfter(startTime) && timeNow.isBefore(endTime) && cruise.getStatus().equals("didn`t start"))
+                        if (cruise.getStatus().equals("didn`t start") && timeNow.isAfter(startTime) && timeNow.isBefore(endTime))
                             cruisesDAO.updateStatus(connection, "started", cruise.getId());
-                        if (timeNow.isAfter(endTime) && cruise.getStatus().equals("started"))
+                        if (cruise.getStatus().equals("started") && timeNow.isAfter(endTime))
                             cruisesDAO.updateStatus(connection, "completed", cruise.getId());
                     });
                 });

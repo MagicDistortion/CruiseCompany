@@ -26,7 +26,7 @@
                 <th><h6 style="color:#00ffff" align="center"/> ${phrases['langEnterRoute']} &nbsp</th>
                 <tr>
                    <td><input name="name" class="btn btn-light" style="height: 80px" placeholder="${phrases['langEnterRouteName']}" pattern="^[0-9A-Za-zА-Яа-яІіЇїєЄ\- ]{2,32}" required/></td>
-                   <td><textarea name="route" placeholder="${phrases['langEnterRouteName']}" class="form-control" style="width: 300px; height: 80px"></textarea></td>
+                   <td><textarea name="route" placeholder="${phrases['langEnterRoute']}" class="form-control" style="width: 300px; height: 80px"></textarea></td>
                    <td><input type="submit" class="btn btn-info" style="height: 80px" value="${phrases['langAddRoute']}"/></td>
                 </tr>
         </table>

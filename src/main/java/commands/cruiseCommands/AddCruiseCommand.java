@@ -30,7 +30,7 @@ public class AddCruiseCommand implements Command {
         CruiseValidator cruiseValidator = new CruiseValidator();
         Ship ship = shipsDAO.findShipByID(Integer.parseInt(request.getParameter("shipId")));
         Route route = routeDAO.findRouteByID(Integer.parseInt(request.getParameter("routeId")));
-        List<String> errors = cruiseValidator.validate(request, route.getList().size());
+        List<String> errors = cruiseValidator.validate(request, route.getPorts().size());
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
             request.getRequestDispatcher("add_cruise.jsp").forward(request, response);
@@ -40,7 +40,7 @@ public class AddCruiseCommand implements Command {
                 , route.getId()
                 , ship.getName()
                 , request.getParameter("cruiseName")
-                , route.getList().size()
+                , route.getPorts().size()
                 , Double.parseDouble(request.getParameter("price"))
                 , LocalDateTime.parse(request.getParameter("startTime"))
                 , LocalDateTime.parse(request.getParameter("endTime")));

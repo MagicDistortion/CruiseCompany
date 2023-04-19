@@ -24,5 +24,4 @@ public class AdminFilter implements Filter {
             httpServletResponse.sendRedirect("../index.jsp");
         } else filterChain.doFilter(servletRequest, servletResponse);
     }
-
 }

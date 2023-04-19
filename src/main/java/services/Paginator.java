@@ -61,8 +61,7 @@ public class Paginator {
     /* метод повертає номер сторінки, та передає його у запит*/
     private int getPage(HttpServletRequest req) {
         int page = 1;
-        if (req.getParameter("page") != null)
-            page = Integer.parseInt(req.getParameter("page"));
+        if (req.getParameter("page") != null) page = Integer.parseInt(req.getParameter("page"));
         req.setAttribute("page", page);
         return page;
     }

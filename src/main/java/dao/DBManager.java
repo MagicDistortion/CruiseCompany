@@ -65,7 +65,6 @@ public class DBManager {
                     logger.error("failed to rollback connection", e);
                 }
             }
-            if (e instanceof RuntimeException) throw (RuntimeException) e;
             throw new RuntimeException(e);
         } finally {
             if (connection != null) {

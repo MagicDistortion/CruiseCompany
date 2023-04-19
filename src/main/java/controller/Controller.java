@@ -6,6 +6,7 @@ import commands.shipCommands.*;
 import commands.ticketCommands.*;
 import commands.userCommands.*;
 import org.apache.log4j.Logger;
+import services.CheckCruiseStatus;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
